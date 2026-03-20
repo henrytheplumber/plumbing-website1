@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -35,7 +35,6 @@
   </header>
 
   <!-- HOME SCREEN -->
-
   <div class="screen active" id="screen-home">
     <div class="home-intro">
       <h1>What's the <em>problem</em>?<br>Let's fix it.</h1>
@@ -48,34 +47,30 @@
       </div>
     </div>
 
-```
-<!-- SEARCH BAR -->
-<div class="search-wrap">
-  <div class="search-box">
-    <span class="search-icon">🔍</span>
-    <input type="text" id="search-input" placeholder="e.g. toilet won't flush, boiler F22, dripping tap, cold radiator..." autocomplete="off" />
-    <button class="search-clear" id="search-clear" onclick="clearSearch()" style="display:none">✕</button>
-  </div>
-  <div class="search-results" id="search-results" style="display:none"></div>
-</div>
+    <!-- SEARCH BAR -->
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="search-input" placeholder="e.g. toilet won't flush, boiler F22, dripping tap, cold radiator..." autocomplete="off" />
+        <button class="search-clear" id="search-clear" onclick="clearSearch()" style="display:none">✕</button>
+      </div>
+      <div class="search-results" id="search-results" style="display:none"></div>
+    </div>
 
-<div class="section-label" id="cat-label">Choose a category</div>
-<div class="cat-grid" id="cat-grid"></div>
+    <div class="section-label" id="cat-label">Choose a category</div>
+    <div class="cat-grid" id="cat-grid"></div>
 
-<!-- CANT FIND IT BANNER -->
-<div class="cant-find-banner">
-  <div>
-    <strong>Can't find your issue?</strong>
-    <span>Submit it and we'll add it to the site — usually within 48 hours.</span>
-  </div>
-  <button class="btn-cta" onclick="showScreen('screen-contact')">Request a Scenario →</button>
-</div>
-```
-
+    <!-- CANT FIND IT BANNER -->
+    <div class="cant-find-banner">
+      <div>
+        <strong>Can't find your issue?</strong>
+        <span>Submit it and we'll add it to the site — usually within 48 hours.</span>
+      </div>
+      <button class="btn-cta" onclick="showScreen('screen-contact')">Request a Scenario →</button>
+    </div>
   </div>
 
   <!-- CONTACT / REQUEST SCREEN -->
-
   <div class="screen" id="screen-contact">
     <button class="btn-back" onclick="goHome()">← Back to Home</button>
     <div class="contact-header">
@@ -83,104 +78,100 @@
       <p>If your plumbing or heating problem isn't covered on the site, submit it below. We review every request and add new scenarios regularly — usually within 48 hours. You can also use this form to get in touch directly.</p>
     </div>
 
-```
-<div class="contact-grid">
-  <!-- REQUEST FORM -->
-  <div class="contact-card" id="request-card">
-    <div class="contact-card-header">
-      <span class="contact-card-icon">🔧</span>
-      <div>
-        <h3>Request a Scenario</h3>
-        <p>Describe your issue and we'll create a step-by-step guide for it</p>
+    <div class="contact-grid">
+      <!-- REQUEST FORM -->
+      <div class="contact-card" id="request-card">
+        <div class="contact-card-header">
+          <span class="contact-card-icon">🔧</span>
+          <div>
+            <h3>Request a Scenario</h3>
+            <p>Describe your issue and we'll create a step-by-step guide for it</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>What category does it relate to?</label>
+          <select id="req-category">
+            <option value="">Select a category...</option>
+            <option>No Hot Water</option>
+            <option>No Heating</option>
+            <option>Boiler Fault Codes</option>
+            <option>Toilets</option>
+            <option>Taps</option>
+            <option>Leaking Pipes</option>
+            <option>Blocked Drains</option>
+            <option>Low Water Pressure</option>
+            <option>Showers</option>
+            <option>Radiators</option>
+            <option>Noisy Pipes</option>
+            <option>Tanks &amp; Cylinders</option>
+            <option>Other / Not sure</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Describe your problem</label>
+          <textarea id="req-description" placeholder="e.g. My boiler shows an E168 code on a Baxi 800 and I can't find what it means anywhere..." rows="4"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Your email <span style="color:var(--muted);font-weight:400">(optional — we'll notify you when it's added)</span></label>
+          <input type="email" id="req-email" placeholder="your@email.com" />
+        </div>
+        <button class="btn-submit" onclick="submitRequest()">Submit Request →</button>
+        <div class="form-success" id="req-success" style="display:none">
+          ✅ Thanks! We've received your request and will add it to the site shortly. If you left your email we'll let you know when it's live.
+        </div>
+      </div>
+
+      <!-- CONTACT FORM -->
+      <div class="contact-card" id="contact-card">
+        <div class="contact-card-header">
+          <span class="contact-card-icon">✉️</span>
+          <div>
+            <h3>Get in Touch</h3>
+            <p>General enquiries, feedback, or trade partnerships</p>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" id="contact-name" placeholder="John Smith" />
+        </div>
+        <div class="form-group">
+          <label>Your email</label>
+          <input type="email" id="contact-email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label>What's it about?</label>
+          <select id="contact-subject">
+            <option value="">Select...</option>
+            <option>General feedback</option>
+            <option>Trade / Pro subscription enquiry</option>
+            <option>Advertising / partnership</option>
+            <option>Report an error on the site</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea id="contact-message" placeholder="Your message..." rows="4"></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitContact()">Send Message →</button>
+        <div class="form-success" id="contact-success" style="display:none">
+          ✅ Message received — we'll get back to you as soon as possible.
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label>What category does it relate to?</label>
-      <select id="req-category">
-        <option value="">Select a category...</option>
-        <option>No Hot Water</option>
-        <option>No Heating</option>
-        <option>Boiler Fault Codes</option>
-        <option>Toilets</option>
-        <option>Taps</option>
-        <option>Leaking Pipes</option>
-        <option>Blocked Drains</option>
-        <option>Low Water Pressure</option>
-        <option>Showers</option>
-        <option>Radiators</option>
-        <option>Noisy Pipes</option>
-        <option>Tanks &amp; Cylinders</option>
-        <option>Other / Not sure</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Describe your problem</label>
-      <textarea id="req-description" placeholder="e.g. My boiler shows an E168 code on a Baxi 800 and I can't find what it means anywhere..." rows="4"></textarea>
-    </div>
-    <div class="form-group">
-      <label>Your email <span style="color:var(--muted);font-weight:400">(optional — we'll notify you when it's added)</span></label>
-      <input type="email" id="req-email" placeholder="your@email.com" />
-    </div>
-    <button class="btn-submit" onclick="submitRequest()">Submit Request →</button>
-    <div class="form-success" id="req-success" style="display:none">
-      ✅ Thanks! We've received your request and will add it to the site shortly. If you left your email we'll let you know when it's live.
-    </div>
-  </div>
 
-  <!-- CONTACT FORM -->
-  <div class="contact-card" id="contact-card">
-    <div class="contact-card-header">
-      <span class="contact-card-icon">✉️</span>
-      <div>
-        <h3>Get in Touch</h3>
-        <p>General enquiries, feedback, or trade partnerships</p>
+    <!-- PRO ENQUIRY BANNER -->
+    <div class="pro-enquiry-banner">
+      <div class="pro-enquiry-left">
+        <div style="font-size:1.6rem;margin-bottom:8px;">🔐</div>
+        <h3>Are you a Gas Safe engineer or heating professional?</h3>
+        <p>Our Pro version gives you full fault code fix guides, component diagnostics, printable job sheets and more. Launching soon at just £4.99/month.</p>
       </div>
+      <button class="btn-pro" onclick="document.getElementById('contact-subject').value='Trade / Pro subscription enquiry'; document.getElementById('contact-card').scrollIntoView({behavior:'smooth'})">Register Interest →</button>
     </div>
-    <div class="form-group">
-      <label>Your name</label>
-      <input type="text" id="contact-name" placeholder="John Smith" />
-    </div>
-    <div class="form-group">
-      <label>Your email</label>
-      <input type="email" id="contact-email" placeholder="your@email.com" />
-    </div>
-    <div class="form-group">
-      <label>What's it about?</label>
-      <select id="contact-subject">
-        <option value="">Select...</option>
-        <option>General feedback</option>
-        <option>Trade / Pro subscription enquiry</option>
-        <option>Advertising / partnership</option>
-        <option>Report an error on the site</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label>Message</label>
-      <textarea id="contact-message" placeholder="Your message..." rows="4"></textarea>
-    </div>
-    <button class="btn-submit" onclick="submitContact()">Send Message →</button>
-    <div class="form-success" id="contact-success" style="display:none">
-      ✅ Message received — we'll get back to you as soon as possible.
-    </div>
-  </div>
-</div>
-
-<!-- PRO ENQUIRY BANNER -->
-<div class="pro-enquiry-banner">
-  <div class="pro-enquiry-left">
-    <div style="font-size:1.6rem;margin-bottom:8px;">🔐</div>
-    <h3>Are you a Gas Safe engineer or heating professional?</h3>
-    <p>Our Pro version gives you full fault code fix guides, component diagnostics, printable job sheets and more. Launching soon at just £4.99/month.</p>
-  </div>
-  <button class="btn-pro" onclick="document.getElementById('contact-subject').value='Trade / Pro subscription enquiry'; document.getElementById('contact-card').scrollIntoView({behavior:'smooth'})">Register Interest →</button>
-</div>
-```
-
   </div>
 
   <!-- CATEGORY SCREEN -->
-
   <div class="screen" id="screen-cat">
     <button class="btn-back" onclick="goHome()">← Back to Categories</button>
     <div class="cat-header">
@@ -195,7 +186,6 @@
   </div>
 
   <!-- BOILER BRAND SCREEN -->
-
   <div class="screen" id="screen-brands">
     <button class="btn-back" onclick="goHome()">← Back to Categories</button>
     <div class="cat-header">
@@ -210,7 +200,6 @@
   </div>
 
   <!-- BOILER MODEL SCREEN -->
-
   <div class="screen" id="screen-models">
     <button class="btn-back" onclick="showScreen('screen-brands')">← Back to Brands</button>
     <div class="cat-header">
@@ -225,7 +214,6 @@
   </div>
 
   <!-- FAULT CODE LIST SCREEN -->
-
   <div class="screen" id="screen-codes">
     <button class="btn-back" onclick="showScreen('screen-models')">← Back to Models</button>
     <div class="cat-header">
@@ -240,7 +228,6 @@
   </div>
 
   <!-- FAULT DETAIL SCREEN -->
-
   <div class="screen" id="screen-fault-detail">
     <div class="breadcrumb">
       <span onclick="goHome()">Home</span>
@@ -264,7 +251,6 @@
   </div>
 
   <!-- FIX SCREEN -->
-
   <div class="screen" id="screen-fix">
     <div class="breadcrumb">
       <span onclick="goHome()">Home</span>
@@ -274,28 +260,24 @@
       <span class="current" id="bc-title"></span>
     </div>
 
-```
-<div class="fix-header">
-  <h2 id="fix-title"></h2>
-  <div class="fix-meta" id="fix-meta"></div>
-</div>
+    <div class="fix-header">
+      <h2 id="fix-title"></h2>
+      <div class="fix-meta" id="fix-meta"></div>
+    </div>
 
-<div id="fix-warning"></div>
+    <div id="fix-warning"></div>
 
-<div class="steps-section">
-  <h3>Step-by-step fix</h3>
-  <div id="fix-steps"></div>
-</div>
+    <div class="steps-section">
+      <h3>Step-by-step fix</h3>
+      <div id="fix-steps"></div>
+    </div>
 
-<div id="fix-tools"></div>
+    <div id="fix-tools"></div>
 
-<div id="fix-cta"></div>
-```
-
+    <div id="fix-cta"></div>
   </div>
 
   <!-- ABOUT SCREEN -->
-
   <div class="screen" id="screen-about">
     <button class="btn-back" onclick="goHome()">← Back to Home</button>
     <div class="about-wrap">
@@ -304,58 +286,54 @@
         <p class="about-lead">Built by a qualified UK plumber and heating engineer to give homeowners and tradespeople a fast, honest, jargon-free resource for diagnosing plumbing and heating problems.</p>
       </div>
 
-```
-  <div class="about-section">
-    <h2>Why we built this</h2>
-    <p>Every day as a working plumber, the same questions come up time and time again. Homeowners calling in a panic about a fault code on their boiler that simply means the pressure has dropped. Tenants not realising a single turn of a TRV valve would bring their radiator back to life. People paying emergency call-out fees for problems they could have fixed themselves in ten minutes.</p>
-    <p>Plumbing Fault Finder exists to change that. We believe that clear, accurate information — written by someone who actually does this work every day — can save people time, money, and stress. Every guide on this site is written from real-world experience on real UK plumbing and heating systems.</p>
-  </div>
+      <div class="about-section">
+        <h2>Why we built this</h2>
+        <p>Every day as a working plumber, the same questions come up time and time again. Homeowners calling in a panic about a fault code on their boiler that simply means the pressure has dropped. Tenants not realising a single turn of a TRV valve would bring their radiator back to life. People paying emergency call-out fees for problems they could have fixed themselves in ten minutes.</p>
+        <p>Plumbing Fault Finder exists to change that. We believe that clear, accurate information — written by someone who actually does this work every day — can save people time, money, and stress. Every guide on this site is written from real-world experience on real UK plumbing and heating systems.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Who is this for?</h2>
-    <div class="about-cards">
-      <div class="about-card">
-        <div class="about-card-icon">🏠</div>
-        <h3>Homeowners</h3>
-        <p>Quickly diagnose what's wrong before deciding whether to call a plumber. Understand the problem, the likely cost, and whether it's safe to wait or urgent.</p>
+      <div class="about-section">
+        <h2>Who is this for?</h2>
+        <div class="about-cards">
+          <div class="about-card">
+            <div class="about-card-icon">🏠</div>
+            <h3>Homeowners</h3>
+            <p>Quickly diagnose what's wrong before deciding whether to call a plumber. Understand the problem, the likely cost, and whether it's safe to wait or urgent.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🏢</div>
+            <h3>Landlords</h3>
+            <p>Know your responsibilities, diagnose tenant reported issues remotely, and understand whether a job needs an emergency call-out or can wait for a scheduled visit.</p>
+          </div>
+          <div class="about-card">
+            <div class="about-card-icon">🔧</div>
+            <h3>Tradespeople</h3>
+            <p>Our Pro version gives Gas Safe engineers and heating professionals full technical fault guides, component diagnostics, and printable job sheets — launching soon.</p>
+          </div>
+        </div>
       </div>
-      <div class="about-card">
-        <div class="about-card-icon">🏢</div>
-        <h3>Landlords</h3>
-        <p>Know your responsibilities, diagnose tenant reported issues remotely, and understand whether a job needs an emergency call-out or can wait for a scheduled visit.</p>
+
+      <div class="about-section">
+        <h2>A note on gas safety</h2>
+        <div class="warning-box" style="margin-bottom:0">
+          <strong>⚠️ Gas work is legally restricted in the UK.</strong> Only Gas Safe registered engineers are permitted to work on gas appliances, boilers, and gas pipework. It is illegal for anyone else to carry out gas work, regardless of their experience. Throughout this site, any scenario involving gas components will direct you to a Gas Safe registered engineer. We never provide DIY fix instructions for gas work — only explanations of what the fault means and what an engineer will need to do. You can verify any engineer's Gas Safe registration at <strong>gassaferegister.co.uk</strong>.
+        </div>
       </div>
-      <div class="about-card">
-        <div class="about-card-icon">🔧</div>
-        <h3>Tradespeople</h3>
-        <p>Our Pro version gives Gas Safe engineers and heating professionals full technical fault guides, component diagnostics, and printable job sheets — launching soon.</p>
+
+      <div class="about-section">
+        <h2>Our Pro version</h2>
+        <p>We're launching a Pro subscription aimed at Gas Safe engineers and heating professionals. For just £4.99/month you'll get full technical repair guides for every boiler fault code, component-level diagnostics, printable job sheets, pipe sizing calculators, and the ability to list your business on the site to receive leads from local homeowners.</p>
+        <button class="btn-pro" style="margin-top:12px" onclick="showScreen('screen-contact')">Register your interest →</button>
+      </div>
+
+      <div class="about-section">
+        <h2>Content accuracy</h2>
+        <p>All content on this site is written by or reviewed by a qualified UK plumber and heating engineer. We update guides regularly as regulations change and new boiler models are released. If you spot an error or something that doesn't match your experience, please use the <span style="color:var(--accent);cursor:pointer" onclick="showScreen('screen-contact')">contact form</span> to let us know — we take accuracy seriously and will investigate and correct any issues promptly.</p>
       </div>
     </div>
-  </div>
-
-  <div class="about-section">
-    <h2>A note on gas safety</h2>
-    <div class="warning-box" style="margin-bottom:0">
-      <strong>⚠️ Gas work is legally restricted in the UK.</strong> Only Gas Safe registered engineers are permitted to work on gas appliances, boilers, and gas pipework. It is illegal for anyone else to carry out gas work, regardless of their experience. Throughout this site, any scenario involving gas components will direct you to a Gas Safe registered engineer. We never provide DIY fix instructions for gas work — only explanations of what the fault means and what an engineer will need to do. You can verify any engineer's Gas Safe registration at <strong>gassaferegister.co.uk</strong>.
-    </div>
-  </div>
-
-  <div class="about-section">
-    <h2>Our Pro version</h2>
-    <p>We're launching a Pro subscription aimed at Gas Safe engineers and heating professionals. For just £4.99/month you'll get full technical repair guides for every boiler fault code, component-level diagnostics, printable job sheets, pipe sizing calculators, and the ability to list your business on the site to receive leads from local homeowners.</p>
-    <button class="btn-pro" style="margin-top:12px" onclick="showScreen('screen-contact')">Register your interest →</button>
-  </div>
-
-  <div class="about-section">
-    <h2>Content accuracy</h2>
-    <p>All content on this site is written by or reviewed by a qualified UK plumber and heating engineer. We update guides regularly as regulations change and new boiler models are released. If you spot an error or something that doesn't match your experience, please use the <span style="color:var(--accent);cursor:pointer" onclick="showScreen('screen-contact')">contact form</span> to let us know — we take accuracy seriously and will investigate and correct any issues promptly.</p>
-  </div>
-</div>
-```
-
   </div>
 
   <!-- PRIVACY POLICY SCREEN -->
-
   <div class="screen" id="screen-privacy">
     <button class="btn-back" onclick="goHome()">← Back to Home</button>
     <div class="about-wrap">
@@ -364,58 +342,54 @@
         <p class="about-lead">Last updated: March 2026. This policy explains how PlumbingFaultFinder.co.uk collects, uses, and protects your personal information.</p>
       </div>
 
-```
-  <div class="about-section">
-    <h2>Who we are</h2>
-    <p>PlumbingFaultFinder.co.uk is a UK-based plumbing and heating diagnostic website. For data protection enquiries, contact us using the form on our <span style="color:var(--accent);cursor:pointer" onclick="showScreen('screen-contact')">contact page</span>.</p>
-  </div>
+      <div class="about-section">
+        <h2>Who we are</h2>
+        <p>PlumbingFaultFinder.co.uk is a UK-based plumbing and heating diagnostic website. For data protection enquiries, contact us using the form on our <span style="color:var(--accent);cursor:pointer" onclick="showScreen('screen-contact')">contact page</span>.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>What information we collect</h2>
-    <p>We only collect personal information that you voluntarily provide through our contact forms. This may include your name, email address, and the content of your message or scenario request. We do not collect any personal information from users who simply browse the site without submitting a form.</p>
-    <p>We may also collect anonymous usage data through analytics tools (such as Google Analytics) to understand how the site is used. This data does not identify you personally and includes information such as pages visited, time spent on the site, and the type of device used.</p>
-  </div>
+      <div class="about-section">
+        <h2>What information we collect</h2>
+        <p>We only collect personal information that you voluntarily provide through our contact forms. This may include your name, email address, and the content of your message or scenario request. We do not collect any personal information from users who simply browse the site without submitting a form.</p>
+        <p>We may also collect anonymous usage data through analytics tools (such as Google Analytics) to understand how the site is used. This data does not identify you personally and includes information such as pages visited, time spent on the site, and the type of device used.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>How we use your information</h2>
-    <p>Information submitted through the contact form or scenario request form is used solely to respond to your enquiry or to add your requested content to the site. If you provide your email address when requesting a scenario, we will use it only to notify you when that scenario has been added — we will not add you to any mailing list without your explicit consent.</p>
-    <p>We do not sell, share, or rent your personal information to any third party for marketing purposes.</p>
-  </div>
+      <div class="about-section">
+        <h2>How we use your information</h2>
+        <p>Information submitted through the contact form or scenario request form is used solely to respond to your enquiry or to add your requested content to the site. If you provide your email address when requesting a scenario, we will use it only to notify you when that scenario has been added — we will not add you to any mailing list without your explicit consent.</p>
+        <p>We do not sell, share, or rent your personal information to any third party for marketing purposes.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Cookies</h2>
-    <p>This site uses cookies to improve your experience and to understand how the site is used. Essential cookies are required for the site to function correctly. Analytics cookies (if enabled) help us understand visitor behaviour so we can improve the site. You can control cookie preferences using the cookie settings notice shown when you first visit the site.</p>
-    <p>We use Google Analytics which sets cookies to track anonymous usage data. Google's privacy policy is available at <strong>policies.google.com/privacy</strong>.</p>
-  </div>
+      <div class="about-section">
+        <h2>Cookies</h2>
+        <p>This site uses cookies to improve your experience and to understand how the site is used. Essential cookies are required for the site to function correctly. Analytics cookies (if enabled) help us understand visitor behaviour so we can improve the site. You can control cookie preferences using the cookie settings notice shown when you first visit the site.</p>
+        <p>We use Google Analytics which sets cookies to track anonymous usage data. Google's privacy policy is available at <strong>policies.google.com/privacy</strong>.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Data retention</h2>
-    <p>Contact form submissions are retained for up to 12 months and then deleted. You may request deletion of your data at any time by contacting us through the contact form.</p>
-  </div>
+      <div class="about-section">
+        <h2>Data retention</h2>
+        <p>Contact form submissions are retained for up to 12 months and then deleted. You may request deletion of your data at any time by contacting us through the contact form.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Your rights</h2>
-    <p>Under UK GDPR you have the right to access, correct, or request deletion of any personal data we hold about you. You also have the right to object to processing and to request that we restrict how we use your data. To exercise any of these rights, please contact us through the contact form.</p>
-  </div>
+      <div class="about-section">
+        <h2>Your rights</h2>
+        <p>Under UK GDPR you have the right to access, correct, or request deletion of any personal data we hold about you. You also have the right to object to processing and to request that we restrict how we use your data. To exercise any of these rights, please contact us through the contact form.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Third party links</h2>
-    <p>This site contains links to external websites including the Gas Safe Register, manufacturers' websites, and affiliate product links. We are not responsible for the privacy practices of those websites and recommend you review their privacy policies independently.</p>
-  </div>
+      <div class="about-section">
+        <h2>Third party links</h2>
+        <p>This site contains links to external websites including the Gas Safe Register, manufacturers' websites, and affiliate product links. We are not responsible for the privacy practices of those websites and recommend you review their privacy policies independently.</p>
+      </div>
 
-  <div class="about-section">
-    <h2>Changes to this policy</h2>
-    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date. Continued use of the site following any changes constitutes acceptance of the updated policy.</p>
-  </div>
-</div>
-```
-
+      <div class="about-section">
+        <h2>Changes to this policy</h2>
+        <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated date. Continued use of the site following any changes constitutes acceptance of the updated policy.</p>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <!-- COOKIE NOTICE -->
-
 <div class="cookie-notice" id="cookie-notice">
   <div class="cookie-text">
     <strong>🍪 Cookies</strong> — We use essential cookies to make this site work, and optional analytics cookies to understand how it's used. No personal data is sold or shared.
@@ -428,7 +402,6 @@
 </div>
 
 <!-- FOOTER -->
-
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-brand">
@@ -448,6 +421,8 @@
     <div class="footer-copy">© 2026 PlumbingFaultFinder.co.uk — All rights reserved</div>
   </div>
 </footer>
+
+<script>
 const DATA = {
   categories: [
     {
@@ -1308,522 +1283,522 @@ const DATA = {
 };
 
 const BOILER_DATA = {
-“worcester-bosch”: {
-name: “Worcester Bosch”,
-icon: “🔧”,
-models: {
-“greenstar-2000”: {
-name: “Greenstar 2000”,
-codes: [
-{ code: “E2”, name: “NTC sensor fault”, meaning: “The flow temperature sensor (NTC) has detected a fault or is reading an abnormal temperature.”, safe: “engineer”, action: “Do not reset repeatedly. This fault requires a Gas Safe engineer to test and replace the NTC sensor if faulty.” },
-{ code: “E5”, name: “Overheating — high limit tripped”, meaning: “The boiler has reached an unsafe temperature and the high limit thermostat has cut out.”, safe: “engineer”, action: “Allow the boiler to cool fully. Try one reset. If it trips again, call a Gas Safe engineer — there may be a circulation or pump issue.” },
-{ code: “E9”, name: “Safety temperature limiter fault”, meaning: “The safety temperature limiter has tripped, indicating the boiler overheated beyond safe limits.”, safe: “engineer”, action: “Do not keep resetting. A Gas Safe engineer needs to investigate the cause of overheating before further operation.” },
-{ code: “EA”, name: “Ignition lockout”, meaning: “The boiler attempted to ignite but failed to establish a flame. This is one of the most common Worcester Bosch fault codes.”, safe: “reset”, action: “Press the reset button once and observe. If it fires and stays on, the issue may have been temporary. If it locks out again, call a Gas Safe engineer to check the ignition electrode and gas valve.” },
-{ code: “E1”, name: “Low water pressure”, meaning: “The system pressure has dropped below the minimum required level (usually below 0.5 bar).”, safe: “reset”, action: “Repressurise the system to 1–1.5 bar using the filling loop (two small valves usually located under the boiler). Once pressure is restored, press reset. If pressure keeps dropping, there may be a leak in the system.” }
-]
-},
-“greenstar-i”: {
-name: “Greenstar i Junior / System”,
-codes: [
-{ code: “E2”, name: “NTC sensor fault”, meaning: “Flow or return temperature sensor fault detected.”, safe: “engineer”, action: “Requires a Gas Safe engineer to diagnose and replace the sensor.” },
-{ code: “EA”, name: “Ignition lockout”, meaning: “Boiler failed to ignite after multiple attempts.”, safe: “reset”, action: “Try one reset. If fault persists, a Gas Safe engineer should inspect the ignition system and gas valve.” },
-{ code: “E9”, name: “Safety thermostat lockout”, meaning: “Boiler has overheated and the safety thermostat has cut power.”, safe: “engineer”, action: “Allow to cool. Do not reset repeatedly. Gas Safe engineer required to find the cause of overheating.” },
-{ code: “224-V”, name: “Fan fault”, meaning: “The boiler fan is not running at the correct speed or has failed.”, safe: “engineer”, action: “The fan is a gas-related safety component. A Gas Safe engineer must inspect and replace if faulty.” },
-{ code: “227-V”, name: “Flue gas temperature fault”, meaning: “The flue gas thermostat has detected an abnormal temperature in the flue.”, safe: “engineer”, action: “Do not operate the boiler. Call a Gas Safe engineer immediately to inspect the flue system.” }
-]
-},
-“greenstar-8000”: {
-name: “Greenstar 8000”,
-codes: [
-{ code: “C1”, name: “Fan speed incorrect”, meaning: “The fan is not reaching the required speed for safe operation.”, safe: “engineer”, action: “Gas Safe engineer required. Fan fault must not be ignored as it affects combustion safety.” },
-{ code: “CE0”, name: “Gas valve relay fault”, meaning: “A fault has been detected with the gas valve relay on the PCB.”, safe: “engineer”, action: “Do not reset. This requires a Gas Safe engineer to inspect the PCB and gas valve.” },
-{ code: “EA”, name: “Ignition lockout”, meaning: “The boiler has failed to ignite. Common causes include gas supply issues, faulty ignition lead, or spark electrode.”, safe: “reset”, action: “Check other gas appliances work. Press reset once. If fault returns, call a Gas Safe engineer.” },
-{ code: “F0”, name: “Internal fault”, meaning: “A general internal electronics fault has been detected.”, safe: “engineer”, action: “Power cycle the boiler (switch off at the mains for 30 seconds). If the fault remains, a Gas Safe engineer is required.” },
-{ code: “F1”, name: “Low water pressure”, meaning: “System pressure is too low for safe operation.”, safe: “reset”, action: “Repressurise to 1–1.5 bar using the filling loop. Press reset once pressure is restored.” }
-]
-}
-}
-},
-“vaillant”: {
-name: “Vaillant”,
-icon: “🔧”,
-models: {
-“ecotec-plus”: {
-name: “ecoTEC Plus”,
-codes: [
-{ code: “F.22”, name: “Low water pressure”, meaning: “The system pressure has dropped below the minimum level required. This is one of the most common Vaillant fault codes.”, safe: “reset”, action: “Repressurise your boiler to 1–1.5 bar using the filling loop (two valves under the boiler). Once correct pressure is shown, press the reset button.” },
-{ code: “F.28”, name: “Ignition failure”, meaning: “The boiler has attempted to ignite but failed to establish a flame after multiple attempts.”, safe: “reset”, action: “Check other gas appliances are working. Press reset once. If the fault returns repeatedly, a Gas Safe engineer should inspect the ignition electrode and gas valve.” },
-{ code: “F.29”, name: “Flame loss during operation”, meaning: “The boiler lit successfully but the flame extinguished unexpectedly during operation.”, safe: “reset”, action: “Try one reset. Repeated flame loss may indicate a gas supply issue, faulty flame sensor, or flue problem. Call a Gas Safe engineer if it persists.” },
-{ code: “F.75”, name: “Pump or pressure sensor fault”, meaning: “No pressure change was detected when the pump started — indicating a faulty pump or pressure sensor.”, safe: “engineer”, action: “This requires a Gas Safe engineer to diagnose whether the pump or sensor needs replacing.” },
-{ code: “F.62”, name: “Gas valve leak detected”, meaning: “The gas valve is not closing properly, causing a safety lockout.”, safe: “engineer”, action: “Do not attempt to reset repeatedly. A Gas Safe engineer must inspect and replace the gas valve.” },
-{ code: “F.63”, name: “PCB memory fault”, meaning: “A fault has been detected in the boiler’s main circuit board memory.”, safe: “engineer”, action: “Power cycle the boiler. If fault persists, the PCB may need replacing — Gas Safe engineer required.” }
-]
-},
-“ecotec-pro”: {
-name: “ecoTEC Pro”,
-codes: [
-{ code: “F.22”, name: “Low water pressure”, meaning: “System pressure has fallen below minimum operating level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar using the filling loop then press reset.” },
-{ code: “F.28”, name: “Ignition failure — lockout”, meaning: “Boiler failed to ignite after three attempts.”, safe: “reset”, action: “Check gas supply. Press reset once. If it keeps locking out, call a Gas Safe engineer.” },
-{ code: “F.29”, name: “Flame loss”, meaning: “The flame was established but went out during operation unexpectedly.”, safe: “reset”, action: “One reset attempt is fine. Persistent flame loss requires a Gas Safe engineer.” },
-{ code: “F.75”, name: “No pressure differential at pump start”, meaning: “Pump or pressure sensor fault — no pressure change detected on startup.”, safe: “engineer”, action: “Gas Safe engineer required to test and replace pump or pressure sensor.” },
-{ code: “F.57”, name: “Comfort mode fault”, meaning: “A fault with the comfort mode (pre-heating) function has been detected.”, safe: “reset”, action: “Try resetting. If fault persists, a Gas Safe engineer should inspect the PCB and sensor.” }
-]
-},
-“ecotec-exclusive”: {
-name: “ecoTEC Exclusive”,
-codes: [
-{ code: “F.22”, name: “Low water pressure”, meaning: “Pressure too low for safe operation.”, safe: “reset”, action: “Repressurise to 1–1.5 bar then reset.” },
-{ code: “F.28”, name: “Ignition failure”, meaning: “Failed to ignite after multiple attempts.”, safe: “reset”, action: “Check gas, try one reset. Persistent fault needs Gas Safe engineer.” },
-{ code: “F.35”, name: “Fan speed fault”, meaning: “Fan speed is outside the expected range.”, safe: “engineer”, action: “Gas Safe engineer required — fan faults affect combustion safety.” },
-{ code: “F.49”, name: “eBus fault”, meaning: “Communication fault between boiler and external controls.”, safe: “reset”, action: “Check any external controls (thermostat, programmer) are properly connected. Try resetting. If fault persists, Gas Safe engineer required.” },
-{ code: “F.75”, name: “Pump/pressure sensor fault”, meaning: “No pressure change detected on pump start.”, safe: “engineer”, action: “Gas Safe engineer required.” }
-]
-}
-}
-},
-“ideal”: {
-name: “Ideal”,
-icon: “🔧”,
-models: {
-“logic-plus”: {
-name: “Logic+ Combi / System / Heat”,
-codes: [
-{ code: “F1”, name: “Low gas pressure / ignition fault”, meaning: “The boiler has failed to detect gas or failed to ignite. Can be caused by low gas pressure or an ignition component fault.”, safe: “reset”, action: “Check other gas appliances are working. Press reset. If fault returns, a Gas Safe engineer should inspect the gas valve and ignition system.” },
-{ code: “F2”, name: “Flame loss fault”, meaning: “The flame was established but extinguished during operation.”, safe: “reset”, action: “Try one reset. Persistent flame loss requires a Gas Safe engineer to check the flame sensor and gas supply.” },
-{ code: “F3”, name: “Fan fault”, meaning: “The boiler fan is not operating at the correct speed.”, safe: “engineer”, action: “Gas Safe engineer required. Do not continue to reset — fan faults affect safe combustion.” },
-{ code: “F4”, name: “NTC thermistor fault — flow sensor”, meaning: “The flow temperature sensor has developed a fault or is reading an incorrect temperature.”, safe: “engineer”, action: “Gas Safe engineer required to test and replace the thermistor.” },
-{ code: “L1”, name: “Overheat — high limit lockout”, meaning: “The boiler has overheated and the high limit thermostat has tripped.”, safe: “engineer”, action: “Allow the boiler to cool. Try one reset. If it overheats again, do not continue resetting — a Gas Safe engineer must find the cause.” },
-{ code: “L2”, name: “Flame loss lockout”, meaning: “Flame has been lost repeatedly causing a safety lockout.”, safe: “engineer”, action: “Gas Safe engineer required to inspect combustion components.” }
-]
-},
-“vogue-max”: {
-name: “Vogue Max Combi / System”,
-codes: [
-{ code: “F1”, name: “Ignition lockout”, meaning: “Boiler failed to ignite during startup sequence.”, safe: “reset”, action: “Check gas supply. One reset attempt. Persistent fault needs Gas Safe engineer.” },
-{ code: “F4”, name: “Flow NTC sensor fault”, meaning: “The flow temperature sensor has failed or is reporting incorrect readings.”, safe: “engineer”, action: “Gas Safe engineer required to replace the sensor.” },
-{ code: “F5”, name: “Return NTC sensor fault”, meaning: “The return temperature sensor has failed.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “F7”, name: “Flue/outdoor sensor fault”, meaning: “The flue or outdoor temperature sensor has developed a fault.”, safe: “engineer”, action: “Gas Safe engineer required to inspect and replace sensor.” },
-{ code: “L1”, name: “High limit thermostat lockout”, meaning: “Boiler has overheated and safety thermostat has cut out.”, safe: “engineer”, action: “Allow to cool, one reset attempt. If repeated, Gas Safe engineer required urgently.” }
-]
-},
-“logic-max”: {
-name: “Logic Max Combi / System / Heat”,
-codes: [
-{ code: “F1”, name: “Ignition fault”, meaning: “Failed to ignite or gas not detected.”, safe: “reset”, action: “Check gas, one reset. Repeated lockouts need Gas Safe engineer.” },
-{ code: “F3”, name: “Fan fault”, meaning: “Fan not running correctly.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “F4”, name: “Flow NTC fault”, meaning: “Flow temperature sensor fault.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “L1”, name: “Overheat lockout”, meaning: “High limit thermostat tripped due to overheating.”, safe: “engineer”, action: “Cool down, one reset, then Gas Safe engineer if repeated.” },
-{ code: “F9”, name: “Flue thermistor fault”, meaning: “Flue temperature sensor reading outside expected range.”, safe: “engineer”, action: “Gas Safe engineer required to inspect flue and sensor.” }
-]
-}
-}
-},
-“baxi”: {
-name: “Baxi”,
-icon: “🔧”,
-models: {
-“baxi-600”: {
-name: “Baxi 600 Combi”,
-codes: [
-{ code: “E01”, name: “Ignition lockout”, meaning: “The boiler has failed to ignite after multiple attempts. One of the most common Baxi fault codes.”, safe: “reset”, action: “Check other gas appliances. Press reset once. If the fault returns, a Gas Safe engineer should inspect the ignition electrode and gas valve.” },
-{ code: “E02”, name: “Flame loss during operation”, meaning: “Flame was established but extinguished unexpectedly during operation.”, safe: “reset”, action: “One reset attempt. If flame loss is persistent, Gas Safe engineer required to check the flame sense electrode.” },
-{ code: “E03”, name: “Fan fault — incorrect speed”, meaning: “The boiler fan is not running at the required speed for safe combustion.”, safe: “engineer”, action: “Gas Safe engineer required. Fan faults must not be ignored.” },
-{ code: “E10”, name: “Low water pressure”, meaning: “System water pressure has dropped below the minimum required level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar using the filling loop, then press reset.” },
-{ code: “E28”, name: “Flue blocked or gas pressure low”, meaning: “Either the flue is restricted, or the gas pressure at the boiler inlet is too low.”, safe: “engineer”, action: “Check the flue terminal outside for obstructions. If clear, call a Gas Safe engineer to test gas inlet pressure.” },
-{ code: “E168”, name: “Gas valve fault”, meaning: “A fault has been detected with the gas valve — it is not operating correctly.”, safe: “engineer”, action: “Do not reset repeatedly. Gas Safe engineer must inspect and replace the gas valve.” }
-]
-},
-“baxi-800”: {
-name: “Baxi 800 Combi”,
-codes: [
-{ code: “E01”, name: “Ignition lockout”, meaning: “Failed to ignite after multiple attempts.”, safe: “reset”, action: “Check gas supply, one reset. Persistent lockouts need Gas Safe engineer.” },
-{ code: “E10”, name: “Low water pressure”, meaning: “Pressure below minimum required level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar, then reset.” },
-{ code: “E20”, name: “NTC flow sensor fault”, meaning: “Flow temperature sensor has failed or is reading incorrectly.”, safe: “engineer”, action: “Gas Safe engineer required to replace sensor.” },
-{ code: “E50”, name: “DHW NTC sensor fault”, meaning: “The domestic hot water temperature sensor has failed.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “E131”, name: “Gas valve relay fault”, meaning: “Fault detected with the gas valve control relay on the PCB.”, safe: “engineer”, action: “Gas Safe engineer required. PCB or gas valve may need replacing.” }
-]
-},
-“platinum”: {
-name: “Baxi Platinum Combi”,
-codes: [
-{ code: “E01”, name: “Ignition lockout”, meaning: “Boiler failed to establish ignition.”, safe: “reset”, action: “Check gas, one reset. Persistent faults need Gas Safe engineer.” },
-{ code: “E10”, name: “Low water pressure”, meaning: “System pressure too low.”, safe: “reset”, action: “Repressurise then reset.” },
-{ code: “E03”, name: “Fan speed fault”, meaning: “Fan not operating at correct speed.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “E109”, name: “Overheat safety lockout”, meaning: “Boiler has overheated and safety thermostat has cut out.”, safe: “engineer”, action: “Allow to cool, one reset, then Gas Safe engineer if fault repeats.” },
-{ code: “E168”, name: “Gas valve fault”, meaning: “Gas valve not operating correctly — safety lockout triggered.”, safe: “engineer”, action: “Do not reset repeatedly. Gas Safe engineer required.” }
-]
-}
-}
-},
-“glow-worm”: {
-name: “Glow-worm”,
-icon: “🔧”,
-models: {
-“energy”: {
-name: “Energy Combi / System”,
-codes: [
-{ code: “F.22”, name: “Low water pressure”, meaning: “System pressure has fallen below minimum operating level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar using the filling loop, then press reset.” },
-{ code: “F.28”, name: “Ignition failure”, meaning: “Boiler failed to ignite after multiple attempts.”, safe: “reset”, action: “Check gas supply. One reset. Persistent fault needs Gas Safe engineer.” },
-{ code: “F.29”, name: “Flame loss”, meaning: “Flame extinguished unexpectedly during operation.”, safe: “reset”, action: “One reset. Persistent flame loss needs Gas Safe engineer.” },
-{ code: “F.75”, name: “Pump or pressure sensor fault”, meaning: “No pressure change detected at pump start-up.”, safe: “engineer”, action: “Gas Safe engineer required to test pump and pressure sensor.” },
-{ code: “F.4”, name: “Flow NTC sensor fault”, meaning: “Flow temperature sensor has failed.”, safe: “engineer”, action: “Gas Safe engineer required.” }
-]
-},
-“betacom”: {
-name: “Betacom Combi”,
-codes: [
-{ code: “F1”, name: “Ignition lockout”, meaning: “Failed to ignite during startup.”, safe: “reset”, action: “Check gas supply, one reset. Repeated faults need Gas Safe engineer.” },
-{ code: “F4”, name: “NTC flow sensor fault”, meaning: “Flow temperature sensor fault detected.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “F9”, name: “Flue sensor fault”, meaning: “Flue temperature sensor reading out of range.”, safe: “engineer”, action: “Gas Safe engineer required to inspect flue and sensor.” },
-{ code: “L1”, name: “Overheat lockout”, meaning: “High limit thermostat tripped.”, safe: “engineer”, action: “Cool down, one reset, Gas Safe engineer if repeated.” }
-]
-}
-}
-},
-“viessmann”: {
-name: “Viessmann”,
-icon: “🔧”,
-models: {
-“vitodens-050”: {
-name: “Vitodens 050-W”,
-codes: [
-{ code: “F4”, name: “Flame failure”, meaning: “The burner failed to ignite or the flame was not detected.”, safe: “reset”, action: “Check gas supply. Press reset once. Persistent flame failure requires a Gas Safe engineer.” },
-{ code: “F9”, name: “Fan fault”, meaning: “Fan speed outside expected range or fan not responding.”, safe: “engineer”, action: “Gas Safe engineer required. Fan faults affect safe combustion.” },
-{ code: “b0”, name: “Low water pressure warning”, meaning: “System pressure is approaching minimum level — not yet a lockout but needs attention.”, safe: “reset”, action: “Repressurise to 1.5–2 bar. If pressure keeps dropping, there may be a system leak.” },
-{ code: “F0”, name: “General electronics fault”, meaning: “An internal electronics fault has been detected.”, safe: “engineer”, action: “Try power cycling (off 30 seconds). If fault remains, Gas Safe engineer required.” }
-]
-},
-“vitodens-100”: {
-name: “Vitodens 100-W”,
-codes: [
-{ code: “F4”, name: “Flame failure / ignition fault”, meaning: “The burner has failed to ignite or the flame sensor has not detected a flame.”, safe: “reset”, action: “Check gas supply. One reset attempt. Persistent fault requires Gas Safe engineer.” },
-{ code: “F9”, name: “Fan fault”, meaning: “Combustion fan not operating correctly.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “EA”, name: “Ignition lockout”, meaning: “Boiler locked out after repeated ignition failures.”, safe: “reset”, action: “One reset. If it persists, Gas Safe engineer required.” },
-{ code: “F2”, name: “Temperature limit exceeded”, meaning: “Flow temperature exceeded safe limits — safety thermostat tripped.”, safe: “engineer”, action: “Allow to cool. One reset. Repeated overheating needs Gas Safe engineer urgently.” },
-{ code: “b6”, name: “Flue gas temperature sensor fault”, meaning: “The flue gas sensor is reading outside expected parameters.”, safe: “engineer”, action: “Gas Safe engineer required to inspect flue and sensor.” }
-]
-},
-“vitodens-200”: {
-name: “Vitodens 200-W”,
-codes: [
-{ code: “F4”, name: “Flame failure”, meaning: “Burner failed to ignite or flame not detected during operation.”, safe: “reset”, action: “Check gas. One reset. Persistent fault needs Gas Safe engineer.” },
-{ code: “F9”, name: “Fan fault”, meaning: “Fan speed incorrect or fan not operating.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “F2”, name: “Max temperature exceeded”, meaning: “Flow temperature limit exceeded — safety lockout.”, safe: “engineer”, action: “Cool down. One reset. Repeated occurrence needs Gas Safe engineer urgently.” },
-{ code: “E5”, name: “NTC sensor fault”, meaning: “A temperature sensor has failed or is reading incorrectly.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “F0”, name: “Electronics fault”, meaning: “Internal electronics fault detected.”, safe: “engineer”, action: “Power cycle. If fault remains, Gas Safe engineer required.” }
-]
-}
-}
-},
-“potterton”: {
-name: “Potterton”,
-icon: “🔧”,
-models: {
-“titanium”: {
-name: “Titanium Combi / System”,
-codes: [
-{ code: “E1”, name: “Low water pressure”, meaning: “System pressure has dropped below minimum operating level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar using the filling loop, then press reset.” },
-{ code: “E3”, name: “Fan fault”, meaning: “The boiler fan is not running at the correct speed.”, safe: “engineer”, action: “Gas Safe engineer required.” },
-{ code: “E4”, name: “Ignition lockout”, meaning: “The boiler has failed to ignite after multiple attempts.”, safe: “reset”, action: “Check gas supply. One reset. Persistent lockout needs Gas Safe engineer.” },
-{ code: “E9”, name: “Overheat lockout”, meaning: “Boiler has overheated — safety thermostat has cut out.”, safe: “engineer”, action: “Allow to cool. One reset. Repeated overheating needs Gas Safe engineer urgently.” },
-{ code: “E28”, name: “Gas pressure or flue fault”, meaning: “Gas inlet pressure low or flue restricted.”, safe: “engineer”, action: “Check flue terminal. Gas Safe engineer required to test gas pressure.” }
-]
-},
-“gold”: {
-name: “Gold Combi / System”,
-codes: [
-{ code: “E1”, name: “Low water pressure”, meaning: “Pressure below minimum level.”, safe: “reset”, action: “Repressurise to 1–1.5 bar then reset.” },
-{ code: “E4”, name: “Ignition lockout”, meaning: “Failed to ignite.”, safe: “reset”, action: “One reset. Persistent fault needs Gas Safe engineer.” },
-{ code: “E9”, name: “Overheat safety lockout”, meaning: “Boiler overheated and safety thermostat tripped.”, safe: “engineer”, action: “Cool down, one reset. Gas Safe engineer if repeated.” },
-{ code: “E3”, name: “Fan fault”, meaning: “Fan not operating at correct speed.”, safe: “engineer”, action: “Gas Safe engineer required.” }
-]
-}
-}
-}
+  "worcester-bosch": {
+    name: "Worcester Bosch",
+    icon: "🔧",
+    models: {
+      "greenstar-2000": {
+        name: "Greenstar 2000",
+        codes: [
+          { code: "E2", name: "NTC sensor fault", meaning: "The flow temperature sensor (NTC) has detected a fault or is reading an abnormal temperature.", safe: "engineer", action: "Do not reset repeatedly. This fault requires a Gas Safe engineer to test and replace the NTC sensor if faulty." },
+          { code: "E5", name: "Overheating — high limit tripped", meaning: "The boiler has reached an unsafe temperature and the high limit thermostat has cut out.", safe: "engineer", action: "Allow the boiler to cool fully. Try one reset. If it trips again, call a Gas Safe engineer — there may be a circulation or pump issue." },
+          { code: "E9", name: "Safety temperature limiter fault", meaning: "The safety temperature limiter has tripped, indicating the boiler overheated beyond safe limits.", safe: "engineer", action: "Do not keep resetting. A Gas Safe engineer needs to investigate the cause of overheating before further operation." },
+          { code: "EA", name: "Ignition lockout", meaning: "The boiler attempted to ignite but failed to establish a flame. This is one of the most common Worcester Bosch fault codes.", safe: "reset", action: "Press the reset button once and observe. If it fires and stays on, the issue may have been temporary. If it locks out again, call a Gas Safe engineer to check the ignition electrode and gas valve." },
+          { code: "E1", name: "Low water pressure", meaning: "The system pressure has dropped below the minimum required level (usually below 0.5 bar).", safe: "reset", action: "Repressurise the system to 1–1.5 bar using the filling loop (two small valves usually located under the boiler). Once pressure is restored, press reset. If pressure keeps dropping, there may be a leak in the system." }
+        ]
+      },
+      "greenstar-i": {
+        name: "Greenstar i Junior / System",
+        codes: [
+          { code: "E2", name: "NTC sensor fault", meaning: "Flow or return temperature sensor fault detected.", safe: "engineer", action: "Requires a Gas Safe engineer to diagnose and replace the sensor." },
+          { code: "EA", name: "Ignition lockout", meaning: "Boiler failed to ignite after multiple attempts.", safe: "reset", action: "Try one reset. If fault persists, a Gas Safe engineer should inspect the ignition system and gas valve." },
+          { code: "E9", name: "Safety thermostat lockout", meaning: "Boiler has overheated and the safety thermostat has cut power.", safe: "engineer", action: "Allow to cool. Do not reset repeatedly. Gas Safe engineer required to find the cause of overheating." },
+          { code: "224-V", name: "Fan fault", meaning: "The boiler fan is not running at the correct speed or has failed.", safe: "engineer", action: "The fan is a gas-related safety component. A Gas Safe engineer must inspect and replace if faulty." },
+          { code: "227-V", name: "Flue gas temperature fault", meaning: "The flue gas thermostat has detected an abnormal temperature in the flue.", safe: "engineer", action: "Do not operate the boiler. Call a Gas Safe engineer immediately to inspect the flue system." }
+        ]
+      },
+      "greenstar-8000": {
+        name: "Greenstar 8000",
+        codes: [
+          { code: "C1", name: "Fan speed incorrect", meaning: "The fan is not reaching the required speed for safe operation.", safe: "engineer", action: "Gas Safe engineer required. Fan fault must not be ignored as it affects combustion safety." },
+          { code: "CE0", name: "Gas valve relay fault", meaning: "A fault has been detected with the gas valve relay on the PCB.", safe: "engineer", action: "Do not reset. This requires a Gas Safe engineer to inspect the PCB and gas valve." },
+          { code: "EA", name: "Ignition lockout", meaning: "The boiler has failed to ignite. Common causes include gas supply issues, faulty ignition lead, or spark electrode.", safe: "reset", action: "Check other gas appliances work. Press reset once. If fault returns, call a Gas Safe engineer." },
+          { code: "F0", name: "Internal fault", meaning: "A general internal electronics fault has been detected.", safe: "engineer", action: "Power cycle the boiler (switch off at the mains for 30 seconds). If the fault remains, a Gas Safe engineer is required." },
+          { code: "F1", name: "Low water pressure", meaning: "System pressure is too low for safe operation.", safe: "reset", action: "Repressurise to 1–1.5 bar using the filling loop. Press reset once pressure is restored." }
+        ]
+      }
+    }
+  },
+  "vaillant": {
+    name: "Vaillant",
+    icon: "🔧",
+    models: {
+      "ecotec-plus": {
+        name: "ecoTEC Plus",
+        codes: [
+          { code: "F.22", name: "Low water pressure", meaning: "The system pressure has dropped below the minimum level required. This is one of the most common Vaillant fault codes.", safe: "reset", action: "Repressurise your boiler to 1–1.5 bar using the filling loop (two valves under the boiler). Once correct pressure is shown, press the reset button." },
+          { code: "F.28", name: "Ignition failure", meaning: "The boiler has attempted to ignite but failed to establish a flame after multiple attempts.", safe: "reset", action: "Check other gas appliances are working. Press reset once. If the fault returns repeatedly, a Gas Safe engineer should inspect the ignition electrode and gas valve." },
+          { code: "F.29", name: "Flame loss during operation", meaning: "The boiler lit successfully but the flame extinguished unexpectedly during operation.", safe: "reset", action: "Try one reset. Repeated flame loss may indicate a gas supply issue, faulty flame sensor, or flue problem. Call a Gas Safe engineer if it persists." },
+          { code: "F.75", name: "Pump or pressure sensor fault", meaning: "No pressure change was detected when the pump started — indicating a faulty pump or pressure sensor.", safe: "engineer", action: "This requires a Gas Safe engineer to diagnose whether the pump or sensor needs replacing." },
+          { code: "F.62", name: "Gas valve leak detected", meaning: "The gas valve is not closing properly, causing a safety lockout.", safe: "engineer", action: "Do not attempt to reset repeatedly. A Gas Safe engineer must inspect and replace the gas valve." },
+          { code: "F.63", name: "PCB memory fault", meaning: "A fault has been detected in the boiler's main circuit board memory.", safe: "engineer", action: "Power cycle the boiler. If fault persists, the PCB may need replacing — Gas Safe engineer required." }
+        ]
+      },
+      "ecotec-pro": {
+        name: "ecoTEC Pro",
+        codes: [
+          { code: "F.22", name: "Low water pressure", meaning: "System pressure has fallen below minimum operating level.", safe: "reset", action: "Repressurise to 1–1.5 bar using the filling loop then press reset." },
+          { code: "F.28", name: "Ignition failure — lockout", meaning: "Boiler failed to ignite after three attempts.", safe: "reset", action: "Check gas supply. Press reset once. If it keeps locking out, call a Gas Safe engineer." },
+          { code: "F.29", name: "Flame loss", meaning: "The flame was established but went out during operation unexpectedly.", safe: "reset", action: "One reset attempt is fine. Persistent flame loss requires a Gas Safe engineer." },
+          { code: "F.75", name: "No pressure differential at pump start", meaning: "Pump or pressure sensor fault — no pressure change detected on startup.", safe: "engineer", action: "Gas Safe engineer required to test and replace pump or pressure sensor." },
+          { code: "F.57", name: "Comfort mode fault", meaning: "A fault with the comfort mode (pre-heating) function has been detected.", safe: "reset", action: "Try resetting. If fault persists, a Gas Safe engineer should inspect the PCB and sensor." }
+        ]
+      },
+      "ecotec-exclusive": {
+        name: "ecoTEC Exclusive",
+        codes: [
+          { code: "F.22", name: "Low water pressure", meaning: "Pressure too low for safe operation.", safe: "reset", action: "Repressurise to 1–1.5 bar then reset." },
+          { code: "F.28", name: "Ignition failure", meaning: "Failed to ignite after multiple attempts.", safe: "reset", action: "Check gas, try one reset. Persistent fault needs Gas Safe engineer." },
+          { code: "F.35", name: "Fan speed fault", meaning: "Fan speed is outside the expected range.", safe: "engineer", action: "Gas Safe engineer required — fan faults affect combustion safety." },
+          { code: "F.49", name: "eBus fault", meaning: "Communication fault between boiler and external controls.", safe: "reset", action: "Check any external controls (thermostat, programmer) are properly connected. Try resetting. If fault persists, Gas Safe engineer required." },
+          { code: "F.75", name: "Pump/pressure sensor fault", meaning: "No pressure change detected on pump start.", safe: "engineer", action: "Gas Safe engineer required." }
+        ]
+      }
+    }
+  },
+  "ideal": {
+    name: "Ideal",
+    icon: "🔧",
+    models: {
+      "logic-plus": {
+        name: "Logic+ Combi / System / Heat",
+        codes: [
+          { code: "F1", name: "Low gas pressure / ignition fault", meaning: "The boiler has failed to detect gas or failed to ignite. Can be caused by low gas pressure or an ignition component fault.", safe: "reset", action: "Check other gas appliances are working. Press reset. If fault returns, a Gas Safe engineer should inspect the gas valve and ignition system." },
+          { code: "F2", name: "Flame loss fault", meaning: "The flame was established but extinguished during operation.", safe: "reset", action: "Try one reset. Persistent flame loss requires a Gas Safe engineer to check the flame sensor and gas supply." },
+          { code: "F3", name: "Fan fault", meaning: "The boiler fan is not operating at the correct speed.", safe: "engineer", action: "Gas Safe engineer required. Do not continue to reset — fan faults affect safe combustion." },
+          { code: "F4", name: "NTC thermistor fault — flow sensor", meaning: "The flow temperature sensor has developed a fault or is reading an incorrect temperature.", safe: "engineer", action: "Gas Safe engineer required to test and replace the thermistor." },
+          { code: "L1", name: "Overheat — high limit lockout", meaning: "The boiler has overheated and the high limit thermostat has tripped.", safe: "engineer", action: "Allow the boiler to cool. Try one reset. If it overheats again, do not continue resetting — a Gas Safe engineer must find the cause." },
+          { code: "L2", name: "Flame loss lockout", meaning: "Flame has been lost repeatedly causing a safety lockout.", safe: "engineer", action: "Gas Safe engineer required to inspect combustion components." }
+        ]
+      },
+      "vogue-max": {
+        name: "Vogue Max Combi / System",
+        codes: [
+          { code: "F1", name: "Ignition lockout", meaning: "Boiler failed to ignite during startup sequence.", safe: "reset", action: "Check gas supply. One reset attempt. Persistent fault needs Gas Safe engineer." },
+          { code: "F4", name: "Flow NTC sensor fault", meaning: "The flow temperature sensor has failed or is reporting incorrect readings.", safe: "engineer", action: "Gas Safe engineer required to replace the sensor." },
+          { code: "F5", name: "Return NTC sensor fault", meaning: "The return temperature sensor has failed.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "F7", name: "Flue/outdoor sensor fault", meaning: "The flue or outdoor temperature sensor has developed a fault.", safe: "engineer", action: "Gas Safe engineer required to inspect and replace sensor." },
+          { code: "L1", name: "High limit thermostat lockout", meaning: "Boiler has overheated and safety thermostat has cut out.", safe: "engineer", action: "Allow to cool, one reset attempt. If repeated, Gas Safe engineer required urgently." }
+        ]
+      },
+      "logic-max": {
+        name: "Logic Max Combi / System / Heat",
+        codes: [
+          { code: "F1", name: "Ignition fault", meaning: "Failed to ignite or gas not detected.", safe: "reset", action: "Check gas, one reset. Repeated lockouts need Gas Safe engineer." },
+          { code: "F3", name: "Fan fault", meaning: "Fan not running correctly.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "F4", name: "Flow NTC fault", meaning: "Flow temperature sensor fault.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "L1", name: "Overheat lockout", meaning: "High limit thermostat tripped due to overheating.", safe: "engineer", action: "Cool down, one reset, then Gas Safe engineer if repeated." },
+          { code: "F9", name: "Flue thermistor fault", meaning: "Flue temperature sensor reading outside expected range.", safe: "engineer", action: "Gas Safe engineer required to inspect flue and sensor." }
+        ]
+      }
+    }
+  },
+  "baxi": {
+    name: "Baxi",
+    icon: "🔧",
+    models: {
+      "baxi-600": {
+        name: "Baxi 600 Combi",
+        codes: [
+          { code: "E01", name: "Ignition lockout", meaning: "The boiler has failed to ignite after multiple attempts. One of the most common Baxi fault codes.", safe: "reset", action: "Check other gas appliances. Press reset once. If the fault returns, a Gas Safe engineer should inspect the ignition electrode and gas valve." },
+          { code: "E02", name: "Flame loss during operation", meaning: "Flame was established but extinguished unexpectedly during operation.", safe: "reset", action: "One reset attempt. If flame loss is persistent, Gas Safe engineer required to check the flame sense electrode." },
+          { code: "E03", name: "Fan fault — incorrect speed", meaning: "The boiler fan is not running at the required speed for safe combustion.", safe: "engineer", action: "Gas Safe engineer required. Fan faults must not be ignored." },
+          { code: "E10", name: "Low water pressure", meaning: "System water pressure has dropped below the minimum required level.", safe: "reset", action: "Repressurise to 1–1.5 bar using the filling loop, then press reset." },
+          { code: "E28", name: "Flue blocked or gas pressure low", meaning: "Either the flue is restricted, or the gas pressure at the boiler inlet is too low.", safe: "engineer", action: "Check the flue terminal outside for obstructions. If clear, call a Gas Safe engineer to test gas inlet pressure." },
+          { code: "E168", name: "Gas valve fault", meaning: "A fault has been detected with the gas valve — it is not operating correctly.", safe: "engineer", action: "Do not reset repeatedly. Gas Safe engineer must inspect and replace the gas valve." }
+        ]
+      },
+      "baxi-800": {
+        name: "Baxi 800 Combi",
+        codes: [
+          { code: "E01", name: "Ignition lockout", meaning: "Failed to ignite after multiple attempts.", safe: "reset", action: "Check gas supply, one reset. Persistent lockouts need Gas Safe engineer." },
+          { code: "E10", name: "Low water pressure", meaning: "Pressure below minimum required level.", safe: "reset", action: "Repressurise to 1–1.5 bar, then reset." },
+          { code: "E20", name: "NTC flow sensor fault", meaning: "Flow temperature sensor has failed or is reading incorrectly.", safe: "engineer", action: "Gas Safe engineer required to replace sensor." },
+          { code: "E50", name: "DHW NTC sensor fault", meaning: "The domestic hot water temperature sensor has failed.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "E131", name: "Gas valve relay fault", meaning: "Fault detected with the gas valve control relay on the PCB.", safe: "engineer", action: "Gas Safe engineer required. PCB or gas valve may need replacing." }
+        ]
+      },
+      "platinum": {
+        name: "Baxi Platinum Combi",
+        codes: [
+          { code: "E01", name: "Ignition lockout", meaning: "Boiler failed to establish ignition.", safe: "reset", action: "Check gas, one reset. Persistent faults need Gas Safe engineer." },
+          { code: "E10", name: "Low water pressure", meaning: "System pressure too low.", safe: "reset", action: "Repressurise then reset." },
+          { code: "E03", name: "Fan speed fault", meaning: "Fan not operating at correct speed.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "E109", name: "Overheat safety lockout", meaning: "Boiler has overheated and safety thermostat has cut out.", safe: "engineer", action: "Allow to cool, one reset, then Gas Safe engineer if fault repeats." },
+          { code: "E168", name: "Gas valve fault", meaning: "Gas valve not operating correctly — safety lockout triggered.", safe: "engineer", action: "Do not reset repeatedly. Gas Safe engineer required." }
+        ]
+      }
+    }
+  },
+  "glow-worm": {
+    name: "Glow-worm",
+    icon: "🔧",
+    models: {
+      "energy": {
+        name: "Energy Combi / System",
+        codes: [
+          { code: "F.22", name: "Low water pressure", meaning: "System pressure has fallen below minimum operating level.", safe: "reset", action: "Repressurise to 1–1.5 bar using the filling loop, then press reset." },
+          { code: "F.28", name: "Ignition failure", meaning: "Boiler failed to ignite after multiple attempts.", safe: "reset", action: "Check gas supply. One reset. Persistent fault needs Gas Safe engineer." },
+          { code: "F.29", name: "Flame loss", meaning: "Flame extinguished unexpectedly during operation.", safe: "reset", action: "One reset. Persistent flame loss needs Gas Safe engineer." },
+          { code: "F.75", name: "Pump or pressure sensor fault", meaning: "No pressure change detected at pump start-up.", safe: "engineer", action: "Gas Safe engineer required to test pump and pressure sensor." },
+          { code: "F.4", name: "Flow NTC sensor fault", meaning: "Flow temperature sensor has failed.", safe: "engineer", action: "Gas Safe engineer required." }
+        ]
+      },
+      "betacom": {
+        name: "Betacom Combi",
+        codes: [
+          { code: "F1", name: "Ignition lockout", meaning: "Failed to ignite during startup.", safe: "reset", action: "Check gas supply, one reset. Repeated faults need Gas Safe engineer." },
+          { code: "F4", name: "NTC flow sensor fault", meaning: "Flow temperature sensor fault detected.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "F9", name: "Flue sensor fault", meaning: "Flue temperature sensor reading out of range.", safe: "engineer", action: "Gas Safe engineer required to inspect flue and sensor." },
+          { code: "L1", name: "Overheat lockout", meaning: "High limit thermostat tripped.", safe: "engineer", action: "Cool down, one reset, Gas Safe engineer if repeated." }
+        ]
+      }
+    }
+  },
+  "viessmann": {
+    name: "Viessmann",
+    icon: "🔧",
+    models: {
+      "vitodens-050": {
+        name: "Vitodens 050-W",
+        codes: [
+          { code: "F4", name: "Flame failure", meaning: "The burner failed to ignite or the flame was not detected.", safe: "reset", action: "Check gas supply. Press reset once. Persistent flame failure requires a Gas Safe engineer." },
+          { code: "F9", name: "Fan fault", meaning: "Fan speed outside expected range or fan not responding.", safe: "engineer", action: "Gas Safe engineer required. Fan faults affect safe combustion." },
+          { code: "b0", name: "Low water pressure warning", meaning: "System pressure is approaching minimum level — not yet a lockout but needs attention.", safe: "reset", action: "Repressurise to 1.5–2 bar. If pressure keeps dropping, there may be a system leak." },
+          { code: "F0", name: "General electronics fault", meaning: "An internal electronics fault has been detected.", safe: "engineer", action: "Try power cycling (off 30 seconds). If fault remains, Gas Safe engineer required." }
+        ]
+      },
+      "vitodens-100": {
+        name: "Vitodens 100-W",
+        codes: [
+          { code: "F4", name: "Flame failure / ignition fault", meaning: "The burner has failed to ignite or the flame sensor has not detected a flame.", safe: "reset", action: "Check gas supply. One reset attempt. Persistent fault requires Gas Safe engineer." },
+          { code: "F9", name: "Fan fault", meaning: "Combustion fan not operating correctly.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "EA", name: "Ignition lockout", meaning: "Boiler locked out after repeated ignition failures.", safe: "reset", action: "One reset. If it persists, Gas Safe engineer required." },
+          { code: "F2", name: "Temperature limit exceeded", meaning: "Flow temperature exceeded safe limits — safety thermostat tripped.", safe: "engineer", action: "Allow to cool. One reset. Repeated overheating needs Gas Safe engineer urgently." },
+          { code: "b6", name: "Flue gas temperature sensor fault", meaning: "The flue gas sensor is reading outside expected parameters.", safe: "engineer", action: "Gas Safe engineer required to inspect flue and sensor." }
+        ]
+      },
+      "vitodens-200": {
+        name: "Vitodens 200-W",
+        codes: [
+          { code: "F4", name: "Flame failure", meaning: "Burner failed to ignite or flame not detected during operation.", safe: "reset", action: "Check gas. One reset. Persistent fault needs Gas Safe engineer." },
+          { code: "F9", name: "Fan fault", meaning: "Fan speed incorrect or fan not operating.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "F2", name: "Max temperature exceeded", meaning: "Flow temperature limit exceeded — safety lockout.", safe: "engineer", action: "Cool down. One reset. Repeated occurrence needs Gas Safe engineer urgently." },
+          { code: "E5", name: "NTC sensor fault", meaning: "A temperature sensor has failed or is reading incorrectly.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "F0", name: "Electronics fault", meaning: "Internal electronics fault detected.", safe: "engineer", action: "Power cycle. If fault remains, Gas Safe engineer required." }
+        ]
+      }
+    }
+  },
+  "potterton": {
+    name: "Potterton",
+    icon: "🔧",
+    models: {
+      "titanium": {
+        name: "Titanium Combi / System",
+        codes: [
+          { code: "E1", name: "Low water pressure", meaning: "System pressure has dropped below minimum operating level.", safe: "reset", action: "Repressurise to 1–1.5 bar using the filling loop, then press reset." },
+          { code: "E3", name: "Fan fault", meaning: "The boiler fan is not running at the correct speed.", safe: "engineer", action: "Gas Safe engineer required." },
+          { code: "E4", name: "Ignition lockout", meaning: "The boiler has failed to ignite after multiple attempts.", safe: "reset", action: "Check gas supply. One reset. Persistent lockout needs Gas Safe engineer." },
+          { code: "E9", name: "Overheat lockout", meaning: "Boiler has overheated — safety thermostat has cut out.", safe: "engineer", action: "Allow to cool. One reset. Repeated overheating needs Gas Safe engineer urgently." },
+          { code: "E28", name: "Gas pressure or flue fault", meaning: "Gas inlet pressure low or flue restricted.", safe: "engineer", action: "Check flue terminal. Gas Safe engineer required to test gas pressure." }
+        ]
+      },
+      "gold": {
+        name: "Gold Combi / System",
+        codes: [
+          { code: "E1", name: "Low water pressure", meaning: "Pressure below minimum level.", safe: "reset", action: "Repressurise to 1–1.5 bar then reset." },
+          { code: "E4", name: "Ignition lockout", meaning: "Failed to ignite.", safe: "reset", action: "One reset. Persistent fault needs Gas Safe engineer." },
+          { code: "E9", name: "Overheat safety lockout", meaning: "Boiler overheated and safety thermostat tripped.", safe: "engineer", action: "Cool down, one reset. Gas Safe engineer if repeated." },
+          { code: "E3", name: "Fan fault", meaning: "Fan not operating at correct speed.", safe: "engineer", action: "Gas Safe engineer required." }
+        ]
+      }
+    }
+  }
 };
 
 // Fill in missing scenarios data additions
 const EXTRA_SCENARIOS = {
-“no-hot-water”: [
-{
-title: “No hot water after a power cut”,
-hint: “Boiler needs resetting after power restored”,
-difficulty: “diy”,
-cost: “£0”,
-time: “5–10 min”,
-tools: [],
-warning: null,
-steps: [
-“After a power cut, most modern boilers go into a lockout or standby state and need to be manually reset.”,
-“Locate the reset button on your boiler — usually marked with a flame symbol or the word ‘Reset’. Press and hold for 3–5 seconds.”,
-“If the boiler fires up and runs normally, check your programmer or thermostat settings as these can reset to factory defaults after a power cut.”,
-“Reset your programmer or timer to the correct time and your heating/hot water schedule.”,
-“If the boiler won’t restart after a power cut, check the boiler pressure — it should be 1–1.5 bar. Repressurise if needed.”,
-“If the boiler still won’t fire after resetting, there may have been a surge that damaged the PCB — a Gas Safe engineer should inspect it.”
-],
-cta: false
-},
-{
-title: “Hot water runs cold after a few minutes”,
-hint: “Starts hot then goes cold mid-shower or mid-tap”,
-difficulty: “maybe”,
-cost: “£0–£200”,
-time: “30 min–2 hrs”,
-tools: [“Boiler manual”],
-warning: null,
-steps: [
-“This is a very common complaint with combi boilers and is often called ‘cold water sandwich’ — a burst of cold water between hot.”,
-“First check if it only happens when a second tap is opened. Combi boilers have a limited flow rate — running two outlets at once can cause hot water to run cold at one of them.”,
-“Check your boiler’s hot water temperature setting — if it’s set too low the water will feel warm rather than hot and may seem to go cold when flow increases.”,
-“A partially seized diverter valve is a very common cause. The diverter valve switches the boiler between heating and hot water. If it’s sticking, hot water cuts out intermittently. This requires a Gas Safe engineer to replace.”,
-“On older boilers, a scaled-up heat exchanger reduces the boiler’s ability to heat water quickly enough — a Gas Safe engineer can descale or replace the heat exchanger.”,
-“If you have a hot water cylinder and it runs cold quickly, the cylinder may be undersized or the thermostat may be set too low. Set the cylinder thermostat to 60°C.”
-],
-cta: true
-}
-],
-“no-heating”: [
-{
-title: “Heating not working but hot water is fine”,
-hint: “Hot water from taps works but radiators stay cold”,
-difficulty: “maybe”,
-cost: “£0–£200”,
-time: “30 min–2 hrs”,
-tools: [“Boiler manual”],
-warning: null,
-steps: [
-“When hot water works but heating doesn’t, the issue is usually with the heating circuit specifically rather than the boiler itself.”,
-“Check your room thermostat — if it’s set below the current room temperature, the boiler won’t call for heat. Turn it up above room temperature and wait a few minutes.”,
-“Check your programmer — make sure the heating is actually scheduled to be on. Many programmers have separate controls for heating and hot water.”,
-“Check the zone valve for the heating circuit. On systems with a hot water cylinder, there’s usually a separate motorised valve for heating. Listen for a clicking sound near the boiler when the heating should be on. If silent, the valve may have seized.”,
-“The heating pump may have seized, especially after summer when it hasn’t run for months. A Gas Safe or heating engineer can free a seized pump.”,
-“If all checks pass and heating still won’t come on, the boiler’s PCB, thermostat, or wiring centre may have a fault — a Gas Safe engineer is needed.”
-],
-cta: true
-},
-{
-title: “Heating works downstairs but not upstairs”,
-hint: “Ground floor radiators hot, upper floor cold”,
-difficulty: “maybe”,
-cost: “£0–£150”,
-time: “30 min–2 hrs”,
-tools: [“Radiator bleed key”],
-warning: null,
-steps: [
-“Start by bleeding all upstairs radiators — air rises in the system and collects in upper floor radiators first. This is by far the most common cause.”,
-“Check the TRV valves on upstairs radiators — they may have seized in the closed position over summer. Remove the TRV head and free the pin underneath.”,
-“After bleeding, check boiler pressure and repressurise if needed.”,
-“If upstairs radiators are getting some heat but not enough, the system may need balancing — the pump may not be powerful enough to push water to the upper floors effectively.”,
-“Check there isn’t a zone valve controlling the upstairs circuit that has failed or been accidentally closed.”,
-“If the issue persists after bleeding and valve checks, a plumber can assess pump pressure and system balance.”
-],
-cta: false
-},
-{
-title: “Heating timer not working correctly”,
-hint: “Heating comes on at wrong times or not at all”,
-difficulty: “diy”,
-cost: “£0–£100”,
-time: “15–30 min”,
-tools: [“Programmer manual”],
-warning: null,
-steps: [
-“Check the time and date set on your programmer or thermostat — if there has been a power cut or battery change, these often reset to 00:00 or a default time.”,
-“Reset the clock on the programmer to the correct time. Refer to the manual for your specific programmer model.”,
-“Check the heating schedule is programmed correctly — some programmers use 24-hour time, and AM/PM confusion is a very common cause of heating coming on at wrong times.”,
-“If you have a smart thermostat (Nest, Hive, Tado), check the app settings and ensure the device is connected to your Wi-Fi and the correct timezone is set.”,
-“Check the programmer is set to ‘Auto’ rather than ‘All Day On’, ‘All Day Off’, or ‘Once’.”,
-“If the programmer display is blank or unresponsive, check the fuse in the wiring centre and replace the programmer’s batteries if it has them.”
-],
-cta: false
-}
-],
-“leaks”: [
-{
-title: “Leaking tap — dripping from spout”,
-hint: “Tap drips constantly even when fully closed”,
-difficulty: “diy”,
-cost: “£0–£30”,
-time: “20–45 min”,
-tools: [“Adjustable spanner”, “Flathead screwdriver”, “Replacement washer or cartridge”, “PTFE tape”],
-warning: “⚠️ Turn off the water supply to the tap using the isolating valve under the sink, or at the main stop tap. Open the tap to drain any residual water.”,
-steps: [
-“Turn off the water supply under the sink using the isolating valve (slotted screw — turn 90 degrees). Open the tap to drain remaining water.”,
-“For traditional pillar taps: remove the tap head by unscrewing the cover cap and screw beneath. Remove the headgear using an adjustable spanner. Replace the rubber washer at the bottom of the headgear — these cost pennies at any hardware store.”,
-“For ceramic disc taps: the ceramic cartridge inside has failed. Remove the tap head and unscrew the cartridge. Take it to a plumber’s merchant to match the correct replacement.”,
-“For mixer taps with a single lever: the cartridge inside the body has worn. Remove the lever (usually held by a grub screw under a decorative cap) and pull out the cartridge. Replacement cartridges are available for most brands.”,
-“Reassemble the tap and turn the water back on slowly. Check for leaks around the tap body.”,
-“If the tap body itself is cracked or corroded, replacement is more sensible than repair.”
-],
-cta: false
-},
-{
-title: “Leak under the kitchen sink”,
-hint: “Water pooling in the cupboard under the sink”,
-difficulty: “diy”,
-cost: “£0–£40”,
-time: “15–45 min”,
-tools: [“Adjustable spanner”, “PTFE tape”, “Towels”, “Replacement tap connector or waste trap”],
-warning: “⚠️ Turn off the water supply before touching any supply pipes. Waste pipe leaks can be fixed without turning off the water.”,
-steps: [
-“First identify whether the leak is from the supply pipes (cold or hot water pipes feeding the tap) or the waste/drain pipes (plastic pipes going down from the sink).”,
-“For waste pipe leaks: the most common cause is a loose or cracked trap (the U-shaped plastic section). Check all push-fit connections are fully engaged. Tighten the slip joints by hand — do not over-tighten plastic fittings.”,
-“If the plastic trap is cracked, replace it — they cost £5–£10 and unscrew by hand.”,
-“For supply pipe leaks at the tap connector: turn off the water. The flexible braided hoses connecting to the tap may be loose or corroded. Tighten the compression nut or replace the hose.”,
-“Check the tap back nut under the sink — if the tap is moving, the back nut has come loose. Tighten with a basin wrench.”,
-“Check the silicone seal around the sink where it meets the worktop — if water is getting between the sink and worktop and running down inside the cupboard, reseal with fresh bathroom silicone.”
-],
-cta: false
-},
-{
-title: “Stopcock or isolating valve leaking”,
-hint: “Water dripping from a valve rather than a pipe”,
-difficulty: “diy”,
-cost: “£0–£60”,
-time: “20–45 min”,
-tools: [“Adjustable spanner”, “PTFE tape”, “Replacement gland packing”],
-warning: “⚠️ To fix the main stop tap, you will need to turn off the external stop tap (usually in a small metal cover in the footpath or garden boundary). Contact your water supplier if you cannot locate it.”,
-steps: [
-“Identify exactly where the valve is leaking — from the spindle (the turning part) or from the body/connections.”,
-“A leak from the spindle gland is the most common type. Try tightening the gland nut (the nut just above where the spindle enters the body) by a quarter-turn clockwise. Check if this stops the drip.”,
-“If tightening the gland nut doesn’t stop the leak, the gland packing inside has failed. Turn off the water supply above the valve, drain the pipe, and remove the spindle to repack the gland with PTFE tape wound around the spindle before reassembly.”,
-“For leaking isolating valves on appliances: these can often be replaced without turning off the main stop tap — just turn the valve itself to the closed position first.”,
-“If the valve body is cracking or heavily corroded, the whole valve needs replacing. For the main stop tap, you’ll need the external stop tap turned off.”,
-“Newer quarter-turn ball valves are much more reliable than older gate valves — if you’re replacing a gate valve, upgrade to a ball valve at the same time.”
-],
-cta: false
-}
-],
-“blocked-drains”: [
-{
-title: “Blocked kitchen sink”,
-hint: “Kitchen sink draining very slowly or not at all”,
-difficulty: “diy”,
-cost: “£0–£20”,
-time: “15–30 min”,
-tools: [“Plunger”, “Drain snake”, “Bucket”],
-warning: null,
-steps: [
-“Kitchen sink blockages are almost always caused by grease, fat, and food debris building up in the trap or waste pipe.”,
-“First try pouring boiling water down the drain in three stages — this can melt grease blockages near the drain.”,
-“If still blocked, place a bucket under the U-bend trap beneath the sink and unscrew the trap (usually hand-tight plastic). Empty the trap and clean it — this alone fixes most kitchen blockages.”,
-“Use a plunger with the overflow hole blocked (use your finger or a wet cloth). Plunge firmly 10–15 times.”,
-“For blockages further down the pipe, use a flexible drain snake to break up or retrieve the blockage.”,
-“Avoid pouring fat or cooking oil down the kitchen sink — this is the main cause of kitchen drain blockages. Let fat cool and solidify then dispose in the bin.”
-],
-cta: false
-},
-{
-title: “Blocked toilet”,
-hint: “Toilet won’t flush away properly”,
-difficulty: “diy”,
-cost: “£0–£80”,
-time: “15–60 min”,
-tools: [“Toilet plunger”, “Rubber gloves”, “Bucket”],
-warning: null,
-steps: [
-“Do not keep flushing — if the pan is nearly full, further flushing will cause an overflow.”,
-“Use a proper toilet plunger (with an extended rubber flange, not a flat cup plunger). Insert firmly into the pan outlet and plunge vigorously 10–15 times.”,
-“If plunging doesn’t work, try pouring a bucket of hot (not boiling) water from waist height — the force and heat can shift blockages.”,
-“Use a toilet auger (drain snake) — insert it into the pan and rotate to hook or break up the blockage.”,
-“Most toilet blockages are caused by too much toilet paper, wet wipes (even ‘flushable’ ones), or foreign objects. Never flush wipes, cotton wool, or sanitary products.”,
-“If the toilet is still blocked after all of the above, the blockage may be in the soil pipe — call a drainage specialist.”
-],
-cta: true
-},
-{
-title: “Outdoor drain blocked”,
-hint: “Water backing up in garden drain or gulley”,
-difficulty: “maybe”,
-cost: “£0–£150”,
-time: “30 min–2 hrs”,
-tools: [“Rubber gloves”, “Drain rods”, “Bucket”, “Hose”],
-warning: null,
-steps: [
-“Locate all drainage inspection chambers (manhole covers) in the garden. Lift covers carefully using a flat screwdriver — they can be heavy.”,
-“Check which chambers are full of water and which are clear. A full chamber tells you the blockage is between that chamber and the next one downstream.”,
-“Clear the drain gulley grate first — leaves and debris collect here and are the most common cause of outdoor drain problems.”,
-“Use drain rods to clear blockages in the pipes between chambers. Push the rods in and rotate clockwise — never anticlockwise as the sections will unscrew.”,
-“Flush the drain through with a hose once cleared to wash away remaining debris.”,
-“If drain rods won’t shift the blockage, or if the drain is backing up inside the house, call a drainage specialist who has high-pressure jetting equipment.”
-],
-cta: true
-},
-{
-title: “Multiple drains blocked at once”,
-hint: “Several sinks, bath and toilet all draining slowly”,
-difficulty: “pro”,
-cost: “£100–£300”,
-time: “1–3 hrs”,
-tools: [],
-warning: “⚠️ If sewage is backing up into baths or toilets, stop using all water immediately and call a drainage specialist.”,
-steps: [
-“When multiple fixtures are blocked simultaneously, the blockage is in the main drain or soil stack rather than individual traps — this is beyond DIY territory.”,
-“Check your outdoor inspection chambers. If they are all full or overflowing, the blockage is in the main drain leaving the property or in the sewer.”,
-“Do not use any water-using appliances — washing machines, dishwashers, showers, or toilets — until the blockage is cleared, as this will back sewage up into the property.”,
-“Contact a drainage specialist immediately. They will use high-pressure water jetting or drain rods to clear the main blockage.”,
-“If the inspection chambers outside are clear but drainage inside is slow across all fixtures, the internal soil stack may be blocked — again requires a professional.”,
-“Once cleared, ask the drainage company to CCTV survey the drain if blockages are recurring — there may be a root intrusion or collapsed pipe section.”
-],
-cta: true
-}
-],
-“low-pressure”: [
-{
-title: “Water pressure drops when shower and tap used together”,
-hint: “Pressure fine individually but drops when two outlets run”,
-difficulty: “diy”,
-cost: “£0–£300”,
-time: “15 min”,
-tools: [],
-warning: null,
-steps: [
-“This is a very common issue in gravity-fed systems where the cold water tank in the loft supplies multiple outlets. The tank simply can’t supply water fast enough for two outlets at once.”,
-“Check whether your system is gravity-fed (cold tank in loft) or mains pressure. Mains pressure systems should handle multiple outlets without issue.”,
-“For gravity-fed systems, the solution is usually a shower pump — this boosts water pressure to the shower independently of other outlets.”,
-“Check the cold water tank in the loft is filling quickly enough. If the ball valve is partially blocked or slow to operate, the tank may not refill fast enough between uses.”,
-“Check all isolating valves on the supply pipework are fully open — a partially closed valve reduces flow significantly.”,
-“For a permanent solution on a gravity-fed system, a whole-house pump or upgrading to an unvented hot water system (mains pressure) will resolve the issue — consult a plumber.”
-],
-cta: false
-},
-{
-title: “Boiler pressure keeps dropping”,
-hint: “Need to repressurise the boiler every few weeks”,
-difficulty: “maybe”,
-cost: “£0–£500”,
-time: “Varies”,
-tools: [“Filling loop”],
-warning: “⚠️ If you are repressurising your boiler more than once every few weeks, there is almost certainly a leak somewhere in the system. This should be investigated.”,
-steps: [
-“Occasionally repressurising a boiler (once or twice a year) is normal — small amounts of water are lost through the pressure relief valve and expansion vessel.”,
-“If pressure is dropping more than once a month, there is a leak in the system. Check all radiator valves, pipe joints, and the boiler itself for signs of moisture or corrosion.”,
-“Check the pressure relief valve — located on the boiler or nearby pipework with a pipe running outside or to a drain. If it’s dripping or weeping, the valve is releasing pressure and needs replacing.”,
-“Check the expansion vessel — if this has failed, pressure will drop and then spike repeatedly. A Gas Safe engineer can test the expansion vessel with a pressure gauge.”,
-“Inspect all visible pipework, radiator valves, and connections for signs of dampness, mineral deposits (white or orange staining), or corrosion.”,
-“If no visible leak can be found, a plumber can carry out a pressure test on the system to locate hidden leaks in walls or under floors.”
-],
-cta: true
-},
-{
-title: “No water at all from taps”,
-hint: “Complete loss of water to all outlets”,
-difficulty: “diy”,
-cost: “£0”,
-time: “10 min”,
-tools: [],
-warning: null,
-steps: [
-“Check with neighbours whether they also have no water — if so, there’s a mains supply issue in your area. Contact your water supplier’s emergency line.”,
-“Check your main internal stop tap (usually under the kitchen sink) is fully open. Turn it anti-clockwise to open.”,
-“Check the external stop tap (usually in a small metal box in the pavement or front garden boundary). If this is closed, use a stop tap key to open it.”,
-“If you have a cold water storage tank in the loft, check if it’s empty — the ball valve may have jammed closed preventing the tank from refilling.”,
-“Check your water meter (if accessible) — if the dial isn’t moving when you open a tap, the supply from the main to your property may be interrupted.”,
-“Contact your water supplier — all suppliers have 24-hour emergency lines. Loss of supply is their responsibility to restore.”
-],
-cta: false
-}
-]
+  "no-hot-water": [
+    {
+      title: "No hot water after a power cut",
+      hint: "Boiler needs resetting after power restored",
+      difficulty: "diy",
+      cost: "£0",
+      time: "5–10 min",
+      tools: [],
+      warning: null,
+      steps: [
+        "After a power cut, most modern boilers go into a lockout or standby state and need to be manually reset.",
+        "Locate the reset button on your boiler — usually marked with a flame symbol or the word 'Reset'. Press and hold for 3–5 seconds.",
+        "If the boiler fires up and runs normally, check your programmer or thermostat settings as these can reset to factory defaults after a power cut.",
+        "Reset your programmer or timer to the correct time and your heating/hot water schedule.",
+        "If the boiler won't restart after a power cut, check the boiler pressure — it should be 1–1.5 bar. Repressurise if needed.",
+        "If the boiler still won't fire after resetting, there may have been a surge that damaged the PCB — a Gas Safe engineer should inspect it."
+      ],
+      cta: false
+    },
+    {
+      title: "Hot water runs cold after a few minutes",
+      hint: "Starts hot then goes cold mid-shower or mid-tap",
+      difficulty: "maybe",
+      cost: "£0–£200",
+      time: "30 min–2 hrs",
+      tools: ["Boiler manual"],
+      warning: null,
+      steps: [
+        "This is a very common complaint with combi boilers and is often called 'cold water sandwich' — a burst of cold water between hot.",
+        "First check if it only happens when a second tap is opened. Combi boilers have a limited flow rate — running two outlets at once can cause hot water to run cold at one of them.",
+        "Check your boiler's hot water temperature setting — if it's set too low the water will feel warm rather than hot and may seem to go cold when flow increases.",
+        "A partially seized diverter valve is a very common cause. The diverter valve switches the boiler between heating and hot water. If it's sticking, hot water cuts out intermittently. This requires a Gas Safe engineer to replace.",
+        "On older boilers, a scaled-up heat exchanger reduces the boiler's ability to heat water quickly enough — a Gas Safe engineer can descale or replace the heat exchanger.",
+        "If you have a hot water cylinder and it runs cold quickly, the cylinder may be undersized or the thermostat may be set too low. Set the cylinder thermostat to 60°C."
+      ],
+      cta: true
+    }
+  ],
+  "no-heating": [
+    {
+      title: "Heating not working but hot water is fine",
+      hint: "Hot water from taps works but radiators stay cold",
+      difficulty: "maybe",
+      cost: "£0–£200",
+      time: "30 min–2 hrs",
+      tools: ["Boiler manual"],
+      warning: null,
+      steps: [
+        "When hot water works but heating doesn't, the issue is usually with the heating circuit specifically rather than the boiler itself.",
+        "Check your room thermostat — if it's set below the current room temperature, the boiler won't call for heat. Turn it up above room temperature and wait a few minutes.",
+        "Check your programmer — make sure the heating is actually scheduled to be on. Many programmers have separate controls for heating and hot water.",
+        "Check the zone valve for the heating circuit. On systems with a hot water cylinder, there's usually a separate motorised valve for heating. Listen for a clicking sound near the boiler when the heating should be on. If silent, the valve may have seized.",
+        "The heating pump may have seized, especially after summer when it hasn't run for months. A Gas Safe or heating engineer can free a seized pump.",
+        "If all checks pass and heating still won't come on, the boiler's PCB, thermostat, or wiring centre may have a fault — a Gas Safe engineer is needed."
+      ],
+      cta: true
+    },
+    {
+      title: "Heating works downstairs but not upstairs",
+      hint: "Ground floor radiators hot, upper floor cold",
+      difficulty: "maybe",
+      cost: "£0–£150",
+      time: "30 min–2 hrs",
+      tools: ["Radiator bleed key"],
+      warning: null,
+      steps: [
+        "Start by bleeding all upstairs radiators — air rises in the system and collects in upper floor radiators first. This is by far the most common cause.",
+        "Check the TRV valves on upstairs radiators — they may have seized in the closed position over summer. Remove the TRV head and free the pin underneath.",
+        "After bleeding, check boiler pressure and repressurise if needed.",
+        "If upstairs radiators are getting some heat but not enough, the system may need balancing — the pump may not be powerful enough to push water to the upper floors effectively.",
+        "Check there isn't a zone valve controlling the upstairs circuit that has failed or been accidentally closed.",
+        "If the issue persists after bleeding and valve checks, a plumber can assess pump pressure and system balance."
+      ],
+      cta: false
+    },
+    {
+      title: "Heating timer not working correctly",
+      hint: "Heating comes on at wrong times or not at all",
+      difficulty: "diy",
+      cost: "£0–£100",
+      time: "15–30 min",
+      tools: ["Programmer manual"],
+      warning: null,
+      steps: [
+        "Check the time and date set on your programmer or thermostat — if there has been a power cut or battery change, these often reset to 00:00 or a default time.",
+        "Reset the clock on the programmer to the correct time. Refer to the manual for your specific programmer model.",
+        "Check the heating schedule is programmed correctly — some programmers use 24-hour time, and AM/PM confusion is a very common cause of heating coming on at wrong times.",
+        "If you have a smart thermostat (Nest, Hive, Tado), check the app settings and ensure the device is connected to your Wi-Fi and the correct timezone is set.",
+        "Check the programmer is set to 'Auto' rather than 'All Day On', 'All Day Off', or 'Once'.",
+        "If the programmer display is blank or unresponsive, check the fuse in the wiring centre and replace the programmer's batteries if it has them."
+      ],
+      cta: false
+    }
+  ],
+  "leaks": [
+    {
+      title: "Leaking tap — dripping from spout",
+      hint: "Tap drips constantly even when fully closed",
+      difficulty: "diy",
+      cost: "£0–£30",
+      time: "20–45 min",
+      tools: ["Adjustable spanner", "Flathead screwdriver", "Replacement washer or cartridge", "PTFE tape"],
+      warning: "⚠️ Turn off the water supply to the tap using the isolating valve under the sink, or at the main stop tap. Open the tap to drain any residual water.",
+      steps: [
+        "Turn off the water supply under the sink using the isolating valve (slotted screw — turn 90 degrees). Open the tap to drain remaining water.",
+        "For traditional pillar taps: remove the tap head by unscrewing the cover cap and screw beneath. Remove the headgear using an adjustable spanner. Replace the rubber washer at the bottom of the headgear — these cost pennies at any hardware store.",
+        "For ceramic disc taps: the ceramic cartridge inside has failed. Remove the tap head and unscrew the cartridge. Take it to a plumber's merchant to match the correct replacement.",
+        "For mixer taps with a single lever: the cartridge inside the body has worn. Remove the lever (usually held by a grub screw under a decorative cap) and pull out the cartridge. Replacement cartridges are available for most brands.",
+        "Reassemble the tap and turn the water back on slowly. Check for leaks around the tap body.",
+        "If the tap body itself is cracked or corroded, replacement is more sensible than repair."
+      ],
+      cta: false
+    },
+    {
+      title: "Leak under the kitchen sink",
+      hint: "Water pooling in the cupboard under the sink",
+      difficulty: "diy",
+      cost: "£0–£40",
+      time: "15–45 min",
+      tools: ["Adjustable spanner", "PTFE tape", "Towels", "Replacement tap connector or waste trap"],
+      warning: "⚠️ Turn off the water supply before touching any supply pipes. Waste pipe leaks can be fixed without turning off the water.",
+      steps: [
+        "First identify whether the leak is from the supply pipes (cold or hot water pipes feeding the tap) or the waste/drain pipes (plastic pipes going down from the sink).",
+        "For waste pipe leaks: the most common cause is a loose or cracked trap (the U-shaped plastic section). Check all push-fit connections are fully engaged. Tighten the slip joints by hand — do not over-tighten plastic fittings.",
+        "If the plastic trap is cracked, replace it — they cost £5–£10 and unscrew by hand.",
+        "For supply pipe leaks at the tap connector: turn off the water. The flexible braided hoses connecting to the tap may be loose or corroded. Tighten the compression nut or replace the hose.",
+        "Check the tap back nut under the sink — if the tap is moving, the back nut has come loose. Tighten with a basin wrench.",
+        "Check the silicone seal around the sink where it meets the worktop — if water is getting between the sink and worktop and running down inside the cupboard, reseal with fresh bathroom silicone."
+      ],
+      cta: false
+    },
+    {
+      title: "Stopcock or isolating valve leaking",
+      hint: "Water dripping from a valve rather than a pipe",
+      difficulty: "diy",
+      cost: "£0–£60",
+      time: "20–45 min",
+      tools: ["Adjustable spanner", "PTFE tape", "Replacement gland packing"],
+      warning: "⚠️ To fix the main stop tap, you will need to turn off the external stop tap (usually in a small metal cover in the footpath or garden boundary). Contact your water supplier if you cannot locate it.",
+      steps: [
+        "Identify exactly where the valve is leaking — from the spindle (the turning part) or from the body/connections.",
+        "A leak from the spindle gland is the most common type. Try tightening the gland nut (the nut just above where the spindle enters the body) by a quarter-turn clockwise. Check if this stops the drip.",
+        "If tightening the gland nut doesn't stop the leak, the gland packing inside has failed. Turn off the water supply above the valve, drain the pipe, and remove the spindle to repack the gland with PTFE tape wound around the spindle before reassembly.",
+        "For leaking isolating valves on appliances: these can often be replaced without turning off the main stop tap — just turn the valve itself to the closed position first.",
+        "If the valve body is cracking or heavily corroded, the whole valve needs replacing. For the main stop tap, you'll need the external stop tap turned off.",
+        "Newer quarter-turn ball valves are much more reliable than older gate valves — if you're replacing a gate valve, upgrade to a ball valve at the same time."
+      ],
+      cta: false
+    }
+  ],
+  "blocked-drains": [
+    {
+      title: "Blocked kitchen sink",
+      hint: "Kitchen sink draining very slowly or not at all",
+      difficulty: "diy",
+      cost: "£0–£20",
+      time: "15–30 min",
+      tools: ["Plunger", "Drain snake", "Bucket"],
+      warning: null,
+      steps: [
+        "Kitchen sink blockages are almost always caused by grease, fat, and food debris building up in the trap or waste pipe.",
+        "First try pouring boiling water down the drain in three stages — this can melt grease blockages near the drain.",
+        "If still blocked, place a bucket under the U-bend trap beneath the sink and unscrew the trap (usually hand-tight plastic). Empty the trap and clean it — this alone fixes most kitchen blockages.",
+        "Use a plunger with the overflow hole blocked (use your finger or a wet cloth). Plunge firmly 10–15 times.",
+        "For blockages further down the pipe, use a flexible drain snake to break up or retrieve the blockage.",
+        "Avoid pouring fat or cooking oil down the kitchen sink — this is the main cause of kitchen drain blockages. Let fat cool and solidify then dispose in the bin."
+      ],
+      cta: false
+    },
+    {
+      title: "Blocked toilet",
+      hint: "Toilet won't flush away properly",
+      difficulty: "diy",
+      cost: "£0–£80",
+      time: "15–60 min",
+      tools: ["Toilet plunger", "Rubber gloves", "Bucket"],
+      warning: null,
+      steps: [
+        "Do not keep flushing — if the pan is nearly full, further flushing will cause an overflow.",
+        "Use a proper toilet plunger (with an extended rubber flange, not a flat cup plunger). Insert firmly into the pan outlet and plunge vigorously 10–15 times.",
+        "If plunging doesn't work, try pouring a bucket of hot (not boiling) water from waist height — the force and heat can shift blockages.",
+        "Use a toilet auger (drain snake) — insert it into the pan and rotate to hook or break up the blockage.",
+        "Most toilet blockages are caused by too much toilet paper, wet wipes (even 'flushable' ones), or foreign objects. Never flush wipes, cotton wool, or sanitary products.",
+        "If the toilet is still blocked after all of the above, the blockage may be in the soil pipe — call a drainage specialist."
+      ],
+      cta: true
+    },
+    {
+      title: "Outdoor drain blocked",
+      hint: "Water backing up in garden drain or gulley",
+      difficulty: "maybe",
+      cost: "£0–£150",
+      time: "30 min–2 hrs",
+      tools: ["Rubber gloves", "Drain rods", "Bucket", "Hose"],
+      warning: null,
+      steps: [
+        "Locate all drainage inspection chambers (manhole covers) in the garden. Lift covers carefully using a flat screwdriver — they can be heavy.",
+        "Check which chambers are full of water and which are clear. A full chamber tells you the blockage is between that chamber and the next one downstream.",
+        "Clear the drain gulley grate first — leaves and debris collect here and are the most common cause of outdoor drain problems.",
+        "Use drain rods to clear blockages in the pipes between chambers. Push the rods in and rotate clockwise — never anticlockwise as the sections will unscrew.",
+        "Flush the drain through with a hose once cleared to wash away remaining debris.",
+        "If drain rods won't shift the blockage, or if the drain is backing up inside the house, call a drainage specialist who has high-pressure jetting equipment."
+      ],
+      cta: true
+    },
+    {
+      title: "Multiple drains blocked at once",
+      hint: "Several sinks, bath and toilet all draining slowly",
+      difficulty: "pro",
+      cost: "£100–£300",
+      time: "1–3 hrs",
+      tools: [],
+      warning: "⚠️ If sewage is backing up into baths or toilets, stop using all water immediately and call a drainage specialist.",
+      steps: [
+        "When multiple fixtures are blocked simultaneously, the blockage is in the main drain or soil stack rather than individual traps — this is beyond DIY territory.",
+        "Check your outdoor inspection chambers. If they are all full or overflowing, the blockage is in the main drain leaving the property or in the sewer.",
+        "Do not use any water-using appliances — washing machines, dishwashers, showers, or toilets — until the blockage is cleared, as this will back sewage up into the property.",
+        "Contact a drainage specialist immediately. They will use high-pressure water jetting or drain rods to clear the main blockage.",
+        "If the inspection chambers outside are clear but drainage inside is slow across all fixtures, the internal soil stack may be blocked — again requires a professional.",
+        "Once cleared, ask the drainage company to CCTV survey the drain if blockages are recurring — there may be a root intrusion or collapsed pipe section."
+      ],
+      cta: true
+    }
+  ],
+  "low-pressure": [
+    {
+      title: "Water pressure drops when shower and tap used together",
+      hint: "Pressure fine individually but drops when two outlets run",
+      difficulty: "diy",
+      cost: "£0–£300",
+      time: "15 min",
+      tools: [],
+      warning: null,
+      steps: [
+        "This is a very common issue in gravity-fed systems where the cold water tank in the loft supplies multiple outlets. The tank simply can't supply water fast enough for two outlets at once.",
+        "Check whether your system is gravity-fed (cold tank in loft) or mains pressure. Mains pressure systems should handle multiple outlets without issue.",
+        "For gravity-fed systems, the solution is usually a shower pump — this boosts water pressure to the shower independently of other outlets.",
+        "Check the cold water tank in the loft is filling quickly enough. If the ball valve is partially blocked or slow to operate, the tank may not refill fast enough between uses.",
+        "Check all isolating valves on the supply pipework are fully open — a partially closed valve reduces flow significantly.",
+        "For a permanent solution on a gravity-fed system, a whole-house pump or upgrading to an unvented hot water system (mains pressure) will resolve the issue — consult a plumber."
+      ],
+      cta: false
+    },
+    {
+      title: "Boiler pressure keeps dropping",
+      hint: "Need to repressurise the boiler every few weeks",
+      difficulty: "maybe",
+      cost: "£0–£500",
+      time: "Varies",
+      tools: ["Filling loop"],
+      warning: "⚠️ If you are repressurising your boiler more than once every few weeks, there is almost certainly a leak somewhere in the system. This should be investigated.",
+      steps: [
+        "Occasionally repressurising a boiler (once or twice a year) is normal — small amounts of water are lost through the pressure relief valve and expansion vessel.",
+        "If pressure is dropping more than once a month, there is a leak in the system. Check all radiator valves, pipe joints, and the boiler itself for signs of moisture or corrosion.",
+        "Check the pressure relief valve — located on the boiler or nearby pipework with a pipe running outside or to a drain. If it's dripping or weeping, the valve is releasing pressure and needs replacing.",
+        "Check the expansion vessel — if this has failed, pressure will drop and then spike repeatedly. A Gas Safe engineer can test the expansion vessel with a pressure gauge.",
+        "Inspect all visible pipework, radiator valves, and connections for signs of dampness, mineral deposits (white or orange staining), or corrosion.",
+        "If no visible leak can be found, a plumber can carry out a pressure test on the system to locate hidden leaks in walls or under floors."
+      ],
+      cta: true
+    },
+    {
+      title: "No water at all from taps",
+      hint: "Complete loss of water to all outlets",
+      difficulty: "diy",
+      cost: "£0",
+      time: "10 min",
+      tools: [],
+      warning: null,
+      steps: [
+        "Check with neighbours whether they also have no water — if so, there's a mains supply issue in your area. Contact your water supplier's emergency line.",
+        "Check your main internal stop tap (usually under the kitchen sink) is fully open. Turn it anti-clockwise to open.",
+        "Check the external stop tap (usually in a small metal box in the pavement or front garden boundary). If this is closed, use a stop tap key to open it.",
+        "If you have a cold water storage tank in the loft, check if it's empty — the ball valve may have jammed closed preventing the tank from refilling.",
+        "Check your water meter (if accessible) — if the dial isn't moving when you open a tap, the supply from the main to your property may be interrupted.",
+        "Contact your water supplier — all suppliers have 24-hour emergency lines. Loss of supply is their responsibility to restore."
+      ],
+      cta: false
+    }
+  ]
 };
 
 let currentCat = null;
@@ -1831,332 +1806,399 @@ let currentBrand = null;
 let currentModel = null;
 
 function renderHome() {
-const grid = document.getElementById(‘cat-grid’);
-grid.innerHTML = ‘’;
-DATA.categories.forEach(cat => {
-const card = document.createElement(‘div’);
-card.className = ‘cat-card’;
-const count = cat.id === ‘boiler-faults’ ? Object.keys(BOILER_DATA).length + ’ brands’ : cat.scenarios.length + ’ scenario’ + (cat.scenarios.length !== 1 ? ‘s’ : ‘’);
-card.innerHTML = `<div class="cat-count">${count}</div> <span class="cat-icon">${cat.icon}</span> <div class="cat-title">${cat.title}</div> <div class="cat-desc">${cat.desc}</div>`;
-card.onclick = () => cat.id === ‘boiler-faults’ ? showBrands() : showCategory(cat.id);
-grid.appendChild(card);
-});
+  const grid = document.getElementById('cat-grid');
+  grid.innerHTML = '';
+  DATA.categories.forEach(cat => {
+    const card = document.createElement('div');
+    card.className = 'cat-card';
+    const count = cat.id === 'boiler-faults' ? Object.keys(BOILER_DATA).length + ' brands' : cat.scenarios.length + ' scenario' + (cat.scenarios.length !== 1 ? 's' : '');
+    card.innerHTML = `
+      <div class="cat-count">${count}</div>
+      <span class="cat-icon">${cat.icon}</span>
+      <div class="cat-title">${cat.title}</div>
+      <div class="cat-desc">${cat.desc}</div>
+    `;
+    card.onclick = () => cat.id === 'boiler-faults' ? showBrands() : showCategory(cat.id);
+    grid.appendChild(card);
+  });
 }
 
 function showBrands() {
-const grid = document.getElementById(‘brand-grid’);
-grid.innerHTML = ‘’;
-Object.entries(BOILER_DATA).forEach(([id, brand]) => {
-const modelCount = Object.keys(brand.models).length;
-const card = document.createElement(‘div’);
-card.className = ‘brand-card’;
-card.innerHTML = `<div class="brand-name">${brand.name}</div> <div class="brand-models">${modelCount} model${modelCount !== 1 ? 's' : ''}</div>`;
-card.onclick = () => showModels(id);
-grid.appendChild(card);
-});
-showScreen(‘screen-brands’);
+  const grid = document.getElementById('brand-grid');
+  grid.innerHTML = '';
+  Object.entries(BOILER_DATA).forEach(([id, brand]) => {
+    const modelCount = Object.keys(brand.models).length;
+    const card = document.createElement('div');
+    card.className = 'brand-card';
+    card.innerHTML = `
+      <div class="brand-name">${brand.name}</div>
+      <div class="brand-models">${modelCount} model${modelCount !== 1 ? 's' : ''}</div>
+    `;
+    card.onclick = () => showModels(id);
+    grid.appendChild(card);
+  });
+  showScreen('screen-brands');
 }
 
 function showModels(brandId) {
-currentBrand = brandId;
-const brand = BOILER_DATA[brandId];
-document.getElementById(‘model-brand-label’).textContent = brand.name;
-document.getElementById(‘model-brand-icon’).textContent = ‘⚡’;
-const list = document.getElementById(‘model-list’);
-list.innerHTML = ‘’;
-Object.entries(brand.models).forEach(([modelId, model]) => {
-const item = document.createElement(‘div’);
-item.className = ‘model-item’;
-item.innerHTML = `<span>${model.name}</span><span class="arrow">›</span>`;
-item.onclick = () => showFaultCodes(brandId, modelId);
-list.appendChild(item);
-});
-showScreen(‘screen-models’);
+  currentBrand = brandId;
+  const brand = BOILER_DATA[brandId];
+  document.getElementById('model-brand-label').textContent = brand.name;
+  document.getElementById('model-brand-icon').textContent = '⚡';
+  const list = document.getElementById('model-list');
+  list.innerHTML = '';
+  Object.entries(brand.models).forEach(([modelId, model]) => {
+    const item = document.createElement('div');
+    item.className = 'model-item';
+    item.innerHTML = `<span>${model.name}</span><span class="arrow">›</span>`;
+    item.onclick = () => showFaultCodes(brandId, modelId);
+    list.appendChild(item);
+  });
+  showScreen('screen-models');
 }
 
 function showFaultCodes(brandId, modelId) {
-currentModel = modelId;
-const brand = BOILER_DATA[brandId];
-const model = brand.models[modelId];
-document.getElementById(‘codes-model-label’).textContent = `${brand.name} — ${model.name}`;
-const list = document.getElementById(‘fault-code-list’);
-list.innerHTML = ‘’;
-model.codes.forEach((fc, i) => {
-const safeClass = fc.safe === ‘reset’ ? ‘safe-reset’ : ‘safe-engineer’;
-const safeLabel = fc.safe === ‘reset’ ? ‘Try Reset’ : ‘Engineer Required’;
-const item = document.createElement(‘div’);
-item.className = ‘fault-code-item’;
-item.innerHTML = `<div class="fault-code-top"> <span class="fault-code-badge">${fc.code}</span> <span class="fault-code-name">${fc.name}</span> <span class="safe-badge ${safeClass}">${safeLabel}</span> </div> <div class="fault-code-desc">${fc.meaning}</div>`;
-item.onclick = () => showFaultDetail(brandId, modelId, i);
-list.appendChild(item);
-});
-showScreen(‘screen-codes’);
+  currentModel = modelId;
+  const brand = BOILER_DATA[brandId];
+  const model = brand.models[modelId];
+  document.getElementById('codes-model-label').textContent = `${brand.name} — ${model.name}`;
+  const list = document.getElementById('fault-code-list');
+  list.innerHTML = '';
+  model.codes.forEach((fc, i) => {
+    const safeClass = fc.safe === 'reset' ? 'safe-reset' : 'safe-engineer';
+    const safeLabel = fc.safe === 'reset' ? 'Try Reset' : 'Engineer Required';
+    const item = document.createElement('div');
+    item.className = 'fault-code-item';
+    item.innerHTML = `
+      <div class="fault-code-top">
+        <span class="fault-code-badge">${fc.code}</span>
+        <span class="fault-code-name">${fc.name}</span>
+        <span class="safe-badge ${safeClass}">${safeLabel}</span>
+      </div>
+      <div class="fault-code-desc">${fc.meaning}</div>
+    `;
+    item.onclick = () => showFaultDetail(brandId, modelId, i);
+    list.appendChild(item);
+  });
+  showScreen('screen-codes');
 }
 
 function showFaultDetail(brandId, modelId, codeIndex) {
-const brand = BOILER_DATA[brandId];
-const model = brand.models[modelId];
-const fc = model.codes[codeIndex];
+  const brand = BOILER_DATA[brandId];
+  const model = brand.models[modelId];
+  const fc = model.codes[codeIndex];
 
-document.getElementById(‘fd-bc-brand’).textContent = brand.name;
-document.getElementById(‘fd-bc-model’).textContent = model.name;
-document.getElementById(‘fd-bc-code’).textContent = `Code ${fc.code}`;
-document.getElementById(‘fd-brand’).textContent = `${brand.name} — ${model.name}`;
-document.getElementById(‘fd-title’).textContent = `Fault Code ${fc.code}: ${fc.name}`;
-document.getElementById(‘fd-meaning’).textContent = fc.meaning;
-document.getElementById(‘fd-action’).innerHTML = `<strong>What to do (free guidance):</strong> ${fc.action}`;
+  document.getElementById('fd-bc-brand').textContent = brand.name;
+  document.getElementById('fd-bc-model').textContent = model.name;
+  document.getElementById('fd-bc-code').textContent = `Code ${fc.code}`;
+  document.getElementById('fd-brand').textContent = `${brand.name} — ${model.name}`;
+  document.getElementById('fd-title').textContent = `Fault Code ${fc.code}: ${fc.name}`;
+  document.getElementById('fd-meaning').textContent = fc.meaning;
+  document.getElementById('fd-action').innerHTML = `<strong>What to do (free guidance):</strong> ${fc.action}`;
 
-// Pro upsell box
-document.getElementById(‘fd-pro-box’).innerHTML = `<div class="pro-box"> <div class="pro-icon">🔐</div> <h3>Full Fix Guide — Pro Members Only</h3> <p>The step-by-step technical repair guide for this fault code is available to Pro subscribers. Designed for Gas Safe engineers and heating professionals.</p> <ul> <li>Exact components to test and replace</li> <li>Pressure and temperature diagnostic values</li> <li>Common misdiagnosis warnings</li> <li>Printable fault diagnosis sheet</li> <li>Direct links to genuine spare parts</li> </ul> <button class="btn-pro" onclick="alert('Pro subscription coming soon! Sign up to be notified at launch.')">Unlock Pro — Coming Soon</button> </div>`;
+  // Pro upsell box
+  document.getElementById('fd-pro-box').innerHTML = `
+    <div class="pro-box">
+      <div class="pro-icon">🔐</div>
+      <h3>Full Fix Guide — Pro Members Only</h3>
+      <p>The step-by-step technical repair guide for this fault code is available to Pro subscribers. Designed for Gas Safe engineers and heating professionals.</p>
+      <ul>
+        <li>Exact components to test and replace</li>
+        <li>Pressure and temperature diagnostic values</li>
+        <li>Common misdiagnosis warnings</li>
+        <li>Printable fault diagnosis sheet</li>
+        <li>Direct links to genuine spare parts</li>
+      </ul>
+      <button class="btn-pro" onclick="alert('Pro subscription coming soon! Sign up to be notified at launch.')">Unlock Pro — Coming Soon</button>
+    </div>
+  `;
 
-// Gas safe CTA
-document.getElementById(‘fd-gas-cta’).innerHTML = `<div class="cta-box" style="margin-top:16px;"> <p><strong>Always use a Gas Safe registered engineer</strong><br>for any boiler repairs. It is illegal to carry out gas work without Gas Safe registration.</p> <button class="btn-cta" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button> </div>`;
+  // Gas safe CTA
+  document.getElementById('fd-gas-cta').innerHTML = `
+    <div class="cta-box" style="margin-top:16px;">
+      <p><strong>Always use a Gas Safe registered engineer</strong><br>for any boiler repairs. It is illegal to carry out gas work without Gas Safe registration.</p>
+      <button class="btn-cta" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button>
+    </div>
+  `;
 
-showScreen(‘screen-fault-detail’);
+  showScreen('screen-fault-detail');
 }
 
 function showCategory(catId) {
-currentCat = DATA.categories.find(c => c.id === catId);
-if (!currentCat) return;
+  currentCat = DATA.categories.find(c => c.id === catId);
+  if (!currentCat) return;
 
-// Merge extra scenarios
-let scenarios = […currentCat.scenarios];
-if (EXTRA_SCENARIOS[catId]) {
-scenarios = […scenarios, …EXTRA_SCENARIOS[catId]];
-}
-currentCat._mergedScenarios = scenarios;
+  // Merge extra scenarios
+  let scenarios = [...currentCat.scenarios];
+  if (EXTRA_SCENARIOS[catId]) {
+    scenarios = [...scenarios, ...EXTRA_SCENARIOS[catId]];
+  }
+  currentCat._mergedScenarios = scenarios;
 
-document.getElementById(‘cat-big-icon’).textContent = currentCat.icon;
-document.getElementById(‘cat-big-title’).textContent = currentCat.title;
+  document.getElementById('cat-big-icon').textContent = currentCat.icon;
+  document.getElementById('cat-big-title').textContent = currentCat.title;
 
-const list = document.getElementById(‘scenario-list’);
-list.innerHTML = ‘’;
+  const list = document.getElementById('scenario-list');
+  list.innerHTML = '';
 
-scenarios.forEach((s, i) => {
-const item = document.createElement(‘div’);
-item.className = ‘scenario-item’;
-const diffMap = { diy: [‘diff-diy’, ‘DIY Friendly’], maybe: [‘diff-maybe’, ‘May Need Pro’], pro: [‘diff-pro’, ‘Call a Pro’] };
-const [cls, label] = diffMap[s.difficulty] || [‘diff-maybe’, ‘Varies’];
-item.innerHTML = `<div class="scenario-item-left"> <div class="scenario-title">${s.title}</div> <div class="scenario-hint">${s.hint}</div> </div> <span class="difficulty-badge ${cls}">${label}</span> <span class="arrow">›</span>`;
-item.onclick = () => showFix(i);
-list.appendChild(item);
-});
+  scenarios.forEach((s, i) => {
+    const item = document.createElement('div');
+    item.className = 'scenario-item';
+    const diffMap = { diy: ['diff-diy', 'DIY Friendly'], maybe: ['diff-maybe', 'May Need Pro'], pro: ['diff-pro', 'Call a Pro'] };
+    const [cls, label] = diffMap[s.difficulty] || ['diff-maybe', 'Varies'];
+    item.innerHTML = `
+      <div class="scenario-item-left">
+        <div class="scenario-title">${s.title}</div>
+        <div class="scenario-hint">${s.hint}</div>
+      </div>
+      <span class="difficulty-badge ${cls}">${label}</span>
+      <span class="arrow">›</span>
+    `;
+    item.onclick = () => showFix(i);
+    list.appendChild(item);
+  });
 
-showScreen(‘screen-cat’);
+  showScreen('screen-cat');
 }
 
 function showFix(scenarioIndex) {
-const scenarios = currentCat._mergedScenarios || currentCat.scenarios;
-const s = scenarios[scenarioIndex];
+  const scenarios = currentCat._mergedScenarios || currentCat.scenarios;
+  const s = scenarios[scenarioIndex];
 
-document.getElementById(‘bc-cat’).textContent = currentCat.title;
-document.getElementById(‘bc-title’).textContent = s.title;
-document.getElementById(‘fix-title’).textContent = s.title;
+  document.getElementById('bc-cat').textContent = currentCat.title;
+  document.getElementById('bc-title').textContent = s.title;
+  document.getElementById('fix-title').textContent = s.title;
 
-const diffMap = { diy: [‘diff-diy’, ‘DIY Friendly’], maybe: [‘diff-maybe’, ‘May Need Pro’], pro: [‘diff-pro’, ‘Call a Pro’] };
-const [cls, label] = diffMap[s.difficulty] || [‘diff-maybe’, ‘Varies’];
-const meta = document.getElementById(‘fix-meta’);
-meta.innerHTML = `<div class="meta-pill"><strong>Difficulty:</strong> <span class="${'difficulty-badge ' + cls}" style="margin:0;padding:2px 8px">${label}</span></div> ${s.cost ?`<div class="meta-pill">💷 <strong>${s.cost}</strong></div>`: ''} ${s.time ?`<div class="meta-pill">⏱ <strong>${s.time}</strong></div>`: ''}`;
+  const diffMap = { diy: ['diff-diy', 'DIY Friendly'], maybe: ['diff-maybe', 'May Need Pro'], pro: ['diff-pro', 'Call a Pro'] };
+  const [cls, label] = diffMap[s.difficulty] || ['diff-maybe', 'Varies'];
+  const meta = document.getElementById('fix-meta');
+  meta.innerHTML = `
+    <div class="meta-pill"><strong>Difficulty:</strong> <span class="${'difficulty-badge ' + cls}" style="margin:0;padding:2px 8px">${label}</span></div>
+    ${s.cost ? `<div class="meta-pill">💷 <strong>${s.cost}</strong></div>` : ''}
+    ${s.time ? `<div class="meta-pill">⏱ <strong>${s.time}</strong></div>` : ''}
+  `;
 
-const warnEl = document.getElementById(‘fix-warning’);
-warnEl.innerHTML = s.warning ? `<div class="warning-box"><strong>Safety First</strong><br>${s.warning}</div>` : ‘’;
+  const warnEl = document.getElementById('fix-warning');
+  warnEl.innerHTML = s.warning ? `<div class="warning-box"><strong>Safety First</strong><br>${s.warning}</div>` : '';
 
-const stepsEl = document.getElementById(‘fix-steps’);
-document.querySelector(’.steps-section h3’).textContent = ‘Step-by-step fix’;
-stepsEl.innerHTML = s.steps.map((step, i) => `<div class="step" style="animation-delay:${i * 0.06}s"> <div class="step-num">${i + 1}</div> <p>${step}</p> </div>`).join(’’);
+  const stepsEl = document.getElementById('fix-steps');
+  document.querySelector('.steps-section h3').textContent = 'Step-by-step fix';
+  stepsEl.innerHTML = s.steps.map((step, i) => `
+    <div class="step" style="animation-delay:${i * 0.06}s">
+      <div class="step-num">${i + 1}</div>
+      <p>${step}</p>
+    </div>
+  `).join('');
 
-const toolsEl = document.getElementById(‘fix-tools’);
-if (s.tools && s.tools.length > 0) {
-toolsEl.innerHTML = `<div class="tools-box"> <h4>🛠 Tools & materials you may need</h4> <div class="tools-list">${s.tools.map(t =>`<span class="tool-tag">${t}</span>`).join('')}</div> </div> `;
-} else {
-toolsEl.innerHTML = ‘’;
-}
+  const toolsEl = document.getElementById('fix-tools');
+  if (s.tools && s.tools.length > 0) {
+    toolsEl.innerHTML = `
+      <div class="tools-box">
+        <h4>🛠 Tools & materials you may need</h4>
+        <div class="tools-list">${s.tools.map(t => `<span class="tool-tag">${t}</span>`).join('')}</div>
+      </div>
+    `;
+  } else {
+    toolsEl.innerHTML = '';
+  }
 
-const ctaEl = document.getElementById(‘fix-cta’);
-if (s.cta) {
-ctaEl.innerHTML = `<div class="cta-box"> <p><strong>Not comfortable doing this yourself?</strong><br>For gas work, always use a Gas Safe registered engineer. Find one near you on the official register.</p> <button class="btn-cta" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button> </div>`;
-} else {
-ctaEl.innerHTML = ‘’;
-}
+  const ctaEl = document.getElementById('fix-cta');
+  if (s.cta) {
+    ctaEl.innerHTML = `
+      <div class="cta-box">
+        <p><strong>Not comfortable doing this yourself?</strong><br>For gas work, always use a Gas Safe registered engineer. Find one near you on the official register.</p>
+        <button class="btn-cta" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button>
+      </div>
+    `;
+  } else {
+    ctaEl.innerHTML = '';
+  }
 
-showScreen(‘screen-fix’);
+  showScreen('screen-fix');
 }
 
 function showScreen(id) {
-document.querySelectorAll(’.screen’).forEach(s => s.classList.remove(‘active’));
-document.getElementById(id).classList.add(‘active’);
-window.scrollTo({ top: 0, behavior: ‘smooth’ });
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-function goHome() { showScreen(‘screen-home’); }
+function goHome() { showScreen('screen-home'); }
 function goBack() {
-if (currentCat) showCategory(currentCat.id);
-else showScreen(‘screen-brands’);
+  if (currentCat) showCategory(currentCat.id);
+  else showScreen('screen-brands');
 }
 
 // ─── COOKIE NOTICE ────────────────────────────────────────
 function acceptCookies() {
-localStorage.setItem(‘pff_cookies’, ‘accepted’);
-hideCookieNotice();
+  localStorage.setItem('pff_cookies', 'accepted');
+  hideCookieNotice();
 }
 function declineCookies() {
-localStorage.setItem(‘pff_cookies’, ‘declined’);
-hideCookieNotice();
+  localStorage.setItem('pff_cookies', 'declined');
+  hideCookieNotice();
 }
 function hideCookieNotice() {
-document.getElementById(‘cookie-notice’).classList.add(‘hidden’);
+  document.getElementById('cookie-notice').classList.add('hidden');
 }
 function initCookieNotice() {
-const pref = localStorage.getItem(‘pff_cookies’);
-if (pref) hideCookieNotice();
+  const pref = localStorage.getItem('pff_cookies');
+  if (pref) hideCookieNotice();
 }
 
 // ─── SEARCH ───────────────────────────────────────────────
 function buildSearchIndex() {
-const index = [];
-DATA.categories.forEach(cat => {
-if (cat.id === ‘boiler-faults’) return;
-const allScenarios = […cat.scenarios, …(EXTRA_SCENARIOS[cat.id] || [])];
-allScenarios.forEach((s, i) => {
-index.push({
-catId: cat.id,
-catTitle: cat.title,
-catIcon: cat.icon,
-scenarioIndex: i,
-title: s.title,
-hint: s.hint,
-searchText: (s.title + ’ ’ + s.hint + ’ ’ + (s.steps || []).join(’ ’)).toLowerCase()
-});
-});
-});
-// Also index boiler brands/models/codes
-Object.entries(BOILER_DATA).forEach(([brandId, brand]) => {
-Object.entries(brand.models).forEach(([modelId, model]) => {
-model.codes.forEach((fc, i) => {
-index.push({
-catId: ‘boiler-faults’,
-catTitle: ‘Boiler Fault Codes’,
-catIcon: ‘⚡’,
-brandId, modelId, codeIndex: i,
-title: `${brand.name} ${model.name} — Code ${fc.code}`,
-hint: fc.name,
-searchText: (brand.name + ’ ’ + model.name + ’ ’ + fc.code + ’ ’ + fc.name + ’ ’ + fc.meaning).toLowerCase()
-});
-});
-});
-});
-return index;
+  const index = [];
+  DATA.categories.forEach(cat => {
+    if (cat.id === 'boiler-faults') return;
+    const allScenarios = [...cat.scenarios, ...(EXTRA_SCENARIOS[cat.id] || [])];
+    allScenarios.forEach((s, i) => {
+      index.push({
+        catId: cat.id,
+        catTitle: cat.title,
+        catIcon: cat.icon,
+        scenarioIndex: i,
+        title: s.title,
+        hint: s.hint,
+        searchText: (s.title + ' ' + s.hint + ' ' + (s.steps || []).join(' ')).toLowerCase()
+      });
+    });
+  });
+  // Also index boiler brands/models/codes
+  Object.entries(BOILER_DATA).forEach(([brandId, brand]) => {
+    Object.entries(brand.models).forEach(([modelId, model]) => {
+      model.codes.forEach((fc, i) => {
+        index.push({
+          catId: 'boiler-faults',
+          catTitle: 'Boiler Fault Codes',
+          catIcon: '⚡',
+          brandId, modelId, codeIndex: i,
+          title: `${brand.name} ${model.name} — Code ${fc.code}`,
+          hint: fc.name,
+          searchText: (brand.name + ' ' + model.name + ' ' + fc.code + ' ' + fc.name + ' ' + fc.meaning).toLowerCase()
+        });
+      });
+    });
+  });
+  return index;
 }
 
 let searchIndex = [];
 let searchTimeout = null;
 
 function initSearch() {
-searchIndex = buildSearchIndex();
-const input = document.getElementById(‘search-input’);
-const clearBtn = document.getElementById(‘search-clear’);
-const results = document.getElementById(‘search-results’);
+  searchIndex = buildSearchIndex();
+  const input = document.getElementById('search-input');
+  const clearBtn = document.getElementById('search-clear');
+  const results = document.getElementById('search-results');
 
-input.addEventListener(‘input’, () => {
-clearTimeout(searchTimeout);
-const q = input.value.trim();
-clearBtn.style.display = q ? ‘block’ : ‘none’;
-if (!q) { results.style.display = ‘none’; return; }
-searchTimeout = setTimeout(() => runSearch(q), 150);
-});
+  input.addEventListener('input', () => {
+    clearTimeout(searchTimeout);
+    const q = input.value.trim();
+    clearBtn.style.display = q ? 'block' : 'none';
+    if (!q) { results.style.display = 'none'; return; }
+    searchTimeout = setTimeout(() => runSearch(q), 150);
+  });
 
-document.addEventListener(‘click’, (e) => {
-if (!e.target.closest(’.search-wrap’)) {
-results.style.display = ‘none’;
-}
-});
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrap')) {
+      results.style.display = 'none';
+    }
+  });
 }
 
 function runSearch(q) {
-const results = document.getElementById(‘search-results’);
-const terms = q.toLowerCase().split(’ ’).filter(Boolean);
-const matches = searchIndex.filter(item =>
-terms.every(t => item.searchText.includes(t))
-).slice(0, 8);
+  const results = document.getElementById('search-results');
+  const terms = q.toLowerCase().split(' ').filter(Boolean);
+  const matches = searchIndex.filter(item =>
+    terms.every(t => item.searchText.includes(t))
+  ).slice(0, 8);
 
-if (!matches.length) {
-results.innerHTML = `<div class="search-no-results">No results for "<strong>${q}</strong>" — <a onclick="showScreen('screen-contact')">request this scenario →</a></div>`;
-results.style.display = ‘block’;
-return;
-}
+  if (!matches.length) {
+    results.innerHTML = `<div class="search-no-results">No results for "<strong>${q}</strong>" — <a onclick="showScreen('screen-contact')">request this scenario →</a></div>`;
+    results.style.display = 'block';
+    return;
+  }
 
-results.innerHTML = matches.map(m => `<div class="search-result-item" onclick="handleSearchClick(${JSON.stringify(m).replace(/"/g, '&quot;')})"> <span class="search-result-cat">${m.catIcon} ${m.catTitle}</span> <div> <div class="search-result-title">${m.title}</div> <div class="search-result-hint">${m.hint}</div> </div> </div>`).join(’’);
-results.style.display = ‘block’;
+  results.innerHTML = matches.map(m => `
+    <div class="search-result-item" onclick="handleSearchClick(${JSON.stringify(m).replace(/"/g, '&quot;')})">
+      <span class="search-result-cat">${m.catIcon} ${m.catTitle}</span>
+      <div>
+        <div class="search-result-title">${m.title}</div>
+        <div class="search-result-hint">${m.hint}</div>
+      </div>
+    </div>
+  `).join('');
+  results.style.display = 'block';
 }
 
 function handleSearchClick(item) {
-document.getElementById(‘search-results’).style.display = ‘none’;
-document.getElementById(‘search-input’).value = ‘’;
-document.getElementById(‘search-clear’).style.display = ‘none’;
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').style.display = 'none';
 
-if (item.catId === ‘boiler-faults’) {
-showModels(item.brandId);
-setTimeout(() => showFaultCodes(item.brandId, item.modelId), 50);
-setTimeout(() => showFaultDetail(item.brandId, item.modelId, item.codeIndex), 100);
-} else {
-showCategory(item.catId);
-setTimeout(() => showFix(item.scenarioIndex), 50);
-}
+  if (item.catId === 'boiler-faults') {
+    showModels(item.brandId);
+    setTimeout(() => showFaultCodes(item.brandId, item.modelId), 50);
+    setTimeout(() => showFaultDetail(item.brandId, item.modelId, item.codeIndex), 100);
+  } else {
+    showCategory(item.catId);
+    setTimeout(() => showFix(item.scenarioIndex), 50);
+  }
 }
 
 function clearSearch() {
-document.getElementById(‘search-input’).value = ‘’;
-document.getElementById(‘search-clear’).style.display = ‘none’;
-document.getElementById(‘search-results’).style.display = ‘none’;
-document.getElementById(‘search-input’).focus();
+  document.getElementById('search-input').value = '';
+  document.getElementById('search-clear').style.display = 'none';
+  document.getElementById('search-results').style.display = 'none';
+  document.getElementById('search-input').focus();
 }
 
 // ─── CONTACT FORMS ────────────────────────────────────────
 function submitRequest() {
-const category = document.getElementById(‘req-category’).value;
-const description = document.getElementById(‘req-description’).value.trim();
-const email = document.getElementById(‘req-email’).value.trim();
+  const category = document.getElementById('req-category').value;
+  const description = document.getElementById('req-description').value.trim();
+  const email = document.getElementById('req-email').value.trim();
 
-if (!description) {
-alert(‘Please describe your problem so we can help!’);
-return;
-}
+  if (!description) {
+    alert('Please describe your problem so we can help!');
+    return;
+  }
 
-// In production this would POST to a backend/email service
-// For now we show the success message
-console.log(‘Request submitted:’, { category, description, email });
-document.getElementById(‘req-success’).style.display = ‘block’;
-document.getElementById(‘req-category’).value = ‘’;
-document.getElementById(‘req-description’).value = ‘’;
-document.getElementById(‘req-email’).value = ‘’;
-document.getElementById(‘req-success’).scrollIntoView({ behavior: ‘smooth’ });
+  // In production this would POST to a backend/email service
+  // For now we show the success message
+  console.log('Request submitted:', { category, description, email });
+  document.getElementById('req-success').style.display = 'block';
+  document.getElementById('req-category').value = '';
+  document.getElementById('req-description').value = '';
+  document.getElementById('req-email').value = '';
+  document.getElementById('req-success').scrollIntoView({ behavior: 'smooth' });
 }
 
 function submitContact() {
-const name = document.getElementById(‘contact-name’).value.trim();
-const email = document.getElementById(‘contact-email’).value.trim();
-const subject = document.getElementById(‘contact-subject’).value;
-const message = document.getElementById(‘contact-message’).value.trim();
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const subject = document.getElementById('contact-subject').value;
+  const message = document.getElementById('contact-message').value.trim();
 
-if (!name || !email || !message) {
-alert(‘Please fill in your name, email and message.’);
-return;
-}
+  if (!name || !email || !message) {
+    alert('Please fill in your name, email and message.');
+    return;
+  }
 
-// In production this would POST to a backend/email service
-console.log(‘Contact submitted:’, { name, email, subject, message });
-document.getElementById(‘contact-success’).style.display = ‘block’;
-document.getElementById(‘contact-name’).value = ‘’;
-document.getElementById(‘contact-email’).value = ‘’;
-document.getElementById(‘contact-subject’).value = ‘’;
-document.getElementById(‘contact-message’).value = ‘’;
-document.getElementById(‘contact-success’).scrollIntoView({ behavior: ‘smooth’ });
+  // In production this would POST to a backend/email service
+  console.log('Contact submitted:', { name, email, subject, message });
+  document.getElementById('contact-success').style.display = 'block';
+  document.getElementById('contact-name').value = '';
+  document.getElementById('contact-email').value = '';
+  document.getElementById('contact-subject').value = '';
+  document.getElementById('contact-message').value = '';
+  document.getElementById('contact-success').scrollIntoView({ behavior: 'smooth' });
 }
 
 renderHome();
 initSearch();
 initCookieNotice();
 </script>
-
 </body>
 </html>
