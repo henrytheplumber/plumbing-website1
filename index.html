@@ -1403,6 +1403,486 @@ body {
 }
 .btn-save-guide:hover { border-color: var(--sky); color: var(--sky); }
 .btn-save-guide.saved { background: #dbeafe; border-color: var(--sky); color: var(--sky); }
+
+/* ── SYMPTOM CHECKER ── */
+.checker-hero {
+  background: linear-gradient(135deg, #0f2744 0%, #1a3a5c 55%, #1e4d7a 100%);
+  border-radius: 20px;
+  padding: 44px 40px 36px;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.checker-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; right: -80px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(59,158,218,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.checker-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(20,184,166,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.checker-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59,158,218,0.15);
+  border: 1px solid rgba(59,158,218,0.3);
+  color: var(--sky-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+.checker-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+.checker-hero h1 em { font-style: italic; color: var(--sky-light); }
+.checker-hero p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Progress bar */
+.checker-progress-wrap {
+  margin-bottom: 28px;
+}
+.checker-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.checker-step-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.checker-step-count {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.checker-progress-bar {
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.checker-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--sky), var(--teal));
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* Question card */
+.checker-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 18px;
+  padding: 32px 32px 28px;
+  box-shadow: var(--shadow);
+  margin-bottom: 20px;
+  animation: fadeUp 0.3s ease;
+}
+.checker-q-num {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 10px;
+}
+.checker-question {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+.checker-q-hint {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* Answer options */
+.checker-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checker-option {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-align: left;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.checker-option:hover {
+  border-color: var(--sky);
+  background: #f0f8ff;
+  transform: translateX(4px);
+  box-shadow: var(--shadow);
+}
+.checker-option.selected {
+  border-color: var(--sky);
+  background: #dbeafe;
+}
+.checker-opt-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  background: var(--card);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15,39,68,0.08);
+  transition: transform 0.18s;
+}
+.checker-option:hover .checker-opt-icon { transform: scale(1.1); }
+.checker-opt-body { flex: 1; }
+.checker-opt-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.checker-opt-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+.checker-opt-arrow {
+  color: var(--border);
+  font-size: 1.1rem;
+  flex-shrink: 0;
+  transition: color 0.15s, transform 0.15s;
+}
+.checker-option:hover .checker-opt-arrow { color: var(--sky); transform: translateX(2px); }
+
+/* Back nav */
+.checker-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+.checker-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 0;
+  transition: color 0.15s;
+}
+.checker-back-btn:hover { color: var(--sky); }
+.checker-restart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.checker-restart-btn:hover { border-color: var(--sky); color: var(--sky); }
+
+/* Path trail */
+.checker-trail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+.trail-chip {
+  background: var(--card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 20px;
+}
+.trail-chip.active {
+  background: #dbeafe;
+  border-color: var(--sky);
+  color: var(--sky);
+  font-weight: 600;
+}
+
+/* RESULT card */
+.checker-result {
+  animation: fadeUp 0.35s ease;
+}
+.result-banner {
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+.result-banner.diy    { background: linear-gradient(135deg,#d1fae5,#a7f3d0); border: 1.5px solid #6ee7b7; }
+.result-banner.maybe  { background: linear-gradient(135deg,#fef3c7,#fde68a); border: 1.5px solid #fcd34d; }
+.result-banner.pro    { background: linear-gradient(135deg,#fee2e2,#fecaca); border: 1.5px solid #fca5a5; }
+.result-banner.urgent { background: linear-gradient(135deg,#fee2e2,#fecaca); border: 2px solid var(--red); }
+.result-icon-big {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.7);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+.result-banner-body {}
+.result-verdict {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.result-banner.diy    .result-verdict { color: #065f46; }
+.result-banner.maybe  .result-verdict { color: #78350f; }
+.result-banner.pro    .result-verdict { color: #991b1b; }
+.result-banner.urgent .result-verdict { color: #7f1d1d; }
+.result-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.result-summary {
+  font-size: 0.88rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+.result-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  margin-bottom: 24px;
+}
+.btn-result-primary {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-result-primary:hover { background: var(--navy-mid); }
+.btn-result-primary.sky { background: var(--sky); }
+.btn-result-primary.sky:hover { background: #2a8bc7; }
+.btn-result-primary.red { background: var(--red); }
+.btn-result-primary.red:hover { background: #dc2626; }
+.btn-result-outline {
+  background: var(--card);
+  color: var(--text-mid);
+  border: 1.5px solid var(--border);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 12px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-result-outline:hover { border-color: var(--sky); color: var(--sky); }
+
+.result-steps-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--shadow);
+}
+.result-steps-card h3 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 16px;
+}
+.result-step {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+.result-step:last-child { margin-bottom: 0; }
+.result-step-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--sky);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.result-step p { font-size: 0.88rem; line-height: 1.6; color: var(--text); }
+
+.checker-also-try {
+  margin-top: 20px;
+}
+.also-try-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+.also-try-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+@media (max-width:500px) { .also-try-grid { grid-template-columns: 1fr; } }
+.also-try-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: var(--shadow);
+}
+.also-try-card:hover { border-color: var(--sky); box-shadow: var(--shadow-hover); }
+.also-try-icon { font-size: 1.2rem; flex-shrink: 0; }
+.also-try-body {}
+.also-try-title { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.also-try-cat { font-size: 0.72rem; color: var(--text-muted); }
+
+/* checker entry card on homepage */
+.checker-entry-card {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a4a7a 100%);
+  border-radius: 16px;
+  padding: 28px 28px 24px;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.checker-entry-card::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(59,158,218,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.checker-entry-card:hover { box-shadow: var(--shadow-hover); }
+.checker-entry-icon {
+  width: 60px; height: 60px;
+  border-radius: 14px;
+  background: var(--sky);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  flex-shrink: 0;
+}
+.checker-entry-body { flex: 1; }
+.checker-entry-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sky-light);
+  margin-bottom: 4px;
+}
+.checker-entry-body h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 5px;
+  line-height: 1.25;
+}
+.checker-entry-body p { font-size: 0.83rem; color: rgba(255,255,255,0.65); line-height: 1.5; }
+.checker-entry-btn {
+  background: var(--sky);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 12px 22px;
+  border-radius: 9px;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.checker-entry-btn:hover { background: var(--sky-light); color: var(--navy); }
 </style>
 </head>
 <body>
@@ -1417,6 +1897,7 @@ body {
     <div class="nav-links">
       <button class="nav-link" onclick="goHome()">Home</button>
       <button class="nav-link" onclick="showCategoriesNav()">Categories</button>
+      <button class="nav-link" onclick="startChecker()">Symptom Checker</button>
       <button class="nav-link" onclick="showScreen('screen-contact')">Contact</button>
       <button class="nav-link nav-signin" id="nav-auth-btn" onclick="handleAuthNav()">Sign In</button>
     </div>
@@ -1473,6 +1954,16 @@ body {
       </button>
     </div>
 
+    <div class="checker-entry-card" onclick="startChecker()">
+      <div class="checker-entry-icon">🔍</div>
+      <div class="checker-entry-body">
+        <div class="checker-entry-tag">✨ New — Symptom Checker</div>
+        <h3>Not sure what's wrong? Answer 3 questions.</h3>
+        <p>Tell us your symptoms and we'll diagnose the most likely cause and tell you exactly what to do — in under a minute.</p>
+      </div>
+      <button class="checker-entry-btn" onclick="startChecker();event.stopPropagation()">Start diagnosis →</button>
+    </div>
+
     <div class="cant-find">
       <div>
         <strong>Can't find your issue?</strong>
@@ -1480,6 +1971,33 @@ body {
       </div>
       <button class="btn-primary" onclick="showScreen('screen-contact')">Request a Scenario →</button>
     </div>
+  </div>
+
+  <!-- SYMPTOM CHECKER SCREEN -->
+  <div class="screen" id="screen-checker">
+    <div class="checker-hero">
+      <div class="checker-eyebrow">🔍 Symptom Checker</div>
+      <h1>Let's <em>diagnose</em> your problem</h1>
+      <p>Answer a few quick questions and we'll pinpoint the most likely cause — and tell you exactly what to do next.</p>
+    </div>
+
+    <div class="checker-nav">
+      <button class="checker-back-btn" id="checker-back" onclick="checkerBack()">← Back</button>
+      <button class="checker-restart-btn" onclick="startChecker()">↺ Start over</button>
+    </div>
+
+    <div class="checker-progress-wrap" id="checker-progress-wrap">
+      <div class="checker-progress-meta">
+        <span class="checker-step-label" id="checker-step-label">Step 1</span>
+        <span class="checker-step-count" id="checker-step-count">Question 1 of 3</span>
+      </div>
+      <div class="checker-progress-bar">
+        <div class="checker-progress-fill" id="checker-progress-fill" style="width:20%"></div>
+      </div>
+    </div>
+
+    <div class="checker-trail" id="checker-trail"></div>
+    <div id="checker-content"></div>
   </div>
 
   <!-- ALL CATEGORIES SCREEN -->
@@ -2617,15 +3135,21 @@ Use these category IDs: no-hot-water, taps, no-heating, low-pressure, noisy-pipe
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-sonnet-4-6',
         max_tokens: 1000,
         system: systemPrompt,
         messages: [{ role: 'user', content: q }]
       })
     });
 
+    if (!response.ok) {
+      throw new Error('API error: ' + response.status);
+    }
+
     const data = await response.json();
     const fullText = data.content?.map(c => c.text || '').join('') || '';
+
+    if (!fullText) throw new Error('Empty response');
 
     // Extract suggested categories
     const catMatch = fullText.match(/SUGGEST_CATEGORIES:\s*\[([^\]]+)\]/);
@@ -2644,15 +3168,38 @@ Use these category IDs: no-hot-water, taps, no-heating, low-pressure, noisy-pipe
     suggestedCats.forEach(catId => {
       const cat = DATA.categories.find(c => c.id === catId);
       if (cat) {
-        const fn = cat.id === 'boiler-faults' ? `showBrands()` : `showCategory('${cat.id}')`;        actionHTML += `<button class="ai-action-btn" onclick="${fn};document.getElementById('ai-answer-panel').style.display='none'">${cat.icon} Browse ${cat.title}</button>`;
+        const fn = cat.id === 'boiler-faults' ? `showBrands()` : `showCategory('${cat.id}')`;
+        actionHTML += `<button class="ai-action-btn" onclick="${fn};document.getElementById('ai-answer-panel').style.display='none'">${cat.icon} Browse ${cat.title}</button>`;
       }
     });
     actionHTML += `<button class="ai-action-btn outline" onclick="document.getElementById('ai-answer-panel').style.display='none';document.getElementById('search-input').value=''">Close</button>`;
     actions.innerHTML = actionHTML;
 
   } catch (err) {
-    body.innerHTML = `<p>Sorry, the AI assistant is temporarily unavailable. Please browse the categories below or use the quick search above to find your issue.</p>`;
-    actions.innerHTML = `<button class="ai-action-btn outline" onclick="document.getElementById('ai-answer-panel').style.display='none'">Close</button>`;
+    console.error('AI search error:', err);
+    // Fallback: run local keyword search and show results nicely
+    const terms = q.toLowerCase().split(' ').filter(Boolean);
+    const matches = searchIndex.filter(item => terms.some(t => item.searchText.includes(t))).slice(0, 5);
+
+    if (matches.length > 0) {
+      body.innerHTML = `<p>Here are the closest guides we found for <strong>"${q}"</strong>. Click any result to read the full step-by-step fix:</p>`;
+      const resultsList = matches.map(m => `
+        <div class="ai-result-item" style="border:1px solid var(--border);border-radius:8px;margin-top:8px;cursor:pointer" onclick='handleSearchClick(${JSON.stringify(m).replace(/'/g,"&#39;")});document.getElementById("ai-answer-panel").style.display="none"'>
+          <span class="ai-result-cat">${m.catIcon} ${m.catTitle}</span>
+          <div>
+            <div class="ai-result-title">${m.title}</div>
+            <div class="ai-result-hint">${m.hint}</div>
+          </div>
+        </div>
+      `).join('');
+      body.innerHTML += resultsList;
+    } else {
+      body.innerHTML = `<p>We couldn't find an exact match for <strong>"${q}"</strong>. Try browsing the categories below or use the symptom checker to diagnose your problem.</p>`;
+    }
+    actions.innerHTML = `
+      <button class="ai-action-btn" onclick="startChecker();document.getElementById('ai-answer-panel').style.display='none'">🔍 Try Symptom Checker</button>
+      <button class="ai-action-btn outline" onclick="document.getElementById('ai-answer-panel').style.display='none';document.getElementById('search-input').value=''">Close</button>
+    `;
   }
 }
 
@@ -2695,7 +3242,1105 @@ function submitContact() {
   document.getElementById('contact-success').scrollIntoView({ behavior: 'smooth' });
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+// ── SYMPTOM CHECKER ───────────────────────────────────────────────────────────
+
+const CHECKER_TREE = {
+  id: 'root',
+  question: "What's the main problem?",
+  hint: 'Pick the symptom that best describes what you\'re experiencing right now.',
+  icon: '🏠',
+  options: [
+    {
+      label: 'No hot water', icon: '🔥', desc: 'Taps or shower running cold',
+      next: {
+        question: 'Does your heating (radiators) still work?',
+        hint: 'This helps us narrow down whether it\'s a boiler issue or something specific to hot water.',
+        icon: '🌡️',
+        options: [
+          {
+            label: 'Yes — heating works fine', icon: '✅', desc: 'Radiators get hot but taps are cold',
+            next: {
+              question: 'What type of boiler or hot water system do you have?',
+              hint: 'If you\'re not sure, a combi has no hot water tank, a system boiler has a cylinder.',
+              icon: '⚙️',
+              options: [
+                { label: 'Combi boiler', icon: '🔧', desc: 'No water tank — most common type', result: 'diverter_valve' },
+                { label: 'System boiler with cylinder', icon: '🪣', desc: 'Hot water stored in a tank', result: 'motorised_valve' },
+                { label: 'Not sure', icon: '❓', desc: 'I don\'t know my boiler type', result: 'no_hw_heating_ok_unsure' }
+              ]
+            }
+          },
+          {
+            label: 'No — both are out', icon: '❌', desc: 'No heating and no hot water',
+            next: {
+              question: 'Is your boiler showing a fault code or warning light?',
+              hint: 'Look at your boiler display — there may be a code like F22, EA, E1 or a flashing light.',
+              icon: '📟',
+              options: [
+                { label: 'Yes — there\'s a code or light', icon: '⚠️', desc: 'I can see a fault code or flashing light', result: 'fault_code' },
+                { label: 'No code — boiler looks off', icon: '🔌', desc: 'Display is blank or shows nothing unusual', result: 'boiler_off' },
+                { label: 'Boiler seems to be running', icon: '🔊', desc: 'It\'s firing but nothing is heating up', result: 'boiler_firing_no_heat' }
+              ]
+            }
+          },
+          {
+            label: 'Hot water comes on then goes cold', icon: '🥶', desc: 'Starts hot then suddenly turns cold',
+            result: 'cold_sandwich'
+          }
+        ]
+      }
+    },
+    {
+      label: 'No heating', icon: '🌡️', desc: 'Radiators cold or not coming on',
+      next: {
+        question: 'Is hot water from the taps still working?',
+        hint: 'This tells us a lot about where the fault is.',
+        icon: '🚿',
+        options: [
+          {
+            label: 'Yes — hot water is fine', icon: '✅', desc: 'Taps have hot water but no heating',
+            next: {
+              question: 'Are all radiators cold, or just some?',
+              hint: 'Check each radiator — feel near the top and bottom.',
+              icon: '🏠',
+              options: [
+                { label: 'All radiators are cold', icon: '❄️', desc: 'Whole house has no heating', result: 'all_rads_cold_hw_ok' },
+                { label: 'Some are warm, some cold', icon: '🌡️', desc: 'Uneven heating across rooms', result: 'uneven_rads' },
+                { label: 'Radiators cold at the top only', icon: '↑', desc: 'Bottom is warm, top is cold', result: 'air_in_rads' }
+              ]
+            }
+          },
+          {
+            label: 'No — both out', icon: '❌', desc: 'No heating and no hot water', result: 'fault_code'
+          },
+          {
+            label: 'Heating worked then cut off', icon: '⏱️', desc: 'Came on briefly then switched off',
+            next: {
+              question: 'How long does the heating run before cutting off?',
+              hint: 'This helps identify whether it\'s a short-cycle or thermostat issue.',
+              icon: '⏱️',
+              options: [
+                { label: 'A few seconds to 2 minutes', icon: '⚡', desc: 'Cuts out almost immediately', result: 'short_cycle' },
+                { label: 'Comes on at wrong times', icon: '🕐', desc: 'Timer or programmer seems wrong', result: 'timer_issue' },
+                { label: 'Runs then stops — room never warms up', icon: '🌡️', desc: 'Boiler seems to run but house stays cold', result: 'boiler_firing_no_heat' }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      label: 'Leak or dripping water', icon: '💧', desc: 'Water where it shouldn\'t be',
+      next: {
+        question: 'Where is the water coming from?',
+        hint: 'Be as specific as you can — it makes a big difference to the diagnosis.',
+        icon: '🔍',
+        options: [
+          {
+            label: 'From a tap — dripping spout', icon: '🔩', desc: 'Constant drip from the tap itself',
+            next: {
+              question: 'What type of tap is it?',
+              hint: 'This determines the correct repair — different taps need different parts.',
+              icon: '🔩',
+              options: [
+                { label: 'Traditional — two handles, round heads', icon: '🔧', desc: 'Old-style pillar tap with separate hot and cold', result: 'dripping_pillar_tap' },
+                { label: 'Quarter-turn / ceramic', icon: '⚙️', desc: 'Turns only 90 degrees to fully open', result: 'dripping_ceramic_tap' },
+                { label: 'Single-lever mixer', icon: '🚰', desc: 'One lever controls hot and cold', result: 'dripping_mixer_tap' }
+              ]
+            }
+          },
+          { label: 'From a radiator or valve', icon: '🔆', desc: 'Water dripping from a radiator or its valve', result: 'rad_valve_leak' },
+          { label: 'From a pipe joint', icon: '🔗', desc: 'Water at a joint or fitting in pipework', result: 'compression_fitting' },
+          { label: 'Under the sink', icon: '🪣', desc: 'Water pooling in the cupboard under the sink', result: 'under_sink_leak' },
+          { label: 'From the boiler itself', icon: '⚡', desc: 'Water dripping from the boiler casing or flue area', result: 'boiler_leak' },
+          { label: 'At the toilet — floor or cistern', icon: '🚽', desc: 'Water around the toilet base or running in the cistern', result: 'toilet_leak' }
+        ]
+      }
+    },
+    {
+      label: 'Toilet problem', icon: '🚽', desc: 'Running, blocked, weak flush, or leaking',
+      next: {
+        question: 'What is the toilet doing?',
+        hint: 'Pick the option that best matches what you\'re seeing or hearing.',
+        icon: '🚽',
+        options: [
+          { label: 'Constantly running / trickling', icon: '💧', desc: 'Never stops — water keeps running', result: 'toilet_running' },
+          { label: 'Won\'t flush or very weak flush', icon: '😤', desc: 'Handle does nothing or flush is feeble', result: 'toilet_weak_flush' },
+          { label: 'Completely blocked', icon: '🚫', desc: 'Won\'t flush away — water rising', result: 'toilet_blocked' },
+          { label: 'Leaking at the base', icon: '💦', desc: 'Water pooling around the bottom', result: 'toilet_base_leak' },
+          { label: 'Overflow running outside', icon: '🌊', desc: 'Pipe dripping on outside wall', result: 'toilet_overflow' }
+        ]
+      }
+    },
+    {
+      label: 'Low water pressure', icon: '📉', desc: 'Weak flow from taps or shower',
+      next: {
+        question: 'Which outlets are affected?',
+        hint: 'Knowing how many outlets are affected tells us if it\'s a whole-house or localised issue.',
+        icon: '💧',
+        options: [
+          { label: 'All taps and shower throughout house', icon: '🏠', desc: 'Pressure is low everywhere', result: 'low_pressure_everywhere' },
+          { label: 'Just the shower', icon: '🚿', desc: 'Other taps are fine', result: 'low_pressure_shower' },
+          { label: 'Pressure drops when two outlets used', icon: '🔀', desc: 'Fine alone, weak when shower and tap used together', result: 'low_pressure_simultaneous' },
+          { label: 'Boiler pressure gauge is low', icon: '📊', desc: 'I can see the pressure gauge is below 1 bar', result: 'low_boiler_pressure' }
+        ]
+      }
+    },
+    {
+      label: 'Strange noise', icon: '🔊', desc: 'Banging, whistling, ticking or gurgling',
+      next: {
+        question: 'How would you describe the noise?',
+        hint: 'The type of noise is usually the biggest clue to what\'s causing it.',
+        icon: '👂',
+        options: [
+          { label: 'Banging or hammering', icon: '🔨', desc: 'A thud when taps are opened or closed', result: 'water_hammer' },
+          { label: 'Whistling or whining', icon: '🎵', desc: 'High-pitched sound when water runs', result: 'whistling_pipes' },
+          { label: 'Ticking or clicking', icon: '🕐', desc: 'Regular tick, usually when heating comes on', result: 'ticking_pipes' },
+          { label: 'Gurgling from drains', icon: '🌀', desc: 'Gurgling when sink or bath drains', result: 'gurgling_drain' },
+          { label: 'Rumbling from boiler or cylinder', icon: '💥', desc: 'Rumbling or kettling sound from the boiler', result: 'boiler_kettle' }
+        ]
+      }
+    },
+    {
+      label: 'Boiler fault code', icon: '⚡', desc: 'There\'s a code on my boiler display',
+      next: {
+        question: 'Which brand is your boiler?',
+        hint: 'Select your boiler manufacturer to look up the specific fault code.',
+        icon: '🔧',
+        options: [
+          { label: 'Worcester Bosch', icon: '🔧', desc: 'e.g. Greenstar range', result: 'brand_worcester' },
+          { label: 'Vaillant', icon: '🔧', desc: 'e.g. ecoTEC range', result: 'brand_vaillant' },
+          { label: 'Ideal', icon: '🔧', desc: 'e.g. Logic+, Vogue', result: 'brand_ideal' },
+          { label: 'Baxi', icon: '🔧', desc: 'e.g. 600, 800, Platinum', result: 'brand_baxi' },
+          { label: 'Other brand', icon: '❓', desc: 'Glow-worm, Viessmann, Potterton etc', result: 'brand_other' }
+        ]
+      }
+    }
+  ]
+};
+
+// Results library — each key maps to a full diagnosis + actions
+const CHECKER_RESULTS = {
+  diverter_valve: {
+    type: 'maybe',
+    icon: '⚙️',
+    title: 'Likely a stuck diverter valve',
+    summary: 'When heating works but hot water doesn\'t on a combi boiler, the diverter valve is the most common culprit. This valve switches the boiler between heating mode and hot water mode. When it sticks in the heating position, your radiators heat up fine but taps run cold.',
+    steps: [
+      'Check the hot water temperature setting on your boiler hasn\'t been accidentally turned right down — there\'s usually a tap symbol on the control panel.',
+      'Check your programmer or smart thermostat (Hive, Nest) hasn\'t had its hot water schedule turned off accidentally.',
+      'Check the boiler pressure gauge — if below 1 bar, repressurise to 1–1.5 bar and press reset.',
+      'If the above checks don\'t fix it, the diverter valve needs replacing. This is a Gas Safe engineer job — budget £150–£250 including parts and labour.'
+    ],
+    urgency: 'Non-urgent — you have heating. Book a Gas Safe engineer at your convenience.',
+    actions: [
+      { label: '🔧 Find a Gas Safe Engineer', style: 'sky', url: 'https://www.gassaferegister.co.uk/find-an-engineer' },
+      { label: '📖 Read full guide', style: 'outline', catId: 'no-hot-water', scenarioIndex: 3 }
+    ],
+    alsoTry: [
+      { title: 'Combi boiler — no hot water', catId: 'no-hot-water', scenarioIndex: 3, icon: '🔥' },
+      { title: 'No hot water but heating works', catId: 'no-hot-water', scenarioIndex: 4, icon: '🔥' }
+    ]
+  },
+  motorised_valve: {
+    type: 'maybe',
+    icon: '⚙️',
+    title: 'Likely a faulty motorised valve or cylinder thermostat',
+    summary: 'On a system boiler with a hot water cylinder, a seized motorised zone valve or a faulty cylinder thermostat is the most common cause of no hot water when heating still works.',
+    steps: [
+      'Find the motorised valve on the pipework near your hot water cylinder — it\'s a small motor-driven valve, usually white or grey. There should be a manual lever. Try operating it to see if it\'s seized.',
+      'Check the cylinder thermostat — the dial on the side of the cylinder should be set to 60°C. If it has turned down or failed, the cylinder won\'t heat.',
+      'Check the programmer has hot water scheduled for the current time — some have separate heating and hot water time slots.',
+      'If the valve is seized or the thermostat is faulty, a plumber can replace either part. Budget £80–£200.'
+    ],
+    urgency: 'Non-urgent — book a plumber at your convenience.',
+    actions: [
+      { label: '📖 Read full guide', style: 'primary', catId: 'no-hot-water', scenarioIndex: 4 },
+      { label: '🔧 Read cylinder guide', style: 'outline', catId: 'tanks-cylinders', scenarioIndex: 1 }
+    ],
+    alsoTry: [
+      { title: 'Hot water cylinder not heating', catId: 'tanks-cylinders', scenarioIndex: 1, icon: '🪣' },
+      { title: 'No hot water — heating works fine', catId: 'no-hot-water', scenarioIndex: 4, icon: '🔥' }
+    ]
+  },
+  no_hw_heating_ok_unsure: {
+    type: 'maybe',
+    icon: '🔍',
+    title: 'Heating works but no hot water — let\'s narrow it down',
+    summary: 'When heating works fine but hot water doesn\'t, the boiler itself is generally working. The issue is specific to the hot water circuit. The most common causes depend on your system type, but a diverter valve (combi), motorised zone valve (system boiler), or cylinder thermostat are the top suspects.',
+    steps: [
+      'Check your programmer or thermostat — make sure hot water is scheduled for the current time.',
+      'Check the hot water temperature dial on your boiler or cylinder hasn\'t been turned down.',
+      'If you have a combi boiler (no tank), look at our combi-specific guide.',
+      'If you have a cylinder in an airing cupboard, check the thermostat dial on its side — it should read 60°C.'
+    ],
+    urgency: 'Non-urgent — book a professional at your convenience.',
+    actions: [
+      { label: '📖 Full guide: no hot water', style: 'primary', catId: 'no-hot-water', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Combi boiler — no hot water', catId: 'no-hot-water', scenarioIndex: 3, icon: '🔥' },
+      { title: 'No hot water — heating works', catId: 'no-hot-water', scenarioIndex: 4, icon: '🔥' }
+    ]
+  },
+  fault_code: {
+    type: 'maybe',
+    icon: '📟',
+    title: 'Your boiler has locked out — check the fault code',
+    summary: 'A fault code or warning light means your boiler has detected a problem and shut itself down as a safety measure. The code tells you exactly what\'s wrong. The most common codes relate to low pressure, ignition failure, or sensor faults — many can be fixed with a simple repressurise or reset.',
+    steps: [
+      'Note the fault code shown on your boiler display (e.g. F22, EA, E1, F28).',
+      'If the code relates to low pressure (common codes: F22 on Vaillant, E10 on Baxi, E1 on Worcester): repressurise to 1–1.5 bar using the filling loop, then press reset.',
+      'If the code relates to ignition failure: check other gas appliances work, then try one reset only.',
+      'If the fault returns after resetting, do not keep resetting — call a Gas Safe registered engineer.'
+    ],
+    urgency: 'Check the code now — if gas related, call 0800 111 999.',
+    actions: [
+      { label: '⚡ Look up my fault code', style: 'sky', action: 'showBrands' },
+      { label: '📖 Read more', style: 'outline', catId: 'no-heating', scenarioIndex: 1 }
+    ],
+    alsoTry: [
+      { title: 'Heating comes on then cuts out', catId: 'no-heating', scenarioIndex: 1, icon: '🌡️' },
+      { title: 'Boiler fault codes — all brands', catId: 'boiler-faults', scenarioIndex: 0, icon: '⚡' }
+    ]
+  },
+  boiler_off: {
+    type: 'diy',
+    icon: '🔌',
+    title: 'Boiler appears off — check these first',
+    summary: 'Before calling anyone out, there are several quick checks that solve this problem the majority of the time. A power cut, tripped breaker, or dropped pressure can all cause a boiler to go completely silent.',
+    steps: [
+      'Check the boiler is plugged in and switched on at the wall. Check your consumer unit (fuse box) for a tripped circuit breaker — reset it if needed.',
+      'Check the boiler pressure gauge. If it\'s below 1 bar or the needle is in the red, repressurise using the filling loop (two small valves usually under or near the boiler). Once at 1–1.5 bar, press reset.',
+      'After a power cut, most modern boilers need a manual reset — press and hold the reset button (flame symbol) for 3–5 seconds.',
+      'Check your programmer or thermostat is set correctly — power cuts often reset these to 00:00.'
+    ],
+    urgency: 'Non-urgent — try the steps above before calling anyone.',
+    actions: [
+      { label: '📖 Read full guide', style: 'primary', catId: 'no-hot-water', scenarioIndex: 5 },
+      { label: '⚡ Check fault codes', style: 'outline', action: 'showBrands' }
+    ],
+    alsoTry: [
+      { title: 'No hot water after a power cut', catId: 'no-hot-water', scenarioIndex: 5, icon: '🔌' },
+      { title: 'Boiler pressure dropping', catId: 'low-pressure', scenarioIndex: 2, icon: '📉' }
+    ]
+  },
+  boiler_firing_no_heat: {
+    type: 'maybe',
+    icon: '🔊',
+    title: 'Boiler is running but not heating — pump or zone valve issue',
+    summary: 'If the boiler fires but neither heating nor hot water gets warm, the heat is being generated but not distributed around the system. The most likely culprits are a seized circulation pump, a stuck zone valve, or significant system sludge.',
+    steps: [
+      'Check all radiator valves are open — both the TRV side and the lockshield cap side.',
+      'Bleed a radiator — if no water comes out at all, the pump may not be circulating.',
+      'Listen near the boiler for the pump running — there\'s usually a quiet hum. Silence suggests a seized pump.',
+      'A Gas Safe engineer or heating engineer can test the pump and zone valves quickly.'
+    ],
+    urgency: 'Book a heating engineer soon — this won\'t resolve itself.',
+    actions: [
+      { label: '🔧 Find an engineer', style: 'sky', url: 'https://www.gassaferegister.co.uk/find-an-engineer' },
+      { label: '📖 Radiators cold guide', style: 'outline', catId: 'no-heating', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Radiators cold but boiler firing', catId: 'no-heating', scenarioIndex: 0, icon: '🌡️' },
+      { title: 'No heating — hot water fine', catId: 'no-heating', scenarioIndex: 2, icon: '🌡️' }
+    ]
+  },
+  cold_sandwich: {
+    type: 'maybe',
+    icon: '🥶',
+    title: 'Hot then cold — likely a diverter valve or flow issue',
+    summary: 'The "cold water sandwich" — a burst of cold water mid-shower or mid-use — is a very common combi boiler complaint. It\'s most often caused by a partially sticking diverter valve, or it can simply be the boiler\'s natural behaviour when very hot water sitting in the pipes reaches the tap before the boiler fully fires up.',
+    steps: [
+      'Check if it only happens when a second tap or shower is opened at the same time — combis have limited flow rate.',
+      'Turn the hot water temperature setting on your boiler up slightly — too low a setting causes the water to feel warm then cold as flow varies.',
+      'A sticking diverter valve is the most common mechanical cause — a Gas Safe engineer can diagnose and replace it.',
+      'On older boilers, a scaled heat exchanger causes this too — a Gas Safe engineer can descale or replace it.'
+    ],
+    urgency: 'Non-urgent — book a Gas Safe engineer at your convenience.',
+    actions: [
+      { label: '📖 Read full guide', style: 'primary', catId: 'no-hot-water', scenarioIndex: 6 },
+      { label: '🔧 Find a Gas Safe engineer', style: 'outline', url: 'https://www.gassaferegister.co.uk/find-an-engineer' }
+    ],
+    alsoTry: [
+      { title: 'Hot water runs cold after a few minutes', catId: 'no-hot-water', scenarioIndex: 6, icon: '🔥' },
+      { title: 'Combi boiler — no hot water', catId: 'no-hot-water', scenarioIndex: 3, icon: '🔥' }
+    ]
+  },
+  all_rads_cold_hw_ok: {
+    type: 'diy',
+    icon: '🌡️',
+    title: 'Heating circuit issue — check thermostat and zone valve',
+    summary: 'When hot water works but all radiators are cold, the boiler is functioning normally — the fault is in the heating circuit. The most common causes are a room thermostat set too low, a programmer not calling for heat, or a seized zone valve.',
+    steps: [
+      'Check your room thermostat — turn it above the current room temperature and wait 2–3 minutes.',
+      'Check your programmer — make sure heating is scheduled for right now, not just hot water.',
+      'Listen for a clicking sound near the boiler when the heating should be on. Silence may mean the zone valve has seized.',
+      'Try pressing the manual override button on the heating zone valve (if accessible). If the heating comes on, the valve motor has failed.'
+    ],
+    urgency: 'Non-urgent — try the DIY steps first.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'no-heating', scenarioIndex: 2 },
+      { label: '🔧 Find an engineer', style: 'outline', url: 'https://www.gassaferegister.co.uk/find-an-engineer' }
+    ],
+    alsoTry: [
+      { title: 'Heating not working — hot water fine', catId: 'no-heating', scenarioIndex: 2, icon: '🌡️' },
+      { title: 'Radiators cold — boiler firing', catId: 'no-heating', scenarioIndex: 0, icon: '🌡️' }
+    ]
+  },
+  uneven_rads: {
+    type: 'diy',
+    icon: '⚖️',
+    title: 'Uneven heating — system needs balancing or bleeding',
+    summary: 'When some radiators are hot and others are cold or barely warm, it\'s almost always either trapped air in the cold ones, or a system balancing issue — the hot water is taking the path of least resistance and not reaching the far radiators.',
+    steps: [
+      'Start by bleeding every cold radiator — insert a bleed key and release any trapped air until water flows.',
+      'Check TRV valves on cold radiators aren\'t set to 0 or stuck in the closed position. Remove the TRV head and check the pin underneath moves freely.',
+      'After bleeding, check boiler pressure and repressurise if needed.',
+      'If some radiators are still much hotter than others, the system needs balancing — partially close the lockshield valve on the hottest radiators to push more water to the cooler ones.'
+    ],
+    urgency: 'Non-urgent — this is a DIY fix for most people.',
+    actions: [
+      { label: '📖 Radiator balancing guide', style: 'primary', catId: 'radiators', scenarioIndex: 4 },
+      { label: '📖 Bleeding guide', style: 'outline', catId: 'radiators', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'One radiator heats, others don\'t', catId: 'radiators', scenarioIndex: 4, icon: '🔆' },
+      { title: 'Radiator cold at top', catId: 'radiators', scenarioIndex: 0, icon: '🔆' }
+    ]
+  },
+  air_in_rads: {
+    type: 'diy',
+    icon: '💨',
+    title: 'Trapped air — bleed your radiators',
+    summary: 'A radiator that\'s warm at the bottom but cold at the top has trapped air inside — it\'s the most common radiator problem and one of the easiest to fix. The air rises to the top and stops hot water filling the radiator fully.',
+    steps: [
+      'Turn the heating on and wait until the system reaches temperature.',
+      'Find the bleed valve at the top corner of the radiator (usually opposite the supply valve). Insert a bleed key.',
+      'Turn anti-clockwise by a quarter turn. You\'ll hear air hissing out. Hold a cloth underneath.',
+      'Once water starts to flow steadily — no more hissing — close the valve firmly but don\'t overtighten.',
+      'After bleeding all affected radiators, check your boiler pressure gauge. Bleeding causes pressure to drop — repressurise to 1–1.5 bar if needed.'
+    ],
+    urgency: 'Easy DIY fix — takes about 10 minutes.',
+    actions: [
+      { label: '📖 Full bleeding guide', style: 'primary', catId: 'radiators', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Radiator cold at top', catId: 'radiators', scenarioIndex: 0, icon: '🔆' },
+      { title: 'Radiator not heating at all', catId: 'radiators', scenarioIndex: 2, icon: '🔆' }
+    ]
+  },
+  short_cycle: {
+    type: 'pro',
+    icon: '⚡',
+    title: 'Boiler short-cycling — likely overheating or pump fault',
+    summary: 'A boiler that fires and cuts out within seconds or minutes is \'short-cycling\'. This is usually caused by a frozen or blocked condensate pipe (in cold weather), low pressure, a faulty pump, or the boiler overheating due to a circulation problem.',
+    steps: [
+      'Check for a fault code on the boiler display first — note it and look it up.',
+      'In cold weather, check the white plastic condensate pipe (usually runs outside or to a drain) — it may be frozen. Thaw gently with warm water.',
+      'Check the boiler pressure — repressurise if below 1 bar.',
+      'If it continues to short-cycle after these checks, the pump, thermistor, or heat exchanger may be faulty — a Gas Safe engineer is needed.'
+    ],
+    urgency: 'Book a Gas Safe engineer soon — repeated short-cycling can damage the boiler.',
+    actions: [
+      { label: '🔧 Find a Gas Safe engineer', style: 'red', url: 'https://www.gassaferegister.co.uk/find-an-engineer' },
+      { label: '⚡ Look up fault code', style: 'outline', action: 'showBrands' }
+    ],
+    alsoTry: [
+      { title: 'Heating cuts out quickly', catId: 'no-heating', scenarioIndex: 1, icon: '🌡️' },
+      { title: 'Boiler fault codes', catId: 'boiler-faults', scenarioIndex: 0, icon: '⚡' }
+    ]
+  },
+  timer_issue: {
+    type: 'diy',
+    icon: '🕐',
+    title: 'Programmer or timer issue — easy to fix',
+    summary: 'Heating coming on at the wrong times, or not at all, is very commonly caused by an incorrect programmer setting — especially after a power cut or battery change which can reset the clock.',
+    steps: [
+      'Check the time and date set on your programmer or thermostat — if there has been a power cut, these often reset to 00:00.',
+      'Reset the clock to the correct time and check the heating schedule.',
+      'If you use a smart thermostat (Nest, Hive, Tado), check the app — ensure the correct timezone is set and heating schedules are active.',
+      'Make sure the programmer is set to "Auto" rather than "Off" or "All Day On".'
+    ],
+    urgency: 'Non-urgent — easy DIY fix in a few minutes.',
+    actions: [
+      { label: '📖 Timer fix guide', style: 'primary', catId: 'no-heating', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Heating not working — hot water fine', catId: 'no-heating', scenarioIndex: 2, icon: '🌡️' }
+    ]
+  },
+  dripping_pillar_tap: {
+    type: 'diy',
+    icon: '🔩',
+    title: 'Worn tap washer — a classic DIY fix',
+    summary: 'A dripping traditional pillar tap almost always means a worn rubber washer at the base of the headgear. These cost pennies from any hardware store and the repair takes about 20–30 minutes.',
+    steps: [
+      'Turn off the water supply using the isolating valve under the sink (slotted screw — turn 90°).',
+      'Open the tap to drain any remaining water.',
+      'Remove the decorative cover cap, unscrew the retaining screw, and lift off the handle.',
+      'Use an adjustable spanner to unscrew the headgear. At the bottom you\'ll find the rubber washer held by a small nut — replace it.',
+      'Reassemble in reverse, turn the water back on slowly, and test.'
+    ],
+    urgency: 'Easy DIY — costs under £5 and takes 30 minutes.',
+    actions: [
+      { label: '📖 Full dripping tap guide', style: 'primary', catId: 'taps', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Dripping tap that won\'t stop', catId: 'taps', scenarioIndex: 0, icon: '🔩' }
+    ]
+  },
+  dripping_ceramic_tap: {
+    type: 'diy',
+    icon: '⚙️',
+    title: 'Ceramic cartridge needs replacing',
+    summary: 'Quarter-turn ceramic disc taps don\'t use washers — they use a ceramic cartridge. When this fails, the tap drips. Replacement cartridges are widely available and the repair is straightforward.',
+    steps: [
+      'Turn off the water supply under the sink using the isolating valve.',
+      'Remove the tap handle — there\'s usually a grub screw under a cover cap on the side or top of the handle.',
+      'Unscrew the cartridge retaining nut and pull out the cartridge.',
+      'Take the cartridge to a plumbing merchant to match the correct replacement, or search online with the tap brand and model.',
+      'Fit the new cartridge, reassemble, and test.'
+    ],
+    urgency: 'Easy DIY — cartridges typically cost £5–£20.',
+    actions: [
+      { label: '📖 Full dripping tap guide', style: 'primary', catId: 'taps', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Dripping tap', catId: 'taps', scenarioIndex: 0, icon: '🔩' },
+      { title: 'Stiff or hard to turn tap', catId: 'taps', scenarioIndex: 2, icon: '🔩' }
+    ]
+  },
+  dripping_mixer_tap: {
+    type: 'diy',
+    icon: '🚰',
+    title: 'Mixer tap cartridge needs replacing',
+    summary: 'Single-lever mixer taps use an internal cartridge that controls both temperature and flow. When worn, they drip from the spout. Replacement cartridges are available for most brands.',
+    steps: [
+      'Turn off both hot and cold supply using the isolating valves under the sink.',
+      'Find the grub screw under the decorative cap on the lever and remove it — then lift off the lever.',
+      'Unscrew the cartridge retaining nut and pull out the cartridge.',
+      'Match the replacement by brand/model or take the old one to a plumbing merchant.',
+      'Fit new cartridge, reassemble, turn on slowly, and test.'
+    ],
+    urgency: 'Easy DIY — cartridges typically cost £8–£30.',
+    actions: [
+      { label: '📖 Full dripping tap guide', style: 'primary', catId: 'taps', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Dripping tap', catId: 'taps', scenarioIndex: 0, icon: '🔩' }
+    ]
+  },
+  rad_valve_leak: {
+    type: 'maybe',
+    icon: '🔆',
+    title: 'Radiator valve is leaking',
+    summary: 'Leaks from radiator valves are very common, especially in older systems. The leak usually comes from the valve spindle gland or a compression fitting on the pipe below the valve.',
+    steps: [
+      'Turn off the heating and let the system cool before doing anything.',
+      'Identify exactly where the leak is — from the spindle (the turning part), the body, or the compression nut on the pipe.',
+      'Try gently tightening the compression nut by a quarter-turn — don\'t overtighten.',
+      'For a spindle gland leak, try tightening the gland nut just above the valve body.',
+      'If neither fixes it, the valve may need replacing — a plumber can do this in under an hour.'
+    ],
+    urgency: 'Fix soon — even small leaks cause damp and damage over time.',
+    actions: [
+      { label: '📖 Radiator valve guide', style: 'primary', catId: 'radiators', scenarioIndex: 3 }
+    ],
+    alsoTry: [
+      { title: 'Radiator valve leaking', catId: 'radiators', scenarioIndex: 3, icon: '🔆' },
+      { title: 'Dripping compression fitting', catId: 'leaks', scenarioIndex: 0, icon: '🚰' }
+    ]
+  },
+  compression_fitting: {
+    type: 'diy',
+    icon: '🔗',
+    title: 'Leaking compression fitting',
+    summary: 'Compression fittings are the nut-and-olive joints used on copper pipe. They can start to weep over time, especially if slightly overtightened originally or if the olive inside has deformed.',
+    steps: [
+      'Turn off the water supply to that section of pipework.',
+      'Gently tighten the compression nut by a quarter-turn only using an adjustable spanner. Check if the leak stops.',
+      'Do NOT over-tighten — this crushes the olive and makes the leak worse.',
+      'If tightening doesn\'t stop it, you\'ll need to dismantle the fitting, inspect the olive, and replace it if damaged.',
+      'Wrap PTFE tape on threads before reassembling.'
+    ],
+    urgency: 'Fix soon — small drips can cause significant damp over time.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'leaks', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Dripping compression fitting', catId: 'leaks', scenarioIndex: 0, icon: '🚰' }
+    ]
+  },
+  under_sink_leak: {
+    type: 'diy',
+    icon: '🪣',
+    title: 'Leak under the sink',
+    summary: 'Under-sink leaks are almost always either from the waste trap (U-bend), the flexible tap connector hoses, or the tap back nut. Most are straightforward to fix without turning off the mains.',
+    steps: [
+      'First identify whether it\'s from the supply pipes (pressurised — water drips even when tap is off) or the waste pipe (only when water drains).',
+      'For waste pipe leaks: check all push-fit connections are fully engaged and the trap isn\'t cracked.',
+      'For supply pipe leaks: turn off the isolating valve, then check and tighten the flexible connector hose.',
+      'Check the tap back nut under the sink — if the tap rocks, tighten it with a basin wrench.'
+    ],
+    urgency: 'Fix today — water in a cupboard causes mould quickly.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'leaks', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Dripping compression fitting', catId: 'leaks', scenarioIndex: 0, icon: '🚰' },
+      { title: 'Dripping tap', catId: 'taps', scenarioIndex: 0, icon: '🔩' }
+    ]
+  },
+  boiler_leak: {
+    type: 'urgent',
+    icon: '⚠️',
+    title: 'Water from the boiler — call a Gas Safe engineer',
+    summary: 'Water leaking from a boiler is not a DIY fix. It can indicate a failed pump seal, a leaking heat exchanger, pressure relief valve discharge, or a corroded connection. Left unattended it will cause corrosion and potentially electrical damage inside the unit.',
+    steps: [
+      'Turn off the boiler at the main switch.',
+      'Do not attempt to open the boiler casing.',
+      'Place a towel or container under the leak to protect flooring.',
+      'If there is significant water or you can smell gas, turn off the gas supply at the meter and call 0800 111 999.',
+      'Call a Gas Safe registered engineer to inspect and repair.'
+    ],
+    urgency: '⚠️ Call a Gas Safe engineer today — do not delay.',
+    actions: [
+      { label: '🔧 Find a Gas Safe engineer — urgent', style: 'red', url: 'https://www.gassaferegister.co.uk/find-an-engineer' }
+    ],
+    alsoTry: []
+  },
+  toilet_leak: {
+    type: 'maybe',
+    icon: '🚽',
+    title: 'Toilet leaking — check where the water is coming from',
+    summary: 'Toilet leaks come from a few distinct places and each has a different fix. Identifying the exact source saves time and money.',
+    steps: [
+      'Dry the floor around the toilet completely, then watch carefully where water appears — at the base, from the cistern connection, or from pipework.',
+      'A leak at the very base of the pan is usually a failed wax seal — the toilet needs lifting to replace.',
+      'A leak from the cistern-to-pan joint on a close-coupled toilet is usually the rubber doughnut seal (£5 part).',
+      'A leak from the water supply pipe or flexible connector is usually a loose or corroded nut.'
+    ],
+    urgency: 'Fix soon — toilet base leaks cause floor damage quickly.',
+    actions: [
+      { label: '📖 Toilet leaking at base', style: 'primary', catId: 'toilets', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Toilet leaking at base', catId: 'toilets', scenarioIndex: 2, icon: '🚽' },
+      { title: 'Toilet constantly running', catId: 'toilets', scenarioIndex: 0, icon: '🚽' }
+    ]
+  },
+  toilet_running: {
+    type: 'diy',
+    icon: '💧',
+    title: 'Running toilet — flap valve or fill valve fault',
+    summary: 'A toilet that never stops running is wasting around 400 litres of water a day. Fortunately it\'s almost always a cheap fix — either a worn flap valve (£3–£8) or a faulty fill valve (£10–£20).',
+    steps: [
+      'Remove the cistern lid and watch what\'s happening. Is water running into the pan (overflow), or is it running into the overflow pipe outside?',
+      'Running into the pan: push down on the rubber flap valve at the cistern bottom. If the running stops, the flap valve is worn — replace it.',
+      'Running into the overflow pipe: the fill valve or ball valve isn\'t shutting off. Try bending the ball arm downward slightly to lower the water cut-off level.',
+      'If adjusting the arm doesn\'t fix it, replace the fill valve (£10–£20, straightforward DIY).'
+    ],
+    urgency: 'Fix this week — it\'s costing you money on your water bill.',
+    actions: [
+      { label: '📖 Full toilet running guide', style: 'primary', catId: 'toilets', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Toilet constantly running', catId: 'toilets', scenarioIndex: 0, icon: '🚽' },
+      { title: 'Cistern overflowing outside', catId: 'toilets', scenarioIndex: 2, icon: '🚽' }
+    ]
+  },
+  toilet_weak_flush: {
+    type: 'diy',
+    icon: '😤',
+    title: 'Weak or no flush — mechanism issue',
+    summary: 'A toilet that won\'t flush or flushes feebly is usually caused by a disconnected flush mechanism, low water level in the cistern, or a worn siphon diaphragm.',
+    steps: [
+      'Remove the cistern lid and check the flushing mechanism is still connected. The chain or lift arm sometimes simply falls off.',
+      'Check the water level — it should be about 25mm below the overflow pipe. If very low, adjust the fill valve.',
+      'For older siphon cisterns: the rubber diaphragm inside the siphon has perished — a £3 repair kit fixes this.',
+      'For modern push-button cisterns: the flush valve seal is likely worn.'
+    ],
+    urgency: 'Easy DIY fix — most parts cost under £10.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'toilets', scenarioIndex: 1 }
+    ],
+    alsoTry: [
+      { title: 'Toilet won\'t flush', catId: 'toilets', scenarioIndex: 1, icon: '🚽' }
+    ]
+  },
+  toilet_blocked: {
+    type: 'diy',
+    icon: '🚫',
+    title: 'Blocked toilet — plunge first',
+    summary: 'Most toilet blockages clear with a good-quality plunger and some patience. The key is using the right type of plunger — one with an extended rubber flange that creates a seal in the pan outlet.',
+    steps: [
+      'Do NOT keep flushing — if the pan is full, more flushing will cause it to overflow.',
+      'Use a toilet plunger (with extended rubber flange, not a flat cup). Insert firmly and plunge vigorously 10–15 times.',
+      'Try pouring a bucket of hot (not boiling) water from waist height — the force helps shift the blockage.',
+      'If plunging doesn\'t work, use a toilet auger (drain snake) — feed it into the pan and rotate.',
+      'If still blocked, the blockage is deeper in the soil pipe — call a drainage specialist.'
+    ],
+    urgency: 'Try DIY first — if unresolved, call a drainage specialist.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'toilets', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Toilet is blocked', catId: 'toilets', scenarioIndex: 2, icon: '🚽' },
+      { title: 'Slow draining sink or bath', catId: 'blocked-drains', scenarioIndex: 0, icon: '🛁' }
+    ]
+  },
+  toilet_base_leak: {
+    type: 'maybe',
+    icon: '💦',
+    title: 'Toilet leaking at the base — wax seal has failed',
+    summary: 'Water pooling around the base of the toilet is almost always a failed wax seal (pan seal) where the toilet outlet meets the soil pipe. This requires lifting the toilet to replace the seal — straightforward but a bit of a job.',
+    steps: [
+      'Turn off the water supply to the toilet.',
+      'Flush to empty the cistern and disconnect the supply pipe.',
+      'Unscrew the toilet from the floor (usually 2–4 bolts or screws at the base).',
+      'Lift the toilet — have towels ready. Remove the old wax seal from the outlet.',
+      'Fit a new wax ring or rubber pan connector seal, refit the toilet, reconnect the supply, and test.',
+      'Not confident? A plumber can do this in under an hour.'
+    ],
+    urgency: 'Fix soon — base leaks damage floors quickly.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'toilets', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Toilet leaking at base', catId: 'toilets', scenarioIndex: 2, icon: '🚽' }
+    ]
+  },
+  toilet_overflow: {
+    type: 'diy',
+    icon: '🌊',
+    title: 'Cistern overflow — fill valve not shutting off',
+    summary: 'Water dripping from the overflow pipe on an outside wall means the cistern water level is too high — the fill valve isn\'t shutting off at the right level.',
+    steps: [
+      'Remove the cistern lid. If you have an older ball valve, try bending the float arm slightly downward so the valve shuts off at a lower level.',
+      'Modern fill valves have an adjustment screw on the side — turn to lower the cut-off level.',
+      'If adjusting doesn\'t stop the overflow, the valve washer is worn. Turn off the supply, drain the cistern, and replace the washer or the whole fill valve.'
+    ],
+    urgency: 'Fix this week — it wastes water and can stain the outside wall.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'toilets', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Cistern overflowing outside', catId: 'toilets', scenarioIndex: 2, icon: '🚽' }
+    ]
+  },
+  low_pressure_everywhere: {
+    type: 'diy',
+    icon: '📉',
+    title: 'Low pressure throughout the house',
+    summary: 'Whole-house low pressure is usually either a mains supply issue (check with neighbours), a partially closed stop tap, or a problem with a cold water storage tank.',
+    steps: [
+      'Ask a neighbour if they have low pressure too — if so, call your water supplier\'s emergency line.',
+      'Check your main internal stop tap (usually under the kitchen sink) is fully open — turn anti-clockwise.',
+      'Check the external stop tap (in a small box at your boundary) is also fully open.',
+      'If you have a cold water tank in the loft, check the ball valve isn\'t stuck preventing the tank from refilling.'
+    ],
+    urgency: 'Check today — if it\'s the supplier, they\'ll fix it quickly.',
+    actions: [
+      { label: '📖 Full pressure guide', style: 'primary', catId: 'low-pressure', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Low pressure from all taps', catId: 'low-pressure', scenarioIndex: 0, icon: '💧' }
+    ]
+  },
+  low_pressure_shower: {
+    type: 'diy',
+    icon: '🚿',
+    title: 'Low shower pressure — clean the head first',
+    summary: 'Poor shower pressure when other taps are fine is almost always a blocked shower head or a partially closed supply valve — both quick and easy to fix.',
+    steps: [
+      'Unscrew the shower head and soak it in white vinegar for 30 minutes to dissolve limescale. Scrub with an old toothbrush and refit.',
+      'Check the isolating valve on the shower supply pipe is fully open.',
+      'For thermostatic showers, check for a flow restrictor inside the cartridge — your manual will show you how to remove it.',
+      'For electric showers, remove and clean the inlet filter inside the unit.'
+    ],
+    urgency: 'Easy DIY — takes 30 minutes.',
+    actions: [
+      { label: '📖 Full shower pressure guide', style: 'primary', catId: 'low-pressure', scenarioIndex: 1 }
+    ],
+    alsoTry: [
+      { title: 'Low pressure in shower only', catId: 'low-pressure', scenarioIndex: 1, icon: '💧' }
+    ]
+  },
+  low_pressure_simultaneous: {
+    type: 'diy',
+    icon: '🔀',
+    title: 'Pressure drops when using two outlets — gravity fed system',
+    summary: 'This is very common in older gravity-fed properties where a cold water tank in the loft supplies multiple outlets. The tank simply can\'t supply fast enough for two outlets running at once.',
+    steps: [
+      'This is a characteristic of gravity-fed systems, not a fault — it can be improved but not fully eliminated without upgrading.',
+      'Check the cold water tank in the loft is filling quickly — a slow ball valve limits flow.',
+      'Consider a shower pump to boost pressure to the shower independently.',
+      'For a permanent solution, a whole-house pump or converting to an unvented (mains pressure) system would resolve it — consult a plumber.'
+    ],
+    urgency: 'Non-urgent — this is a system design issue.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'low-pressure', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Pressure drops with two outlets', catId: 'low-pressure', scenarioIndex: 2, icon: '💧' }
+    ]
+  },
+  low_boiler_pressure: {
+    type: 'diy',
+    icon: '📊',
+    title: 'Low boiler pressure — repressurise now',
+    summary: 'Low boiler pressure is one of the most common calls we get — and one of the easiest to fix yourself. The pressure gauge should sit between 1 and 1.5 bar. If it\'s below 1, the boiler may not fire at all.',
+    steps: [
+      'Locate the filling loop — usually two small valves (silver or grey) underneath or near the boiler, connected by a braided hose.',
+      'Turn both valves to the open position (aligned with the pipe) and watch the pressure gauge rise.',
+      'Stop when the gauge reaches 1–1.5 bar, then close both valves.',
+      'Press the boiler reset button. It should fire up normally.',
+      'If the pressure drops again within a few weeks, there may be a leak in the system — a plumber should investigate.'
+    ],
+    urgency: 'Easy DIY fix — takes 5 minutes.',
+    actions: [
+      { label: '📖 Boiler pressure guide', style: 'primary', catId: 'low-pressure', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Boiler pressure keeps dropping', catId: 'low-pressure', scenarioIndex: 2, icon: '📉' },
+      { title: 'Boiler is on but no hot water', catId: 'no-hot-water', scenarioIndex: 0, icon: '🔥' }
+    ]
+  },
+  water_hammer: {
+    type: 'diy',
+    icon: '🔨',
+    title: 'Water hammer — pressure shockwave in pipes',
+    summary: 'That loud bang when you close a tap or a valve shuts is water hammer — a pressure shockwave. It\'s harmless short-term but can loosen fittings over time.',
+    steps: [
+      'Check all visible pipe clips — loose or missing clips let pipes move and bang. Add clips where pipes are unsupported.',
+      'Wrap foam pipe lagging around pipes where they pass through or near timber.',
+      'Slightly reduce mains pressure by turning the main stop tap a quarter-turn clockwise — lower pressure means a smaller shockwave.',
+      'For persistent water hammer, fit a water hammer arrestor on the rising main (£15–£30 from a plumbing merchant).'
+    ],
+    urgency: 'Non-urgent — a DIY fix for most cases.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'noisy-pipes', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Banging or hammering pipes', catId: 'noisy-pipes', scenarioIndex: 0, icon: '🔊' }
+    ]
+  },
+  whistling_pipes: {
+    type: 'diy',
+    icon: '🎵',
+    title: 'Whistling pipes — water forced through a restriction',
+    summary: 'A whistling or whining sound when water runs is caused by water being forced through a restriction — usually a partially closed valve, a worn tap washer vibrating, or a limescale-narrowed pipe.',
+    steps: [
+      'Check all isolating valves and stop taps are fully open — a partially open valve whistles as water forces through.',
+      'If the whistle is from a specific tap, the washer inside is worn and vibrating — replace it.',
+      'Check the ball valve in your cold water tank or cistern — a worn ball valve can whistle.',
+      'In hard water areas, limescale build-up inside pipes can cause whistling — a plumber can investigate.'
+    ],
+    urgency: 'Non-urgent — DIY checks first.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'noisy-pipes', scenarioIndex: 1 }
+    ],
+    alsoTry: [
+      { title: 'Whistling or whining pipes', catId: 'noisy-pipes', scenarioIndex: 1, icon: '🔊' }
+    ]
+  },
+  ticking_pipes: {
+    type: 'diy',
+    icon: '🕐',
+    title: 'Ticking pipes — thermal expansion (normal)',
+    summary: 'Ticking or clicking from pipes when the heating comes on is thermal expansion — completely normal and harmless. Pipes expand as hot water flows through them and click when they rub against clips or joists.',
+    steps: [
+      'Locate where the ticking is loudest — usually where a pipe passes tightly through a joist or floor.',
+      'Wrap foam pipe lagging or a strip of rubber around the pipe where it passes through the timber.',
+      'Replace rigid metal pipe clips with rubber-lined clips that allow slight movement without noise.',
+      'If ticking comes from inaccessible pipes, it\'s completely harmless — many homes have this and it requires no action.'
+    ],
+    urgency: 'No action needed — this is normal and causes no damage.',
+    actions: [
+      { label: '📖 Full guide', style: 'primary', catId: 'noisy-pipes', scenarioIndex: 2 }
+    ],
+    alsoTry: [
+      { title: 'Ticking or clicking pipes', catId: 'noisy-pipes', scenarioIndex: 2, icon: '🔊' }
+    ]
+  },
+  gurgling_drain: {
+    type: 'diy',
+    icon: '🌀',
+    title: 'Gurgling drains — partial blockage or venting issue',
+    summary: 'Gurgling when water drains is caused by air being pulled through the water trap — usually because of a partial blockage further down the pipe.',
+    steps: [
+      'Clear the drain cover of hair and debris — this alone fixes many cases.',
+      'Unscrew and clean the trap under the sink.',
+      'If multiple fixtures gurgle at the same time, the blockage is in the shared waste pipe — try plunging the worst-affected outlet.',
+      'Check the soil vent pipe on the roof hasn\'t become blocked with debris — this causes air pressure issues throughout.'
+    ],
+    urgency: 'Easy DIY — clear the drain today.',
+    actions: [
+      { label: '📖 Blocked drain guide', style: 'primary', catId: 'blocked-drains', scenarioIndex: 0 }
+    ],
+    alsoTry: [
+      { title: 'Slow draining sink or bath', catId: 'blocked-drains', scenarioIndex: 0, icon: '🛁' }
+    ]
+  },
+  boiler_kettle: {
+    type: 'maybe',
+    icon: '💥',
+    title: 'Boiler kettling — limescale on the heat exchanger',
+    summary: 'A rumbling or kettling sound from the boiler is almost always caused by limescale build-up on the heat exchanger, particularly in hard water areas. It\'s not immediately dangerous but will reduce efficiency and eventually cause damage.',
+    steps: [
+      'This is not a DIY fix — a Gas Safe engineer needs to inspect the boiler.',
+      'A descaling chemical can sometimes be circulated through the system to reduce build-up.',
+      'In severe cases, the heat exchanger may need replacing.',
+      'Fitting a scale reducer or water softener on the boiler cold feed prevents future build-up.',
+      'Check how old the boiler is — if over 15 years and kettling, replacement may be more cost-effective than repair.'
+    ],
+    urgency: 'Book a Gas Safe engineer — don\'t leave this long-term.',
+    actions: [
+      { label: '🔧 Find a Gas Safe engineer', style: 'red', url: 'https://www.gassaferegister.co.uk/find-an-engineer' }
+    ],
+    alsoTry: [
+      { title: 'Heating cuts out quickly', catId: 'no-heating', scenarioIndex: 1, icon: '🌡️' }
+    ]
+  },
+  brand_worcester: {
+    type: 'maybe',
+    icon: '⚡',
+    title: 'Worcester Bosch fault — look up your code',
+    summary: 'Worcester Bosch boilers display fault codes when they lock out. The most common are EA (ignition failure — try one reset), E1 (low pressure — repressurise to 1–1.5 bar then reset), and E9 (overheating — do not keep resetting, call an engineer).',
+    steps: [
+      'Note the fault code on your boiler display.',
+      'If it\'s E1 (or similar low pressure code): repressurise to 1–1.5 bar using the filling loop under the boiler, then press reset.',
+      'If it\'s EA (ignition failure): check other gas appliances work, then try ONE reset only.',
+      'If it\'s E9 or a sensor code: do not keep resetting — call a Gas Safe engineer.'
+    ],
+    urgency: 'Depends on the code — check it now.',
+    actions: [
+      { label: '⚡ Worcester Bosch fault codes', style: 'sky', action: 'showBrand', brandId: 'worcester-bosch' }
+    ],
+    alsoTry: []
+  },
+  brand_vaillant: {
+    type: 'maybe',
+    icon: '⚡',
+    title: 'Vaillant fault — look up your code',
+    summary: 'Vaillant boilers display fault codes like F22 (low pressure — repressurise then reset), F28 (ignition failure — try one reset), F29 (flame loss), and F75 (pump or pressure sensor fault — needs an engineer).',
+    steps: [
+      'Note the code on your Vaillant display.',
+      'F22 (most common): repressurise to 1–1.5 bar using the filling loop, then press reset.',
+      'F28 or F29: check gas supply to other appliances, try one reset only.',
+      'F75 or any sensor code: Gas Safe engineer required — do not keep resetting.'
+    ],
+    urgency: 'Depends on the code — check it now.',
+    actions: [
+      { label: '⚡ Vaillant fault codes', style: 'sky', action: 'showBrand', brandId: 'vaillant' }
+    ],
+    alsoTry: []
+  },
+  brand_ideal: {
+    type: 'maybe',
+    icon: '⚡',
+    title: 'Ideal boiler fault — look up your code',
+    summary: 'Ideal boilers use codes like F1 (ignition fault), F2 (flame loss), F3 (fan fault — engineer required), F4 (sensor fault), and L1 (overheat lockout).',
+    steps: [
+      'Note your Ideal boiler\'s fault code.',
+      'F1: check gas supply, one reset attempt.',
+      'F2: one reset — if it returns, Gas Safe engineer needed.',
+      'F3, F4, L1: do not keep resetting. Call a Gas Safe engineer.'
+    ],
+    urgency: 'Depends on the code — check it now.',
+    actions: [
+      { label: '⚡ Ideal fault codes', style: 'sky', action: 'showBrand', brandId: 'ideal' }
+    ],
+    alsoTry: []
+  },
+  brand_baxi: {
+    type: 'maybe',
+    icon: '⚡',
+    title: 'Baxi boiler fault — look up your code',
+    summary: 'Baxi boilers display codes like E01 (ignition lockout — try one reset), E10 (low pressure — repressurise then reset), E03 (fan fault — engineer required), and E168 (gas valve fault — do not reset, engineer required).',
+    steps: [
+      'Note your Baxi fault code.',
+      'E10: repressurise to 1–1.5 bar, then press reset.',
+      'E01: check gas supply, one reset only.',
+      'E03 or E168: do not reset — call a Gas Safe engineer immediately.'
+    ],
+    urgency: 'Depends on the code — check it now.',
+    actions: [
+      { label: '⚡ Baxi fault codes', style: 'sky', action: 'showBrand', brandId: 'baxi' }
+    ],
+    alsoTry: []
+  },
+  brand_other: {
+    type: 'maybe',
+    icon: '⚡',
+    title: 'Boiler fault code — look up your brand',
+    summary: 'Use our full boiler fault code database to look up your specific code. We cover Worcester Bosch, Vaillant, Ideal, Baxi, Glow-worm, Viessmann, and Potterton.',
+    steps: [
+      'Note the fault code on your boiler display.',
+      'Select your brand from the fault code database.',
+      'Never reset a boiler more than twice for the same fault — repeated lockouts indicate an underlying problem.',
+      'For any gas-related fault code, always use a Gas Safe registered engineer.'
+    ],
+    urgency: 'Check your code now before taking action.',
+    actions: [
+      { label: '⚡ Browse all boiler fault codes', style: 'sky', action: 'showBrands' }
+    ],
+    alsoTry: []
+  }
+};
+
+// ── Checker state ──────────────────────────────────────────────────────────────
+let checkerHistory = []; // stack of nodes for back navigation
+let checkerCurrentNode = null;
+let checkerTrailLabels = [];
+
+function startChecker() {
+  checkerHistory = [];
+  checkerTrailLabels = [];
+  checkerCurrentNode = CHECKER_TREE;
+  showScreen('screen-checker');
+  renderCheckerNode(CHECKER_TREE, 1, false);
+}
+
+function renderCheckerNode(node, stepNum, isResult) {
+  const totalSteps = 3; // approximate max depth shown
+  const pct = Math.min(((stepNum) / (totalSteps + 1)) * 100, 90);
+
+  document.getElementById('checker-progress-fill').style.width = pct + '%';
+  document.getElementById('checker-step-label').textContent = `Step ${stepNum}`;
+  document.getElementById('checker-step-count').textContent = `Question ${stepNum}`;
+  document.getElementById('checker-back').style.visibility = checkerHistory.length > 0 ? 'visible' : 'hidden';
+
+  // Trail
+  const trail = document.getElementById('checker-trail');
+  trail.innerHTML = checkerTrailLabels.map((l, i) =>
+    `<span class="trail-chip${i === checkerTrailLabels.length - 1 ? ' active' : ''}">${l}</span>`
+  ).join('');
+
+  const content = document.getElementById('checker-content');
+  content.innerHTML = `
+    <div class="checker-card">
+      <div class="checker-q-num">${node.icon || '❓'} Question ${stepNum}</div>
+      <div class="checker-question">${node.question}</div>
+      ${node.hint ? `<div class="checker-q-hint">${node.hint}</div>` : ''}
+      <div class="checker-options">
+        ${node.options.map((opt, i) => `
+          <button class="checker-option" onclick="checkerSelect(${i})">
+            <div class="checker-opt-icon">${opt.icon}</div>
+            <div class="checker-opt-body">
+              <div class="checker-opt-label">${opt.label}</div>
+              ${opt.desc ? `<div class="checker-opt-desc">${opt.desc}</div>` : ''}
+            </div>
+            <span class="checker-opt-arrow">›</span>
+          </button>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+
+function checkerSelect(optionIndex) {
+  const opt = checkerCurrentNode.options[optionIndex];
+  checkerHistory.push({ node: checkerCurrentNode, trailLabels: [...checkerTrailLabels] });
+  checkerTrailLabels.push(opt.label);
+
+  if (opt.result) {
+    // Show result
+    showCheckerResult(opt.result);
+  } else if (opt.next) {
+    checkerCurrentNode = opt.next;
+    renderCheckerNode(opt.next, checkerHistory.length + 1, false);
+  }
+}
+
+function checkerBack() {
+  if (checkerHistory.length === 0) { goHome(); return; }
+  const prev = checkerHistory.pop();
+  checkerCurrentNode = prev.node;
+  checkerTrailLabels = prev.trailLabels;
+  renderCheckerNode(prev.node, checkerHistory.length + 1, false);
+  // Hide result if showing
+  document.getElementById('checker-content').querySelector('.checker-result') && null;
+}
+
+function showCheckerResult(resultKey) {
+  const result = CHECKER_RESULTS[resultKey];
+  if (!result) { goHome(); return; }
+
+  document.getElementById('checker-progress-fill').style.width = '100%';
+  document.getElementById('checker-step-label').textContent = 'Diagnosis';
+  document.getElementById('checker-step-count').textContent = 'Complete ✓';
+  document.getElementById('checker-back').style.visibility = 'visible';
+
+  const typeLabel = { diy: '✅ DIY Friendly', maybe: '⚠️ May Need a Pro', pro: '🔧 Call a Pro', urgent: '🚨 Urgent — Act Now' };
+  const actionBtns = (result.actions || []).map(a => {
+    if (a.url) {
+      return `<button class="btn-result-primary ${a.style || ''}" onclick="window.open('${a.url}','_blank')">${a.label}</button>`;
+    } else if (a.action === 'showBrands') {
+      return `<button class="btn-result-primary ${a.style || 'outline'}" onclick="showBrands()">${a.label}</button>`;
+    } else if (a.action === 'showBrand') {
+      return `<button class="btn-result-primary ${a.style || 'outline'}" onclick="showModels('${a.brandId}')">${a.label}</button>`;
+    } else if (a.catId !== undefined) {
+      return `<button class="btn-result-${a.style === 'outline' ? 'outline' : 'primary' + (a.style ? ' ' + a.style : '')}" onclick="showCategoryAndFix('${a.catId}',${a.scenarioIndex})">${a.label}</button>`;
+    }
+    return '';
+  }).join('');
+
+  const alsoTryHtml = result.alsoTry && result.alsoTry.length ? `
+    <div class="checker-also-try">
+      <div class="also-try-label">Related guides</div>
+      <div class="also-try-grid">
+        ${result.alsoTry.map(g => `
+          <div class="also-try-card" onclick="showCategoryAndFix('${g.catId}',${g.scenarioIndex})">
+            <span class="also-try-icon">${g.icon}</span>
+            <div class="also-try-body">
+              <div class="also-try-title">${g.title}</div>
+              <div class="also-try-cat">Step-by-step guide →</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  ` : '';
+
+  document.getElementById('checker-content').innerHTML = `
+    <div class="checker-result">
+      <div class="result-banner ${result.type}">
+        <div class="result-icon-big">${result.icon}</div>
+        <div class="result-banner-body">
+          <div class="result-verdict">${typeLabel[result.type] || ''}</div>
+          <div class="result-title">${result.title}</div>
+          <div class="result-summary">${result.summary}</div>
+        </div>
+      </div>
+
+      <div class="result-actions">
+        ${actionBtns}
+        <button class="btn-result-outline" onclick="startChecker()">↺ Start over</button>
+      </div>
+
+      <div class="result-steps-card">
+        <h3>🛠 What to do now — step by step</h3>
+        ${result.steps.map((s, i) => `
+          <div class="result-step">
+            <div class="result-step-num">${i + 1}</div>
+            <p>${s}</p>
+          </div>
+        `).join('')}
+        ${result.urgency ? `<div style="margin-top:14px;padding:12px 14px;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;font-size:0.82rem;color:var(--text-mid);"><strong>Urgency:</strong> ${result.urgency}</div>` : ''}
+      </div>
+
+      ${alsoTryHtml}
+    </div>
+  `;
+}
+
+function showCategoryAndFix(catId, scenarioIndex) {
+  if (catId === 'boiler-faults') { showBrands(); return; }
+  showCategory(catId);
+  setTimeout(() => showFix(scenarioIndex), 60);
+}
 loadUser();
 updateNavAuth();
 renderHome();
