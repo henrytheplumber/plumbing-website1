@@ -535,6 +535,42 @@ body {
 }
 .cat-card:hover .cat-arrow { color: var(--sky); transform: translateX(3px); }
 
+#cat-grid-home {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 700px) {
+  #cat-grid-home { grid-template-columns: 1fr; }
+}
+
+.view-all-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+.btn-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 2px solid var(--sky);
+  color: var(--sky);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+.btn-view-all:hover {
+  background: var(--sky);
+  color: #fff;
+  box-shadow: var(--shadow-hover);
+}
+.view-all-arrow { font-size: 1.1rem; transition: transform 0.2s; }
+.btn-view-all:hover .view-all-arrow { transform: translateX(4px); }
+
 /* ── CAN'T FIND BANNER ── */
 .cant-find {
   background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
@@ -1056,6 +1092,317 @@ body {
 @media (max-width: 420px) {
   .cat-grid { grid-template-columns: 1fr; }
 }
+
+/* ── AUTH MODAL ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,39,68,0.55);
+  backdrop-filter: blur(4px);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+.modal-overlay.hidden { display: none; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.auth-modal {
+  background: #fff;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 24px 80px rgba(15,39,68,0.25);
+  overflow: hidden;
+  animation: slideUp2 0.3s ease;
+}
+@keyframes slideUp2 { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.auth-modal-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  padding: 28px 28px 24px;
+  position: relative;
+}
+.auth-modal-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.7rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.auth-modal-header p { font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+.auth-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.15s;
+}
+.auth-close:hover { background: rgba(255,255,255,0.22); }
+
+.auth-modal-body { padding: 24px 28px 28px; }
+.auth-tabs {
+  display: flex;
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 22px;
+  gap: 4px;
+}
+.auth-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 9px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.auth-tab.active {
+  background: #fff;
+  color: var(--navy);
+  box-shadow: 0 2px 8px rgba(15,39,68,0.1);
+}
+.auth-panel { display: none; }
+.auth-panel.active { display: block; }
+
+.auth-form-group { margin-bottom: 14px; }
+.auth-form-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  margin-bottom: 6px;
+}
+.auth-form-group input {
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.9rem;
+  padding: 11px 14px;
+  border-radius: 9px;
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.auth-form-group input:focus { border-color: var(--sky); background: #fff; }
+.auth-form-group .optional-label {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  margin-left: 4px;
+}
+.btn-auth {
+  width: 100%;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 6px;
+}
+.btn-auth:hover { background: var(--navy-mid); }
+.auth-switch {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+.auth-switch a { color: var(--sky); cursor: pointer; font-weight: 600; text-decoration: none; }
+.auth-switch a:hover { text-decoration: underline; }
+.auth-error {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+  color: #991b1b;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 0.82rem;
+  margin-bottom: 14px;
+  display: none;
+}
+.auth-success-msg {
+  text-align: center;
+  padding: 8px 0;
+}
+.auth-success-msg .tick { font-size: 2.5rem; margin-bottom: 10px; }
+.auth-success-msg h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.auth-success-msg p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+
+/* ── CUSTOMER DASHBOARD ── */
+.dashboard-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  border-radius: 16px;
+  padding: 28px 32px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.dash-avatar {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--sky);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #fff;
+  flex-shrink: 0;
+}
+.dash-welcome { flex: 1; }
+.dash-welcome h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.dash-welcome p { font-size: 0.83rem; color: rgba(255,255,255,0.6); }
+.btn-signout {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.75);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-signout:hover { background: rgba(255,255,255,0.18); color: #fff; }
+
+.dash-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 28px;
+}
+@media (max-width: 600px) { .dash-stats { grid-template-columns: 1fr 1fr; } }
+.stat-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+}
+.stat-number { font-size: 1.8rem; font-weight: 800; color: var(--navy); line-height: 1; margin-bottom: 4px; }
+.stat-label { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+
+.dash-section-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.dash-section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+.saved-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.saved-item {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow);
+  transition: all 0.18s;
+}
+.saved-item:hover { border-color: var(--sky); box-shadow: var(--shadow-hover); }
+.saved-item-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  background: #dbeafe;
+}
+.saved-item-body { flex: 1; min-width: 0; }
+.saved-item-cat { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--sky); margin-bottom: 2px; }
+.saved-item-title { font-size: 0.92rem; font-weight: 600; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.saved-item-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+.saved-item-actions { display: flex; gap: 6px; flex-shrink: 0; }
+.btn-saved-view {
+  background: var(--sky);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-saved-view:hover { background: #2a8bc7; }
+.btn-saved-remove {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.78rem;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.btn-saved-remove:hover { border-color: var(--red); color: var(--red); }
+
+.empty-state {
+  background: var(--card);
+  border: 1.5px dashed var(--border);
+  border-radius: 14px;
+  padding: 44px 24px;
+  text-align: center;
+  margin-bottom: 28px;
+}
+.empty-state .empty-icon { font-size: 2.5rem; margin-bottom: 12px; }
+.empty-state h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.empty-state p { font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; max-width: 280px; margin: 0 auto 16px; }
+
+/* ── SAVE GUIDE BUTTON on fix screen ── */
+.btn-save-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s;
+  margin-bottom: 20px;
+}
+.btn-save-guide:hover { border-color: var(--sky); color: var(--sky); }
+.btn-save-guide.saved { background: #dbeafe; border-color: var(--sky); color: var(--sky); }
 </style>
 </head>
 <body>
@@ -1071,7 +1418,7 @@ body {
       <button class="nav-link" onclick="goHome()">Home</button>
       <button class="nav-link" onclick="showCategoriesNav()">Categories</button>
       <button class="nav-link" onclick="showScreen('screen-contact')">Contact</button>
-      <button class="nav-link nav-signin" onclick="showSignIn()">Sign In</button>
+      <button class="nav-link nav-signin" id="nav-auth-btn" onclick="handleAuthNav()">Sign In</button>
     </div>
   </div>
 </nav>
@@ -1116,9 +1463,33 @@ body {
       </div>
     </div>
 
-    <div class="section-label" id="cat-label">Browse by category</div>
-    <div class="cat-grid" id="cat-grid"></div>
+    <div class="section-label" id="cat-label">Popular categories</div>
+    <div class="cat-grid" id="cat-grid-home"></div>
 
+    <div class="view-all-wrap">
+      <button class="btn-view-all" onclick="renderAllCategories();showScreen('screen-categories')">
+        View all categories
+        <span class="view-all-arrow">→</span>
+      </button>
+    </div>
+
+    <div class="cant-find">
+      <div>
+        <strong>Can't find your issue?</strong>
+        <span>Submit it and we'll add a guide — usually within 48 hours.</span>
+      </div>
+      <button class="btn-primary" onclick="showScreen('screen-contact')">Request a Scenario →</button>
+    </div>
+  </div>
+
+  <!-- ALL CATEGORIES SCREEN -->
+  <div class="screen" id="screen-categories">
+    <button class="btn-back" onclick="goHome()">← Back to Home</button>
+    <div class="page-header">
+      <h1>All <em>Categories</em></h1>
+      <p>Browse every plumbing and heating topic — select a category to see step-by-step fix guides.</p>
+    </div>
+    <div class="cat-grid" id="cat-grid-all"></div>
     <div class="cant-find">
       <div>
         <strong>Can't find your issue?</strong>
@@ -1348,7 +1719,107 @@ body {
     </div>
   </div>
 
+  <!-- DASHBOARD SCREEN -->
+  <div class="screen" id="screen-dashboard">
+    <div class="dashboard-header">
+      <div class="dash-avatar" id="dash-avatar">?</div>
+      <div class="dash-welcome">
+        <h2 id="dash-greeting">Welcome back</h2>
+        <p id="dash-email-display"></p>
+      </div>
+      <button class="btn-signout" onclick="signOut()">Sign out</button>
+    </div>
+
+    <div class="dash-stats">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-saved">0</div>
+        <div class="stat-label">Saved guides</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-viewed">0</div>
+        <div class="stat-label">Guides viewed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat-member">—</div>
+        <div class="stat-label">Member since</div>
+      </div>
+    </div>
+
+    <div class="dash-section-title">Saved guides</div>
+    <div id="saved-guides-list"></div>
+
+    <div class="dash-section-title">Recently viewed</div>
+    <div id="recent-guides-list"></div>
+
+    <div style="margin-top:8px;">
+      <button class="btn-primary" onclick="renderAllCategories();showScreen('screen-categories')">Browse all categories →</button>
+    </div>
+  </div>
+
 </div><!-- /wrap -->
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay hidden" id="auth-modal">
+  <div class="auth-modal">
+    <div class="auth-modal-header">
+      <h2 id="auth-modal-title">Welcome back</h2>
+      <p id="auth-modal-sub">Sign in to access your saved guides</p>
+      <button class="auth-close" onclick="closeAuthModal()">✕</button>
+    </div>
+    <div class="auth-modal-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signin" onclick="switchAuthTab('signin')">Sign In</button>
+        <button class="auth-tab" id="tab-signup" onclick="switchAuthTab('signup')">Create Account</button>
+      </div>
+
+      <!-- SIGN IN PANEL -->
+      <div class="auth-panel active" id="panel-signin">
+        <div class="auth-error" id="signin-error"></div>
+        <div class="auth-form-group">
+          <label>Email address</label>
+          <input type="email" id="signin-email" placeholder="your@email.com" autocomplete="email">
+        </div>
+        <div class="auth-form-group">
+          <label>Password</label>
+          <input type="password" id="signin-password" placeholder="Your password" autocomplete="current-password">
+        </div>
+        <button class="btn-auth" onclick="doSignIn()">Sign In →</button>
+        <div class="auth-switch">Don't have an account? <a onclick="switchAuthTab('signup')">Create one free</a></div>
+      </div>
+
+      <!-- SIGN UP PANEL -->
+      <div class="auth-panel" id="panel-signup">
+        <div class="auth-error" id="signup-error"></div>
+        <div id="signup-form-content">
+          <div class="auth-form-group">
+            <label>Full name</label>
+            <input type="text" id="signup-name" placeholder="John Smith" autocomplete="name">
+          </div>
+          <div class="auth-form-group">
+            <label>Email address</label>
+            <input type="email" id="signup-email" placeholder="your@email.com" autocomplete="email">
+          </div>
+          <div class="auth-form-group">
+            <label>Phone number <span class="optional-label">(optional)</span></label>
+            <input type="tel" id="signup-phone" placeholder="07700 900000" autocomplete="tel">
+          </div>
+          <div class="auth-form-group">
+            <label>Create a password</label>
+            <input type="password" id="signup-password" placeholder="At least 8 characters" autocomplete="new-password">
+          </div>
+          <button class="btn-auth" onclick="doSignUp()">Create Free Account →</button>
+          <div class="auth-switch">Already have an account? <a onclick="switchAuthTab('signin')">Sign in</a></div>
+        </div>
+        <div class="auth-success-msg" id="signup-success" style="display:none">
+          <div class="tick">🎉</div>
+          <h3>Account created!</h3>
+          <p>Welcome to PlumbingFaultFinder. You can now save guides and access them any time from your personal dashboard.</p>
+          <button class="btn-auth" style="margin-top:16px" onclick="closeAuthModal();showScreen('screen-dashboard')">Go to my dashboard →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- COOKIE NOTICE -->
 <div class="cookie-notice" id="cookie-notice">
@@ -1490,28 +1961,42 @@ let currentBrand = null;
 let currentModel = null;
 
 // ── RENDER HOME ───────────────────────────────────────────────────────────────
+function makeCatCard(cat) {
+  const card = document.createElement('div');
+  card.className = 'cat-card';
+  const count = cat.id === 'boiler-faults'
+    ? Object.keys(BOILER_DATA).length + ' brands'
+    : cat.scenarios.length + ' scenario' + (cat.scenarios.length !== 1 ? 's' : '');
+  const color = CAT_COLORS[cat.id] || 'blue';
+  card.innerHTML = `
+    <div class="cat-card-top">
+      <div class="cat-icon ${color}">${cat.icon}</div>
+      <span class="cat-count-badge">${count}</span>
+    </div>
+    <div class="cat-title">${cat.title}</div>
+    <div class="cat-desc">${cat.desc}</div>
+    <span class="cat-arrow">›</span>
+  `;
+  card.onclick = () => cat.id === 'boiler-faults' ? showBrands() : showCategory(cat.id);
+  return card;
+}
+
 function renderHome() {
-  const grid = document.getElementById('cat-grid');
+  const grid = document.getElementById('cat-grid-home');
   grid.innerHTML = '';
-  DATA.categories.forEach(cat => {
-    const card = document.createElement('div');
-    card.className = 'cat-card';
-    const count = cat.id === 'boiler-faults'
-      ? Object.keys(BOILER_DATA).length + ' brands'
-      : cat.scenarios.length + ' scenario' + (cat.scenarios.length !== 1 ? 's' : '');
-    const color = CAT_COLORS[cat.id] || 'blue';
-    card.innerHTML = `
-      <div class="cat-card-top">
-        <div class="cat-icon ${color}">${cat.icon}</div>
-        <span class="cat-count-badge">${count}</span>
-      </div>
-      <div class="cat-title">${cat.title}</div>
-      <div class="cat-desc">${cat.desc}</div>
-      <span class="cat-arrow">›</span>
-    `;
-    card.onclick = () => cat.id === 'boiler-faults' ? showBrands() : showCategory(cat.id);
-    grid.appendChild(card);
+  // Show top 3: No Hot Water, Boiler Fault Codes, Toilets
+  const TOP_CATS = ['no-hot-water', 'boiler-faults', 'radiators'];
+  TOP_CATS.forEach(id => {
+    const cat = DATA.categories.find(c => c.id === id);
+    if (cat) grid.appendChild(makeCatCard(cat));
   });
+}
+
+function renderAllCategories() {
+  const grid = document.getElementById('cat-grid-all');
+  if (grid.innerHTML) return; // already rendered
+  grid.innerHTML = '';
+  DATA.categories.forEach(cat => grid.appendChild(makeCatCard(cat)));
 }
 
 // ── NAVIGATION ────────────────────────────────────────────────────────────────
@@ -1634,6 +2119,13 @@ function showCategory(catId) {
 
 function showFix(scenarioIndex) {
   const s = currentCat.scenarios[scenarioIndex];
+  const guideId = getGuideId(currentCat.id, scenarioIndex);
+
+  // Track recent view
+  if (currentUser) {
+    trackRecentGuide({ id: guideId, catId: currentCat.id, catTitle: currentCat.title, catIcon: currentCat.icon, scenarioIndex, title: s.title });
+  }
+
   document.getElementById('bc-cat').textContent = currentCat.title;
   document.getElementById('bc-title').textContent = s.title;
   document.getElementById('fix-title').textContent = s.title;
@@ -1646,7 +2138,11 @@ function showFix(scenarioIndex) {
   `;
   document.getElementById('fix-warning').innerHTML = s.warning
     ? `<div class="warning-box"><strong>Safety First</strong><br>${s.warning}</div>` : '';
-  document.getElementById('fix-steps').innerHTML = s.steps.map((step, i) => `
+
+  // Save button
+  const saveHtml = renderSaveButton(currentCat.id, scenarioIndex, s.title);
+
+  document.getElementById('fix-steps').innerHTML = saveHtml + s.steps.map((step, i) => `
     <div class="step" style="animation-delay:${i*0.06}s">
       <div class="step-num">${i+1}</div>
       <p>${step}</p>
@@ -1669,14 +2165,306 @@ function showScreen(id) {
 function goHome() { showScreen('screen-home'); }
 function goBack() { if (currentCat) showCategory(currentCat.id); else showScreen('screen-brands'); }
 function showCategoriesNav() {
+  renderAllCategories();
+  showScreen('screen-categories');
+}
+// ── AUTH SYSTEM (localStorage-based demo) ────────────────────────────────────
+let currentUser = null;
+
+function loadUser() {
+  try {
+    const u = localStorage.getItem('pff_user');
+    if (u) currentUser = JSON.parse(u);
+  } catch(e) { currentUser = null; }
+}
+
+function saveUser(u) {
+  currentUser = u;
+  localStorage.setItem('pff_user', JSON.stringify(u));
+}
+
+function updateNavAuth() {
+  const btn = document.getElementById('nav-auth-btn');
+  if (!btn) return;
+  if (currentUser) {
+    const initials = currentUser.name ? currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) : '?';
+    btn.textContent = initials;
+    btn.style.borderRadius = '50%';
+    btn.style.width = '36px';
+    btn.style.height = '36px';
+    btn.style.padding = '0';
+    btn.style.fontWeight = '800';
+    btn.style.fontSize = '0.8rem';
+  } else {
+    btn.textContent = 'Sign In';
+    btn.style.borderRadius = '';
+    btn.style.width = '';
+    btn.style.height = '';
+    btn.style.padding = '';
+    btn.style.fontWeight = '';
+    btn.style.fontSize = '';
+  }
+}
+
+function handleAuthNav() {
+  if (currentUser) {
+    renderDashboard();
+    showScreen('screen-dashboard');
+  } else {
+    openAuthModal('signin');
+  }
+}
+
+function openAuthModal(tab) {
+  document.getElementById('auth-modal').classList.remove('hidden');
+  switchAuthTab(tab || 'signin');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeAuthModal() {
+  document.getElementById('auth-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+function switchAuthTab(tab) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (tab === 'signin') {
+    document.getElementById('auth-modal-title').textContent = 'Welcome back';
+    document.getElementById('auth-modal-sub').textContent = 'Sign in to access your saved guides';
+  } else {
+    document.getElementById('auth-modal-title').textContent = 'Create your free account';
+    document.getElementById('auth-modal-sub').textContent = 'Save guides and access them any time';
+  }
+}
+
+function doSignIn() {
+  const email = document.getElementById('signin-email').value.trim();
+  const password = document.getElementById('signin-password').value;
+  const err = document.getElementById('signin-error');
+  err.style.display = 'none';
+
+  if (!email || !password) { err.textContent = 'Please enter your email and password.'; err.style.display = 'block'; return; }
+
+  // Check stored accounts
+  try {
+    const accounts = JSON.parse(localStorage.getItem('pff_accounts') || '{}');
+    const account = accounts[email.toLowerCase()];
+    if (!account || account.password !== password) {
+      err.textContent = 'No account found with those details. Try signing up instead.';
+      err.style.display = 'block'; return;
+    }
+    saveUser({ name: account.name, email: account.email, phone: account.phone, since: account.since });
+    updateNavAuth();
+    closeAuthModal();
+    renderDashboard();
+    showScreen('screen-dashboard');
+  } catch(e) {
+    err.textContent = 'Something went wrong. Please try again.';
+    err.style.display = 'block';
+  }
+}
+
+function doSignUp() {
+  const name = document.getElementById('signup-name').value.trim();
+  const email = document.getElementById('signup-email').value.trim();
+  const phone = document.getElementById('signup-phone').value.trim();
+  const password = document.getElementById('signup-password').value;
+  const err = document.getElementById('signup-error');
+  err.style.display = 'none';
+
+  if (!name) { err.textContent = 'Please enter your full name.'; err.style.display = 'block'; return; }
+  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email address.'; err.style.display = 'block'; return; }
+  if (password.length < 8) { err.textContent = 'Password must be at least 8 characters.'; err.style.display = 'block'; return; }
+
+  try {
+    const accounts = JSON.parse(localStorage.getItem('pff_accounts') || '{}');
+    if (accounts[email.toLowerCase()]) {
+      err.textContent = 'An account with this email already exists. Try signing in.';
+      err.style.display = 'block'; return;
+    }
+    const newAccount = { name, email, phone, password, since: new Date().toISOString(), savedGuides: [], recentGuides: [] };
+    accounts[email.toLowerCase()] = newAccount;
+    localStorage.setItem('pff_accounts', JSON.stringify(accounts));
+    saveUser({ name, email, phone, since: newAccount.since });
+    updateNavAuth();
+    document.getElementById('signup-form-content').style.display = 'none';
+    document.getElementById('signup-success').style.display = 'block';
+  } catch(e) {
+    err.textContent = 'Something went wrong. Please try again.';
+    err.style.display = 'block';
+  }
+}
+
+function signOut() {
+  currentUser = null;
+  localStorage.removeItem('pff_user');
+  updateNavAuth();
   goHome();
-  setTimeout(() => {
-    document.getElementById('cat-label').scrollIntoView({ behavior: 'smooth' });
-  }, 100);
 }
-function showSignIn() {
-  alert('Sign In / Pro accounts are coming soon! Register your interest on the Contact page.');
+
+// ── SAVED GUIDES ──────────────────────────────────────────────────────────────
+function getSavedGuides() {
+  if (!currentUser) return [];
+  try {
+    const accounts = JSON.parse(localStorage.getItem('pff_accounts') || '{}');
+    return accounts[currentUser.email.toLowerCase()]?.savedGuides || [];
+  } catch(e) { return []; }
 }
+
+function getRecentGuides() {
+  if (!currentUser) return [];
+  try {
+    const accounts = JSON.parse(localStorage.getItem('pff_accounts') || '{}');
+    return accounts[currentUser.email.toLowerCase()]?.recentGuides || [];
+  } catch(e) { return []; }
+}
+
+function updateAccountData(fn) {
+  if (!currentUser) return;
+  try {
+    const accounts = JSON.parse(localStorage.getItem('pff_accounts') || '{}');
+    const key = currentUser.email.toLowerCase();
+    if (!accounts[key]) return;
+    fn(accounts[key]);
+    localStorage.setItem('pff_accounts', JSON.stringify(accounts));
+  } catch(e) {}
+}
+
+function saveGuide(guide) {
+  updateAccountData(acc => {
+    if (!acc.savedGuides) acc.savedGuides = [];
+    const exists = acc.savedGuides.find(g => g.id === guide.id);
+    if (!exists) acc.savedGuides.unshift({ ...guide, savedAt: new Date().toISOString() });
+  });
+}
+
+function unsaveGuide(guideId) {
+  updateAccountData(acc => {
+    if (!acc.savedGuides) return;
+    acc.savedGuides = acc.savedGuides.filter(g => g.id !== guideId);
+  });
+}
+
+function isGuideSaved(guideId) {
+  return getSavedGuides().some(g => g.id === guideId);
+}
+
+function trackRecentGuide(guide) {
+  updateAccountData(acc => {
+    if (!acc.recentGuides) acc.recentGuides = [];
+    acc.recentGuides = acc.recentGuides.filter(g => g.id !== guide.id);
+    acc.recentGuides.unshift({ ...guide, viewedAt: new Date().toISOString() });
+    if (acc.recentGuides.length > 10) acc.recentGuides = acc.recentGuides.slice(0, 10);
+    // track total viewed count
+    acc.totalViewed = (acc.totalViewed || 0) + 1;
+  });
+}
+
+function getGuideId(catId, index) { return `${catId}__${index}`; }
+
+function renderSaveButton(catId, scenarioIndex, title) {
+  const guideId = getGuideId(catId, scenarioIndex);
+  const saved = isGuideSaved(guideId);
+  if (!currentUser) {
+    return `<button class="btn-save-guide" onclick="openAuthModal('signup')" title="Sign in to save this guide">🔖 Save this guide</button>`;
+  }
+  return `<button class="btn-save-guide${saved ? ' saved' : ''}" id="save-btn-${guideId}" onclick="toggleSaveGuide('${catId}',${scenarioIndex},'${title.replace(/'/g,"\\'")}')">
+    ${saved ? '✅ Saved' : '🔖 Save this guide'}
+  </button>`;
+}
+
+function toggleSaveGuide(catId, scenarioIndex, title) {
+  const guideId = getGuideId(catId, scenarioIndex);
+  const cat = DATA.categories.find(c => c.id === catId);
+  const guide = { id: guideId, catId, catTitle: cat ? cat.title : catId, catIcon: cat ? cat.icon : '🔧', scenarioIndex, title };
+  if (isGuideSaved(guideId)) {
+    unsaveGuide(guideId);
+  } else {
+    saveGuide(guide);
+  }
+  // refresh button
+  const btn = document.getElementById(`save-btn-${guideId}`);
+  if (btn) {
+    const nowSaved = isGuideSaved(guideId);
+    btn.className = 'btn-save-guide' + (nowSaved ? ' saved' : '');
+    btn.innerHTML = nowSaved ? '✅ Saved' : '🔖 Save this guide';
+  }
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────────────────────
+function renderDashboard() {
+  if (!currentUser) return;
+  const initials = currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('dash-avatar').textContent = initials;
+  document.getElementById('dash-greeting').textContent = `Hi, ${currentUser.name.split(' ')[0]} 👋`;
+  document.getElementById('dash-email-display').textContent = currentUser.email;
+
+  const saved = getSavedGuides();
+  const recent = getRecentGuides();
+  document.getElementById('stat-saved').textContent = saved.length;
+  document.getElementById('stat-viewed').textContent = recent.length;
+  const since = currentUser.since ? new Date(currentUser.since).toLocaleDateString('en-GB', {month:'short', year:'numeric'}) : '—';
+  document.getElementById('stat-member').textContent = since;
+
+  // Saved guides
+  const savedEl = document.getElementById('saved-guides-list');
+  if (saved.length === 0) {
+    savedEl.innerHTML = `<div class="empty-state"><div class="empty-icon">🔖</div><h3>No saved guides yet</h3><p>While reading a fix guide, tap "Save this guide" to bookmark it here for quick access later.</p><button class="btn-primary" onclick="renderAllCategories();showScreen('screen-categories')">Browse guides</button></div>`;
+  } else {
+    savedEl.innerHTML = `<div class="saved-list">${saved.map(g => `
+      <div class="saved-item">
+        <div class="saved-item-icon">${g.catIcon}</div>
+        <div class="saved-item-body">
+          <div class="saved-item-cat">${g.catTitle}</div>
+          <div class="saved-item-title">${g.title}</div>
+          <div class="saved-item-date">Saved ${new Date(g.savedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
+        </div>
+        <div class="saved-item-actions">
+          <button class="btn-saved-view" onclick="viewSavedGuide('${g.catId}',${g.scenarioIndex})">View →</button>
+          <button class="btn-saved-remove" onclick="removeSaved('${g.id}')">✕</button>
+        </div>
+      </div>
+    `).join('')}</div>`;
+  }
+
+  // Recent guides
+  const recentEl = document.getElementById('recent-guides-list');
+  if (recent.length === 0) {
+    recentEl.innerHTML = `<div class="empty-state"><div class="empty-icon">📖</div><h3>No guides viewed yet</h3><p>Guides you read will appear here so you can easily find them again.</p></div>`;
+  } else {
+    recentEl.innerHTML = `<div class="saved-list">${recent.map(g => `
+      <div class="saved-item">
+        <div class="saved-item-icon">${g.catIcon}</div>
+        <div class="saved-item-body">
+          <div class="saved-item-cat">${g.catTitle}</div>
+          <div class="saved-item-title">${g.title}</div>
+          <div class="saved-item-date">Viewed ${new Date(g.viewedAt).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>
+        </div>
+        <div class="saved-item-actions">
+          <button class="btn-saved-view" onclick="viewSavedGuide('${g.catId}',${g.scenarioIndex})">View →</button>
+        </div>
+      </div>
+    `).join('')}</div>`;
+  }
+}
+
+function viewSavedGuide(catId, scenarioIndex) {
+  showCategory(catId);
+  setTimeout(() => showFix(scenarioIndex), 60);
+}
+
+function removeSaved(guideId) {
+  unsaveGuide(guideId);
+  renderDashboard();
+}
+
+// Close modal on overlay click
+document.getElementById('auth-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeAuthModal();
+});
 
 // ── AI SEARCH ─────────────────────────────────────────────────────────────────
 function buildSearchIndex() {
@@ -1856,8 +2644,7 @@ Use these category IDs: no-hot-water, taps, no-heating, low-pressure, noisy-pipe
     suggestedCats.forEach(catId => {
       const cat = DATA.categories.find(c => c.id === catId);
       if (cat) {
-        const fn = cat.id === 'boiler-faults' ? `showBrands()` : `showCategory('${cat.id}')`;
-        actionHTML += `<button class="ai-action-btn" onclick="${fn};document.getElementById('ai-answer-panel').style.display='none'">${cat.icon} Browse ${cat.title}</button>`;
+        const fn = cat.id === 'boiler-faults' ? `showBrands()` : `showCategory('${cat.id}')`;        actionHTML += `<button class="ai-action-btn" onclick="${fn};document.getElementById('ai-answer-panel').style.display='none'">${cat.icon} Browse ${cat.title}</button>`;
       }
     });
     actionHTML += `<button class="ai-action-btn outline" onclick="document.getElementById('ai-answer-panel').style.display='none';document.getElementById('search-input').value=''">Close</button>`;
@@ -1909,6 +2696,8 @@ function submitContact() {
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
+loadUser();
+updateNavAuth();
 renderHome();
 initSearch();
 initCookieNotice();
