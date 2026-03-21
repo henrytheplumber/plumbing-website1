@@ -61,11 +61,11 @@ body {
 .nav-inner {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 0 24px;
-  height: 64px;
+  padding: 0 20px;
+  height: 60px;
   display: flex;
   align-items: center;
-  gap: 0;
+  justify-content: space-between;
 }
 .nav-brand {
   display: flex;
@@ -73,23 +73,23 @@ body {
   gap: 10px;
   cursor: pointer;
   text-decoration: none;
-  margin-right: auto;
+  flex-shrink: 0;
 }
 .nav-logo-icon {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   background: var(--sky);
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 17px;
   flex-shrink: 0;
 }
 .nav-logo-text {
   font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   color: #fff;
   letter-spacing: -0.01em;
 }
@@ -97,19 +97,21 @@ body {
   font-style: normal;
   color: var(--sky-light);
 }
+
+/* Desktop nav links */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 .nav-link {
   background: transparent;
   border: none;
   color: rgba(255,255,255,0.75);
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   font-weight: 500;
-  padding: 8px 14px;
+  padding: 8px 12px;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.15s;
@@ -123,12 +125,117 @@ body {
   background: var(--sky);
   color: #fff;
   font-weight: 600;
-  margin-left: 8px;
-  padding: 8px 18px;
+  margin-left: 6px;
+  padding: 8px 16px;
 }
 .nav-link.nav-signin:hover {
   background: var(--sky-light);
   color: var(--navy);
+}
+
+/* Hamburger button — hidden on desktop */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+  transition: all 0.25s ease;
+  transform-origin: center;
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile drawer */
+.nav-mobile-drawer {
+  display: none;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--navy);
+  z-index: 199;
+  overflow-y: auto;
+  padding: 12px 0 40px;
+  animation: drawerSlide 0.25s ease;
+}
+@keyframes drawerSlide {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.nav-mobile-drawer.open { display: block; }
+.nav-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  color: rgba(255,255,255,0.85);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 16px 24px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.nav-mobile-link:hover { background: rgba(255,255,255,0.07); color: #fff; }
+.nav-mobile-link:last-child { border-bottom: none; }
+.nav-mobile-link .mob-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  background: rgba(255,255,255,0.08);
+}
+.nav-mobile-link.signin-mobile {
+  margin: 16px 20px 0;
+  background: var(--sky);
+  color: #fff;
+  border-radius: 10px;
+  font-weight: 700;
+  border: none;
+  justify-content: center;
+  font-size: 1rem;
+}
+.nav-mobile-link.signin-mobile:hover { background: var(--sky-light); color: var(--navy); }
+.nav-mobile-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.07);
+  margin: 8px 0;
+}
+
+/* Hide desktop links / show hamburger on mobile */
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+/* Also shrink logo text on very small screens */
+@media (max-width: 360px) {
+  .nav-logo-text { font-size: 0.95rem; }
 }
 
 /* ── LAYOUT ── */
@@ -1883,6 +1990,434 @@ body {
   transition: background 0.15s;
 }
 .checker-entry-btn:hover { background: var(--sky-light); color: var(--navy); }
+
+/* ── HOMEOWNER GUIDES ── */
+.ho-hero {
+  background: linear-gradient(135deg, #0a1f3d 0%, #0f2744 40%, #163352 100%);
+  border-radius: 20px;
+  padding: 48px 44px 40px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.ho-hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 340px; height: 340px;
+  background: radial-gradient(circle, rgba(20,184,166,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ho-hero::after {
+  content: '';
+  position: absolute;
+  bottom: -50px; left: 20%;
+  width: 250px; height: 250px;
+  background: radial-gradient(circle, rgba(59,158,218,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.ho-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(20,184,166,0.15);
+  border: 1px solid rgba(20,184,166,0.3);
+  color: var(--teal-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 13px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+}
+.ho-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 14px;
+  max-width: 580px;
+}
+.ho-hero h1 em { font-style: italic; color: var(--teal-light); }
+.ho-hero p {
+  color: rgba(255,255,255,0.65);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 520px;
+  margin-bottom: 24px;
+}
+.ho-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ho-chip {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: rgba(255,255,255,0.8);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+/* Section hub cards */
+.ho-hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.ho-hub-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  padding: 26px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.ho-hub-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px;
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  transition: opacity 0.2s;
+  opacity: 0;
+}
+.ho-hub-card.teal::before  { background: var(--teal); }
+.ho-hub-card.sky::before   { background: var(--sky); }
+.ho-hub-card.amber::before { background: var(--amber); }
+.ho-hub-card.green::before { background: var(--green); }
+.ho-hub-card:hover { border-color: var(--sky); box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.ho-hub-card:hover::before { opacity: 1; }
+.ho-hub-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.ho-hub-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+.ho-hub-icon.teal  { background: #ccfbf1; }
+.ho-hub-icon.sky   { background: #dbeafe; }
+.ho-hub-icon.amber { background: #fef3c7; }
+.ho-hub-icon.green { background: #d1fae5; }
+.ho-hub-count {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.ho-hub-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.ho-hub-desc {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+.ho-hub-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.ho-hub-topic {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-mid);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+}
+.ho-hub-arrow {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  color: var(--border);
+  font-size: 1rem;
+  transition: color 0.15s, transform 0.15s;
+}
+.ho-hub-card:hover .ho-hub-arrow { color: var(--sky); transform: translateX(3px); }
+
+/* ── GUIDE DETAIL SCREEN ── */
+.guide-screen-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.guide-screen-icon {
+  width: 56px; height: 56px;
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem;
+  flex-shrink: 0;
+}
+
+/* Topic list */
+.topic-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.topic-item {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.18s;
+  box-shadow: var(--shadow);
+}
+.topic-item:hover {
+  border-color: var(--sky);
+  box-shadow: var(--shadow-hover);
+  transform: translateX(3px);
+}
+.topic-item-icon {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  background: var(--bg);
+}
+.topic-item-body { flex: 1; }
+.topic-item-title { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 2px; }
+.topic-item-desc  { font-size: 0.78rem; color: var(--text-muted); line-height: 1.4; }
+.topic-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+.topic-badge.essential { background: #dbeafe; color: #1d4ed8; }
+.topic-badge.helpful   { background: #d1fae5; color: #065f46; }
+.topic-badge.advanced  { background: #fef3c7; color: #92400e; }
+
+/* Guide article */
+.guide-article {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+.guide-article-header {
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  padding: 28px 32px;
+}
+.guide-article-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal-light);
+  margin-bottom: 8px;
+}
+.guide-article-header h2 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.guide-article-header p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.6; }
+.guide-article-body { padding: 28px 32px; }
+
+/* Info blocks inside articles */
+.info-block {
+  margin-bottom: 28px;
+  padding-bottom: 28px;
+  border-bottom: 1.5px solid var(--border);
+}
+.info-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+.info-block h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.info-block p {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.info-block p:last-child { margin-bottom: 0; }
+.info-block p strong { color: var(--text); }
+
+/* Valve / component visual cards */
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+.component-card {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  transition: all 0.18s;
+}
+.component-card:hover { border-color: var(--sky); background: #f0f8ff; }
+.component-card-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  display: block;
+}
+.component-card-name {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 5px;
+}
+.component-card-also {
+  font-size: 0.72rem;
+  color: var(--sky);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.component-card-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.component-card-tip {
+  margin-top: 10px;
+  padding: 8px 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 0.72rem;
+  color: var(--text-mid);
+  line-height: 1.4;
+}
+.component-card-tip strong { color: var(--teal); }
+
+/* Pro tip boxes */
+.pro-tip-box {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border: 1.5px solid #86efac;
+  border-left: 4px solid var(--green);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 0.85rem;
+  color: #14532d;
+  line-height: 1.6;
+}
+.pro-tip-box strong { color: var(--green); }
+.did-you-know-box {
+  background: linear-gradient(135deg, #eff6ff, #dbeafe);
+  border: 1.5px solid #93c5fd;
+  border-left: 4px solid var(--sky);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 0.85rem;
+  color: #1e3a5f;
+  line-height: 1.6;
+}
+.did-you-know-box strong { color: var(--sky); }
+.warning-note-box {
+  background: #fff7ed;
+  border: 1.5px solid #fed7aa;
+  border-left: 4px solid var(--amber);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 14px 0;
+  font-size: 0.85rem;
+  color: #7c2d12;
+  line-height: 1.6;
+}
+.warning-note-box strong { color: var(--amber); }
+
+/* Quick reference table */
+.quick-ref {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.82rem;
+}
+.quick-ref th {
+  background: var(--navy);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+.quick-ref th:first-child { border-radius: 8px 0 0 0; }
+.quick-ref th:last-child  { border-radius: 0 8px 0 0; }
+.quick-ref td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+  line-height: 1.5;
+}
+.quick-ref tr:last-child td { border-bottom: none; }
+.quick-ref tr:nth-child(even) td { background: var(--bg); }
+.quick-ref td:first-child { font-weight: 600; }
+
+/* Next up prompt */
+.guide-next-up {
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.guide-next-up p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 2px; }
+.guide-next-up strong { color: var(--text); font-size: 0.95rem; display: block; margin-bottom: 4px; }
+
+@media (max-width: 640px) {
+  .ho-hero { padding: 32px 22px 28px; }
+  .ho-hero h1 { font-size: 1.9rem; }
+  .guide-article-body { padding: 20px 18px; }
+  .guide-article-header { padding: 22px 18px; }
+  .component-grid { grid-template-columns: 1fr 1fr; }
+}
 </style>
 </head>
 <body>
@@ -1890,19 +2425,48 @@ body {
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-inner">
-    <div class="nav-brand" onclick="goHome()">
+    <div class="nav-brand" onclick="goHome();closeMobileNav()">
       <div class="nav-logo-icon">🔧</div>
       <div class="nav-logo-text">Plumbing<em>FaultFinder</em></div>
     </div>
+
+    <!-- Desktop links -->
     <div class="nav-links">
       <button class="nav-link" onclick="goHome()">Home</button>
-      <button class="nav-link" onclick="showCategoriesNav()">Categories</button>
+      <button class="nav-link" onclick="showCategoriesNav()">Fix Guides</button>
       <button class="nav-link" onclick="startChecker()">Symptom Checker</button>
+      <button class="nav-link" onclick="showScreen('screen-homeowner')">Homeowner Guides</button>
       <button class="nav-link" onclick="showScreen('screen-contact')">Contact</button>
       <button class="nav-link nav-signin" id="nav-auth-btn" onclick="handleAuthNav()">Sign In</button>
     </div>
+
+    <!-- Hamburger button (mobile) -->
+    <button class="nav-hamburger" id="nav-hamburger" onclick="toggleMobileNav()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Mobile drawer -->
+<div class="nav-mobile-drawer" id="nav-mobile-drawer">
+  <button class="nav-mobile-link" onclick="goHome();closeMobileNav()">
+    <span class="mob-icon">🏠</span> Home
+  </button>
+  <button class="nav-mobile-link" onclick="showCategoriesNav();closeMobileNav()">
+    <span class="mob-icon">📋</span> Fix Guides
+  </button>
+  <button class="nav-mobile-link" onclick="startChecker();closeMobileNav()">
+    <span class="mob-icon">🔍</span> Symptom Checker
+  </button>
+  <button class="nav-mobile-link" onclick="showScreen('screen-homeowner');closeMobileNav()">
+    <span class="mob-icon">📚</span> Homeowner Guides
+  </button>
+  <button class="nav-mobile-link" onclick="showScreen('screen-contact');closeMobileNav()">
+    <span class="mob-icon">✉️</span> Contact
+  </button>
+  <div class="nav-mobile-divider"></div>
+  <button class="nav-mobile-link signin-mobile" id="nav-auth-btn-mobile" onclick="handleAuthNav();closeMobileNav()">Sign In</button>
+</div>
 
 <div class="wrap">
 
@@ -2272,6 +2836,163 @@ body {
     <div style="margin-top:8px;">
       <button class="btn-primary" onclick="renderAllCategories();showScreen('screen-categories')">Browse all categories →</button>
     </div>
+  </div>
+
+  <!-- ═══ HOMEOWNER GUIDES HUB ═══ -->
+  <div class="screen" id="screen-homeowner">
+    <div class="ho-hero">
+      <div class="ho-eyebrow">📚 Homeowner Guides</div>
+      <h1>Understand your home.<br><em>Before you need to.</em></h1>
+      <p>No jargon, no assumed knowledge. These guides teach you how your plumbing and heating system actually works — what everything is called, where to find it, and what to tell a plumber when something goes wrong. Written by a qualified UK engineer.</p>
+      <div class="ho-hero-chips">
+        <span class="ho-chip">🎓 Written for complete beginners</span>
+        <span class="ho-chip">🔍 Know what to look for</span>
+        <span class="ho-chip">💰 Get more accurate quotes</span>
+        <span class="ho-chip">🚨 Be ready for emergencies</span>
+      </div>
+    </div>
+
+    <div class="section-label">Choose a topic</div>
+    <div class="ho-hub-grid">
+
+      <div class="ho-hub-card teal" onclick="showGuideSection('valves')">
+        <div class="ho-hub-card-top">
+          <div class="ho-hub-icon teal">🔧</div>
+          <span class="ho-hub-count">8 topics</span>
+        </div>
+        <div class="ho-hub-title">Valves & Stopcocks</div>
+        <div class="ho-hub-desc">Every valve in your home — what it does, where to find it, and when to use it. Essential knowledge for every homeowner.</div>
+        <div class="ho-hub-topics">
+          <span class="ho-hub-topic">Stopcock</span>
+          <span class="ho-hub-topic">Gate valve</span>
+          <span class="ho-hub-topic">Ball valve</span>
+          <span class="ho-hub-topic">TRV</span>
+          <span class="ho-hub-topic">Isolation valve</span>
+          <span class="ho-hub-topic">+ more</span>
+        </div>
+        <span class="ho-hub-arrow">›</span>
+      </div>
+
+      <div class="ho-hub-card sky" onclick="showGuideSection('boiler-system')">
+        <div class="ho-hub-card-top">
+          <div class="ho-hub-icon sky">🔥</div>
+          <span class="ho-hub-count">6 topics</span>
+        </div>
+        <div class="ho-hub-title">Your Boiler & Heating System</div>
+        <div class="ho-hub-desc">What type of system do you have? What do all the parts do? How do you know if something isn't right?</div>
+        <div class="ho-hub-topics">
+          <span class="ho-hub-topic">Combi vs system</span>
+          <span class="ho-hub-topic">Pressure gauge</span>
+          <span class="ho-hub-topic">Filling loop</span>
+          <span class="ho-hub-topic">Zone valves</span>
+          <span class="ho-hub-topic">Pump</span>
+        </div>
+        <span class="ho-hub-arrow">›</span>
+      </div>
+
+      <div class="ho-hub-card amber" onclick="showGuideSection('water-supply')">
+        <div class="ho-hub-card-top">
+          <div class="ho-hub-icon amber">💧</div>
+          <span class="ho-hub-count">5 topics</span>
+        </div>
+        <div class="ho-hub-title">Water Supply & Storage</div>
+        <div class="ho-hub-desc">Mains vs stored water, cold water tanks, unvented cylinders, water pressure and how it all connects.</div>
+        <div class="ho-hub-topics">
+          <span class="ho-hub-topic">Mains supply</span>
+          <span class="ho-hub-topic">Cold water tank</span>
+          <span class="ho-hub-topic">Hot water cylinder</span>
+          <span class="ho-hub-topic">Water meter</span>
+        </div>
+        <span class="ho-hub-arrow">›</span>
+      </div>
+
+      <div class="ho-hub-card green" onclick="showGuideSection('emergencies')">
+        <div class="ho-hub-card-top">
+          <div class="ho-hub-icon green">🚨</div>
+          <span class="ho-hub-count">5 topics</span>
+        </div>
+        <div class="ho-hub-title">Emergency Preparedness</div>
+        <div class="ho-hub-desc">What to do in a plumbing emergency — and more importantly, where everything is before the emergency happens.</div>
+        <div class="ho-hub-topics">
+          <span class="ho-hub-topic">Turn water off</span>
+          <span class="ho-hub-topic">Frozen pipes</span>
+          <span class="ho-hub-topic">Gas emergency</span>
+          <span class="ho-hub-topic">Burst pipe</span>
+        </div>
+        <span class="ho-hub-arrow">›</span>
+      </div>
+
+    </div>
+
+    <div class="cant-find" style="background:linear-gradient(135deg,#0f2744,#1a3a5c)">
+      <div>
+        <strong>Want a printable version?</strong>
+        <span>Download our homeowner reference guides as PDF — keep one near your stopcock.</span>
+      </div>
+      <button class="btn-primary" onclick="showScreen('screen-contact')">Coming Soon — Register Interest</button>
+    </div>
+  </div>
+
+  <!-- ═══ VALVES & STOPCOCKS GUIDE ═══ -->
+  <div class="screen" id="screen-guide-valves">
+    <button class="btn-back" onclick="showScreen('screen-homeowner')">← Back to Homeowner Guides</button>
+    <div class="guide-screen-header">
+      <div class="guide-screen-icon teal" style="background:#ccfbf1">🔧</div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--teal);margin-bottom:3px">Homeowner Guide</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400">Valves &amp; Stopcocks</h2>
+      </div>
+    </div>
+    <div class="section-label">Select a topic</div>
+    <div class="topic-list" id="topic-list-valves"></div>
+  </div>
+
+  <!-- ═══ BOILER & HEATING SYSTEM GUIDE ═══ -->
+  <div class="screen" id="screen-guide-boiler-system">
+    <button class="btn-back" onclick="showScreen('screen-homeowner')">← Back to Homeowner Guides</button>
+    <div class="guide-screen-header">
+      <div class="guide-screen-icon" style="background:#dbeafe;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem">🔥</div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--sky);margin-bottom:3px">Homeowner Guide</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400">Your Boiler &amp; Heating System</h2>
+      </div>
+    </div>
+    <div class="section-label">Select a topic</div>
+    <div class="topic-list" id="topic-list-boiler-system"></div>
+  </div>
+
+  <!-- ═══ WATER SUPPLY GUIDE ═══ -->
+  <div class="screen" id="screen-guide-water-supply">
+    <button class="btn-back" onclick="showScreen('screen-homeowner')">← Back to Homeowner Guides</button>
+    <div class="guide-screen-header">
+      <div class="guide-screen-icon" style="background:#fef3c7;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem">💧</div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--amber);margin-bottom:3px">Homeowner Guide</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400">Water Supply &amp; Storage</h2>
+      </div>
+    </div>
+    <div class="section-label">Select a topic</div>
+    <div class="topic-list" id="topic-list-water-supply"></div>
+  </div>
+
+  <!-- ═══ EMERGENCY GUIDE ═══ -->
+  <div class="screen" id="screen-guide-emergencies">
+    <button class="btn-back" onclick="showScreen('screen-homeowner')">← Back to Homeowner Guides</button>
+    <div class="guide-screen-header">
+      <div class="guide-screen-icon" style="background:#d1fae5;width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.7rem">🚨</div>
+      <div>
+        <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);margin-bottom:3px">Homeowner Guide</div>
+        <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;font-weight:400">Emergency Preparedness</h2>
+      </div>
+    </div>
+    <div class="section-label">Select a topic</div>
+    <div class="topic-list" id="topic-list-emergencies"></div>
+  </div>
+
+  <!-- ═══ GUIDE ARTICLE SCREEN ═══ -->
+  <div class="screen" id="screen-guide-article">
+    <button class="btn-back" id="guide-article-back">← Back</button>
+    <div id="guide-article-content"></div>
   </div>
 
 </div><!-- /wrap -->
@@ -2677,8 +3398,8 @@ function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  // update active nav
   document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+  closeMobileNav();
 }
 function goHome() { showScreen('screen-home'); }
 function goBack() { if (currentCat) showCategory(currentCat.id); else showScreen('screen-brands'); }
@@ -2686,6 +3407,35 @@ function showCategoriesNav() {
   renderAllCategories();
   showScreen('screen-categories');
 }
+// ── MOBILE NAV ────────────────────────────────────────────────────────────────
+function toggleMobileNav() {
+  const drawer = document.getElementById('nav-mobile-drawer');
+  const btn = document.getElementById('nav-hamburger');
+  const isOpen = drawer.classList.contains('open');
+  if (isOpen) {
+    drawer.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  } else {
+    drawer.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMobileNav() {
+  document.getElementById('nav-mobile-drawer').classList.remove('open');
+  document.getElementById('nav-hamburger').classList.remove('open');
+  document.body.style.overflow = '';
+}
+// Close drawer when tapping outside
+document.addEventListener('click', function(e) {
+  const drawer = document.getElementById('nav-mobile-drawer');
+  const hamburger = document.getElementById('nav-hamburger');
+  if (drawer.classList.contains('open') && !drawer.contains(e.target) && !hamburger.contains(e.target)) {
+    closeMobileNav();
+  }
+});
+
 // ── AUTH SYSTEM (localStorage-based demo) ────────────────────────────────────
 let currentUser = null;
 
@@ -2703,24 +3453,17 @@ function saveUser(u) {
 
 function updateNavAuth() {
   const btn = document.getElementById('nav-auth-btn');
+  const btnMob = document.getElementById('nav-auth-btn-mobile');
   if (!btn) return;
   if (currentUser) {
     const initials = currentUser.name ? currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2) : '?';
     btn.textContent = initials;
-    btn.style.borderRadius = '50%';
-    btn.style.width = '36px';
-    btn.style.height = '36px';
-    btn.style.padding = '0';
-    btn.style.fontWeight = '800';
-    btn.style.fontSize = '0.8rem';
+    btn.style.cssText = 'border-radius:50%;width:34px;height:34px;padding:0;font-weight:800;font-size:0.8rem;';
+    if (btnMob) btnMob.textContent = `My Account (${currentUser.name.split(' ')[0]})`;
   } else {
     btn.textContent = 'Sign In';
-    btn.style.borderRadius = '';
-    btn.style.width = '';
-    btn.style.height = '';
-    btn.style.padding = '';
-    btn.style.fontWeight = '';
-    btn.style.fontSize = '';
+    btn.style.cssText = '';
+    if (btnMob) btnMob.textContent = 'Sign In';
   }
 }
 
@@ -4341,6 +5084,322 @@ function showCategoryAndFix(catId, scenarioIndex) {
   showCategory(catId);
   setTimeout(() => showFix(scenarioIndex), 60);
 }
+
+// ── HOMEOWNER GUIDES DATA ─────────────────────────────────────────────────────
+
+const HOMEOWNER_SECTIONS = {
+  valves: {
+    screen: 'screen-guide-valves',
+    listId: 'topic-list-valves',
+    backScreen: 'screen-homeowner',
+    topics: [
+      { id:'stopcock', icon:'🔴', badge:'essential', title:'The Main Stopcock', desc:'The single most important thing to find in your home before you need it',
+        article:{ eyebrow:'Valves & Stopcocks', title:'The Main Stopcock — Your First Line of Defence',
+          intro:'The main internal stopcock is the single most important thing to locate in your home before an emergency. It controls all the mains cold water flowing into your property. Turn it off and every tap, toilet, and appliance immediately stops receiving water.',
+          blocks:[
+            { heading:'🔍 Where to find it', body:'In most UK properties the internal stopcock is under the kitchen sink — at the back of the cupboard where the cold supply pipe comes up through the floor. In flats it may be in an airing cupboard, under the bathroom sink, or in a communal area. Older properties sometimes have it under the floorboards near the front door.<br><br><strong>Do this now:</strong> Go and find yours. Open the cupboard under your kitchen sink and look for a valve on the cold water pipe.' },
+            { heading:'⚙️ How to operate it', body:'Traditional stopcocks have a round wheel handle — turn it clockwise (right) to close, anti-clockwise (left) to open. The old plumber\'s phrase is <strong>"righty tighty, lefty loosey"</strong> — it applies to almost every valve you\'ll ever encounter.<br><br>Quarter-turn ball valves have a flat lever handle. When the lever is <strong>in line with the pipe</strong> it\'s open. When it\'s <strong>across the pipe</strong> (90°) it\'s closed.' },
+            { heading:'⚠️ Exercise it yearly', body:'Stopcocks that are never turned seize up over time. The rubber washer hardens and the spindle corrodes in place — and when you need it in an emergency, it won\'t budge.<br><br><strong>Turn yours off and back on once a year.</strong> A quarter-turn each way is enough to keep it moving. Check for any drips around the spindle while you\'re there — a small drip now is a cheap fix, a seized stopcock during a burst pipe is a nightmare.' },
+            { heading:'🏠 The external stopcock', body:'There is also an external stopcock outside your boundary — usually in a small metal cover in the pavement or front garden. You need a long-handled stopcock key (around £10) to operate it. Your water supplier can also turn this off in an emergency.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Pro tip from an engineer:</strong> Before a plumber arrives for any job, always find your stopcock and make sure it works. It saves call-out time (which you pay for) and shows you know your home.' },
+          nextUp:{ label:'Isolation Valves — the stopcocks under sinks and toilets', topicId:'isolation-valve' }
+        }
+      },
+      { id:'isolation-valve', icon:'🔵', badge:'essential', title:'Isolation Valves', desc:'The small valves under every sink, toilet, and appliance — and why they matter',
+        article:{ eyebrow:'Valves & Stopcocks', title:'Isolation Valves — Individual Control for Every Fitting',
+          intro:'Isolation valves are small quarter-turn valves fitted on supply pipes under sinks, toilets, washing machines, and dishwashers. They let you shut off water to one fitting without turning off the whole house.',
+          blocks:[
+            { heading:'🔍 What they look like', body:'Isolation valves have a flat slot — you turn them with a flat-head screwdriver. They\'re usually chrome or brass, about thumb-sized, and sit inline on a pipe.<br><br><strong>Open (water flowing):</strong> The slot runs in line with the pipe.<br><strong>Closed (water off):</strong> The slot runs across the pipe (90°).<br><br>This is universal — it never changes.' },
+            { heading:'📍 Where to find them', body:'Under the kitchen sink — on both hot and cold supply pipes to the tap. Under the bathroom sink and basin. On the supply pipe behind or below every toilet cistern. On hot and cold inlets to washing machines and dishwashers. On the cold feed to your hot water cylinder.' },
+            { heading:'🛠 Why they matter for quotes', body:'When calling a plumber, being able to say "I\'ve already isolated the water under the sink" saves 10–15 minutes of their time — at £60–£100/hour that\'s real money. It also means the engineer can get straight to the repair.<br><br><strong>Before any tap or sink repair:</strong> check the isolation valve is there and that it actually works. Many older properties have isolation valves that are seized or missing entirely.' },
+            { heading:'❗ What if there\'s no isolation valve?', body:'If you don\'t have one under your sink, note it. When you next have a plumber doing any work, ask them to add one — they\'re cheap (£5–£10 in parts) and invaluable. Without one, any repair requires turning off the whole house supply.' }
+          ],
+          tip:{ type:'know', text:'<strong>Good to know:</strong> If you\'re getting quotes for a tap replacement or toilet fix, tell the plumber whether you have working isolation valves. It genuinely affects the time and price of the job.' },
+          nextUp:{ label:'Gate Valves — the older type found near tanks', topicId:'gate-valve' }
+        }
+      },
+      { id:'gate-valve', icon:'🟡', badge:'helpful', title:'Gate Valves', desc:'The older wheel-handled valves often found near tanks and cylinders',
+        article:{ eyebrow:'Valves & Stopcocks', title:'Gate Valves — The Old-Style Wheel Valves',
+          intro:'Gate valves are the older type of shutoff valve — recognisable by their wheel-shaped handle. You\'ll find them in older properties, usually near the cold water storage tank in the loft or on the supply to the hot water cylinder.',
+          blocks:[
+            { heading:'⚙️ How they work', body:'Unlike a ball valve that opens and closes with a quarter-turn, a gate valve works by raising or lowering a metal gate inside the valve body. Turn the wheel multiple times to open or close it — typically 4–8 full turns from open to shut. Turn clockwise to close, anti-clockwise to open.' },
+            { heading:'⚠️ The problem with gate valves', body:'Gate valves are notoriously unreliable when they haven\'t been operated for years. Many homeowners discover theirs doesn\'t work only when they urgently need it to.<br><br>They also can\'t be turned off under pressure — if the pipe has good pressure behind it, the gate can be very difficult to move.<br><br><strong>If a plumber tells you your gate valves need replacing with ball valves</strong> — this is legitimate advice. Ball valves are more reliable, easier to operate, and visually obvious when open or closed.' },
+            { heading:'📍 Where to find them', body:'Near the cold water storage tank in the loft — usually on the pipe feeding the hot water cylinder. In the airing cupboard near the hot water cylinder. On older properties with gravity-fed heating systems.' }
+          ],
+          tip:{ type:'warning', text:'<strong>Worth noting:</strong> If your gate valves haven\'t been turned in years, don\'t force them. A seized gate valve can snap the spindle if forced. Ask a plumber to assess and replace with modern ball valves.' },
+          nextUp:{ label:'TRVs — the valves on your radiators', topicId:'trv' }
+        }
+      },
+      { id:'trv', icon:'🌡️', badge:'essential', title:'Thermostatic Radiator Valves (TRVs)', desc:'The valves on your radiators — and how to stop them seizing',
+        article:{ eyebrow:'Valves & Stopcocks', title:'TRVs — What They Do and Why They Seize',
+          intro:'TRVs are the valves fitted to most radiators that automatically regulate hot water flow based on room temperature. They\'re the most common source of "my radiator isn\'t heating" calls — and most of the time the fix takes 30 seconds.',
+          blocks:[
+            { heading:'🔍 What a TRV looks like', body:'A TRV is the larger of the two valves at the bottom of your radiator. It has a numbered head (1–5, with a snowflake for frost protection). The numbers aren\'t degrees — they\'re settings. 3 is typically around 20°C.' },
+            { heading:'⚙️ How they work', body:'Inside the head is a wax or liquid capsule that expands as the room warms, pushing down a small pin inside the valve body, reducing hot water flow. When the room cools, the capsule contracts, the pin lifts, and hot water flows again. Entirely automatic — no electricity.' },
+            { heading:'⚠️ The seizing problem', body:'TRV pins regularly seize in the closed position — especially after summer. The pin corrodes slightly and gets stuck, leaving the radiator permanently cold.<br><br><strong>How to check and fix it:</strong> Remove the TRV head (usually unscrews or clips off). Underneath is a small silver or brass pin. Press it down with your finger — it should move freely and spring back up. If stuck, work it gently up and down. It usually frees within a minute.<br><br>This is the first thing any heating engineer checks.' },
+            { heading:'🔢 What the numbers mean', body:'❄️ Frost = ~7°C. 1 = ~10°C. 2 = ~15°C. 3 = ~20°C (typical). 4 = ~23°C. 5 = fully open. Don\'t set every room to 5 — the TRV works best when it can actually regulate flow.' },
+            { heading:'🛠 What to tell an engineer', body:'"My bedroom radiator is cold — I\'ve checked the TRV pin and it\'s free, and both valves are open." This tells the engineer it\'s not a stuck TRV and narrows it to a balancing issue, sludge, or airlock. You\'ve just saved 10–15 minutes of diagnostic time.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Engineer\'s tip:</strong> Every October before turning the heating on, go around every radiator and work each TRV pin up and down. Takes 5 minutes, prevents the most common heating callout of the season.' },
+          nextUp:{ label:'The Lockshield Valve — the other radiator valve', topicId:'lockshield' }
+        }
+      },
+      { id:'lockshield', icon:'🔒', badge:'helpful', title:'The Lockshield Valve', desc:'The capped valve on the other side of your radiator — and what it actually does',
+        article:{ eyebrow:'Valves & Stopcocks', title:'The Lockshield Valve — Balancing Your Heating',
+          intro:'Every radiator has two valves. The TRV on one side controls temperature. The lockshield on the other side has a plain plastic cap — and most homeowners never touch it. But it plays a crucial role in how well your system heats.',
+          blocks:[
+            { heading:'🔍 What it looks like', body:'The lockshield has a plain plastic cap (often white or grey). Remove the cap and underneath is a small spindle you turn with an adjustable spanner or lockshield key. It\'s intentionally not easy to accidentally adjust.' },
+            { heading:'⚙️ What it does', body:'The lockshield controls how much hot water flows through the radiator. By partially closing the lockshield on radiators nearest the boiler, more water is pushed to radiators further away. This is called <strong>balancing the system</strong>.<br><br>An unbalanced system is why some rooms are always too hot and others always cold.' },
+            { heading:'🛠 What to tell an engineer', body:'"My downstairs rooms get very hot but my bedroom radiators barely warm up — I think the system might need balancing." This is the correct technical description. A heating engineer will adjust lockshield valves across all radiators.' }
+          ],
+          tip:{ type:'know', text:'<strong>Good to know:</strong> If a lockshield valve is completely closed, the radiator won\'t heat up at all — even with the TRV fully open. If one radiator is cold and the TRV pin is free, check the lockshield is actually open.' },
+          nextUp:{ label:'Ball Valves inside your cistern or loft tank', topicId:'ballvalve-float' }
+        }
+      },
+      { id:'ballvalve-float', icon:'🔵', badge:'helpful', title:'Ball Valves & Float Valves', desc:'The valve inside your toilet cistern and loft tank',
+        article:{ eyebrow:'Valves & Stopcocks', title:'Ball Valves & Float Valves',
+          intro:'Ball valves (also called float valves or ballcock valves) are the automatic filling valves inside your toilet cistern and cold water storage tanks. They open when water level drops and close when it rises — entirely automatic.',
+          blocks:[
+            { heading:'⚙️ How they work', body:'A ball valve has a hollow plastic float on an arm. As water drains (when you flush), the float drops, pulling the arm and opening the valve. Water flows in. As the cistern refills, the float rises and eventually closes the valve. When the washer inside wears out, the valve doesn\'t close properly and water runs continuously into the overflow.' },
+            { heading:'🔍 Signs of a failing ball valve', body:'Water dripping from the overflow pipe on your outside wall. A continuous hissing after a toilet flush that never fully stops. Water level in the cistern above the overflow pipe.' },
+            { heading:'🛠 What to tell an engineer', body:'"My toilet overflow is dripping outside — I think the ball valve in the cistern might need a new washer or replacing." A plumber can fix this in 15–20 minutes.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Quick check:</strong> Lift the float arm upward with your finger. If the water stops running, the valve is working but the level is set too high. If water keeps running even with the arm lifted fully, the valve washer is worn.' },
+          nextUp:{ label:'Pressure Relief Valves — the boiler\'s safety valve', topicId:'prv' }
+        }
+      },
+      { id:'prv', icon:'⚠️', badge:'helpful', title:'Pressure Relief Valve (PRV)', desc:'Your boiler\'s critical safety valve — when to be concerned',
+        article:{ eyebrow:'Valves & Stopcocks', title:'Pressure Relief Valve — The Boiler\'s Safety Device',
+          intro:'The PRV is a critical safety device on sealed heating systems. It automatically opens to release water if system pressure exceeds a safe level, preventing dangerous over-pressurisation.',
+          blocks:[
+            { heading:'🔍 Where to find it', body:'Usually a brass valve fitted on the boiler or nearby pipework, with a small pipe running from it — discharging outside, into a drain, or into a bucket.' },
+            { heading:'⚙️ How it works', body:'The PRV opens at a set pressure — usually 3 bar. If system pressure rises above this, it releases water until pressure drops. <strong>You should never regularly see water dripping from the PRV discharge pipe.</strong> Regular dripping means there\'s an underlying pressure issue that needs investigation.' },
+            { heading:'🛠 What to tell an engineer', body:'"Water is dripping from the discharge pipe near my boiler regularly — I think the PRV might be operating." A Gas Safe engineer will check the expansion vessel, system pressure, and PRV itself.' }
+          ],
+          tip:{ type:'warning', text:'<strong>Important:</strong> Never replace or bypass a PRV yourself. It is a safety device. A weeping PRV means something else in the system needs attention. Always call a Gas Safe engineer.' },
+          nextUp:{ label:'The Filling Loop — how to repressurise your boiler', topicId:'filling-loop' }
+        }
+      },
+      { id:'filling-loop', icon:'🔄', badge:'essential', title:'The Filling Loop', desc:'How to repressurise your boiler yourself — the right way',
+        article:{ eyebrow:'Valves & Stopcocks', title:'The Filling Loop — Repressurising Your Boiler',
+          intro:'The filling loop is the device you use to add water to a sealed central heating system when boiler pressure has dropped. Knowing how to use it means you don\'t need to call an engineer every time pressure falls.',
+          blocks:[
+            { heading:'🔍 What it looks like', body:'Usually a short braided stainless steel hose with valves at each end — or permanently fitted with two small isolation valves on the boiler pipework. Some modern boilers have an integrated filling system with a single lever or key.' },
+            { heading:'⚙️ How to use it', body:'<strong>1.</strong> Check your pressure gauge — should be 1–1.5 bar when cold.<br><strong>2.</strong> Locate the filling loop. Open both valves (slot in line with pipe). You\'ll hear water entering.<br><strong>3.</strong> Watch the gauge. Stop at 1–1.5 bar.<br><strong>4.</strong> Close both valves fully.<br><strong>5.</strong> Press the boiler reset. It should fire up normally.' },
+            { heading:'❗ If pressure keeps dropping', body:'Repressurising once or twice a year is normal. If you\'re doing it monthly, there is a leak somewhere. This needs a plumber to investigate.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Engineer\'s advice:</strong> Always repressurise with the boiler cold (turned off, fully cooled). Adding cold water to a hot system is harder to gauge and can cause thermal shock.' },
+          nextUp:null
+        }
+      }
+    ]
+  },
+
+  'boiler-system': {
+    screen: 'screen-guide-boiler-system',
+    listId: 'topic-list-boiler-system',
+    backScreen: 'screen-homeowner',
+    topics: [
+      { id:'combi-vs-system', icon:'🔥', badge:'essential', title:'Combi vs System vs Conventional Boiler', desc:'Which type do you have — and what does it mean?',
+        article:{ eyebrow:'Boiler & Heating System', title:'Which Type of Boiler Do You Have?',
+          intro:'There are three main types of boiler used in UK homes. Knowing which you have is the first step to understanding your heating system — and makes an enormous difference when getting quotes.',
+          blocks:[
+            { heading:'⚙️ The three types at a glance', body:'<table class="quick-ref"><tr><th>Type</th><th>Hot water tank?</th><th>Cold water tank?</th><th>Best for</th></tr><tr><td>Combi boiler</td><td>No</td><td>No</td><td>Most homes, 1–2 bathrooms</td></tr><tr><td>System boiler</td><td>Yes (cylinder)</td><td>No</td><td>Larger homes, multiple bathrooms</td></tr><tr><td>Conventional</td><td>Yes (cylinder)</td><td>Yes (loft tank)</td><td>Older properties</td></tr></table>' },
+            { heading:'🔥 Combi Boiler', body:'The most common type in the UK. Provides both central heating and hot water directly from the mains — no storage tank or cylinder. Hot water is heated on demand as you open a tap.<br><br><strong>You have a combi if:</strong> You have no hot water cylinder and get instant hot water from taps.' },
+            { heading:'🪣 System Boiler', body:'Works with a separate hot water cylinder (usually in an airing cupboard). The boiler heats the cylinder which stores hot water. Cold water comes directly from the mains — no loft tank.<br><br><strong>You have a system boiler if:</strong> You have a cylinder in an airing cupboard but no cold water tank in the loft.' },
+            { heading:'🏠 Conventional Boiler', body:'The oldest type. Has both a hot water cylinder AND a cold water storage tank in the loft. All cold feeds (bathroom taps, toilet cisterns) come from the loft tank rather than directly from the mains.<br><br><strong>You have a conventional boiler if:</strong> You have a cylinder AND a tank in the loft, and your bathroom cold taps have lower pressure than the kitchen.' }
+          ],
+          tip:{ type:'know', text:'<strong>Why this matters for quotes:</strong> Saying "I have a combi boiler" vs "I have a system boiler with a cylinder" tells the engineer immediately what work is involved, what parts to bring, and how long the job will take.' },
+          nextUp:{ label:'The Pressure Gauge — reading it correctly', topicId:'pressure-gauge' }
+        }
+      },
+      { id:'pressure-gauge', icon:'📊', badge:'essential', title:'The Pressure Gauge', desc:'Reading your boiler pressure and knowing when it\'s wrong',
+        article:{ eyebrow:'Boiler & Heating System', title:'Reading Your Boiler Pressure Gauge',
+          intro:'The pressure gauge is one of the most important things to understand on your boiler. It tells you the water pressure inside your sealed central heating system.',
+          blocks:[
+            { heading:'📊 What the numbers mean', body:'<table class="quick-ref"><tr><th>Reading</th><th>What it means</th><th>What to do</th></tr><tr><td>Below 0.5 bar</td><td>Too low — boiler may not fire</td><td>Repressurise</td></tr><tr><td>1–1.5 bar</td><td>✅ Ideal (cold system)</td><td>Nothing needed</td></tr><tr><td>1.5–2 bar</td><td>Normal when warm</td><td>Normal</td></tr><tr><td>Above 3 bar</td><td>Too high</td><td>Call a Gas Safe engineer</td></tr></table>' },
+            { heading:'⚙️ Why pressure changes', body:'As water heats up it expands. A system reading 1.2 bar cold will read 1.8–2 bar when the heating has been running for an hour — completely normal. The expansion vessel inside the boiler absorbs this expansion. When the expansion vessel fails, pressure spikes dangerously when the system heats up.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Simple rule:</strong> Check your gauge when the system is cold (first thing in the morning). It should be between 1 and 1.5 bar. Below 1 or above 2.5 when cold means action is needed.' },
+          nextUp:{ label:'The Expansion Vessel', topicId:'expansion-vessel' }
+        }
+      },
+      { id:'expansion-vessel', icon:'🫙', badge:'helpful', title:'The Expansion Vessel', desc:'The part that absorbs pressure changes — and what happens when it fails',
+        article:{ eyebrow:'Boiler & Heating System', title:'The Expansion Vessel',
+          intro:'The expansion vessel absorbs the extra volume of water as it heats and expands. When it fails, boiler pressure fluctuates dramatically.',
+          blocks:[
+            { heading:'⚙️ What it does', body:'A pressurised metal tank (usually red, inside or near the boiler) with a rubber diaphragm and nitrogen gas charge. As water expands when heated, the vessel absorbs the extra volume and prevents pressure from rising dangerously.' },
+            { heading:'🔍 Signs of failure', body:'Pressure is correct when cold but rises to 3+ bar when the heating has been on 30–60 minutes. The PRV repeatedly discharges. You\'re repressurising frequently because the PRV keeps releasing water.<br><br>This pattern — high when hot, low when cold — is the classic sign of expansion vessel failure.' },
+            { heading:'🛠 What to tell an engineer', body:'"My boiler pressure is fine when cold but gets very high when the heating\'s been on — I think the expansion vessel might have failed." Expansion vessel replacement typically costs £150–£300 including labour.' }
+          ],
+          tip:{ type:'know', text:'<strong>Good to know:</strong> Expansion vessels have a valve (like a bicycle tyre valve). The gas pressure can be recharged in some cases — a Gas Safe engineer can check and recharge it before deciding whether full replacement is needed.' },
+          nextUp:{ label:'The Circulation Pump', topicId:'pump' }
+        }
+      },
+      { id:'pump', icon:'⚙️', badge:'helpful', title:'The Circulation Pump', desc:'What moves hot water around your home — and how to tell if it\'s seized',
+        article:{ eyebrow:'Boiler & Heating System', title:'The Circulation Pump',
+          intro:'The circulation pump pushes hot water from the boiler around your radiators and back again. Without it, heat simply doesn\'t move.',
+          blocks:[
+            { heading:'🔍 Where to find it', body:'On modern combi boilers, the pump is inside the casing. On system and conventional boilers it\'s often located separately — a cylindrical body with electrical connections on pipework near the boiler, often with a bleed screw on the front.' },
+            { heading:'⚙️ Signs the pump has seized', body:'Boiler fires normally but no radiators heat up. You can hear the boiler running but no water is moving. The pump motor is warm to the touch but silent or straining.<br><br>Pumps often seize after summer inactivity when the impeller locks solid with limescale or corrosion.' },
+            { heading:'🛠 The screwdriver trick', body:'There is a bleed screw on the front of most external pumps. With the power off, a plumber can insert a screwdriver and manually turn the impeller to free it — this works surprisingly often. Pump replacement typically costs £150–£350 including labour if it can\'t be freed.' }
+          ],
+          tip:{ type:'pro', text:'<strong>To prevent seizure:</strong> Run your heating briefly in summer — even 15 minutes in June and July. This keeps the pump moving and prevents corrosion. One of the most effective maintenance habits you can build.' },
+          nextUp:null
+        }
+      }
+    ]
+  },
+
+  'water-supply': {
+    screen: 'screen-guide-water-supply',
+    listId: 'topic-list-water-supply',
+    backScreen: 'screen-homeowner',
+    topics: [
+      { id:'mains-supply', icon:'💧', badge:'essential', title:'How Mains Water Reaches Your Home', desc:'From the water main to your tap — how the supply works',
+        article:{ eyebrow:'Water Supply & Storage', title:'How Mains Water Reaches Your Home',
+          intro:'Understanding how your water supply works helps you diagnose problems faster and describe them accurately to a plumber or water supplier.',
+          blocks:[
+            { heading:'🔍 The journey from street to tap', body:'Water travels from the water company\'s main (under the street) through a service pipe into your property. At the boundary there is an external stopcock — the water company\'s responsibility. From there, the service pipe runs to your internal stopcock (your responsibility), usually under the kitchen sink.<br><br>From the internal stopcock, cold water branches: directly to the kitchen cold tap (always from the mains — for drinking), and either directly to all other cold outlets (modern) or to a cold water storage tank in the loft (older properties).' },
+            { heading:'🏠 Mains fed vs tank fed', body:'<strong>Mains fed (direct):</strong> All cold outlets receive cold water directly from the mains. Standard in modern properties with combi or system boilers. Consistent pressure throughout.<br><br><strong>Tank fed (indirect):</strong> Older properties use a loft tank to feed bathroom cold taps and toilet cisterns. The kitchen cold tap is still mains fed (for drinking). Tank-fed systems have lower pressure in bathrooms.' },
+            { heading:'🛠 Why it matters', body:'When describing a problem: "My bathroom cold tap has low pressure but the kitchen is fine" means different things on mains vs tank-fed. On tank-fed, lower bathroom pressure is often normal. On mains-fed, there\'s a restriction somewhere.' }
+          ],
+          tip:{ type:'know', text:'<strong>Important:</strong> Always drink from the kitchen cold tap — not from bathroom taps or tank-fed supplies. The kitchen cold is always direct from the mains and safe for drinking.' },
+          nextUp:{ label:'The Cold Water Storage Tank', topicId:'cold-tank' }
+        }
+      },
+      { id:'cold-tank', icon:'🪣', badge:'helpful', title:'The Cold Water Storage Tank', desc:'What the tank in your loft does — and how to spot problems',
+        article:{ eyebrow:'Water Supply & Storage', title:'The Cold Water Storage Tank',
+          intro:'Not all homes have one — but if yours is older, there may be a large tank in the loft feeding your bathroom cold supplies.',
+          blocks:[
+            { heading:'🔍 What it is and does', body:'Usually a rectangular black, blue, or grey plastic tank in the loft on a platform. It stores cold water and feeds bathroom cold taps, toilet cisterns, and the hot water cylinder. It refills from the mains via a ball valve inside. It should have a lid, be insulated, and have an overflow pipe outside.' },
+            { heading:'⚠️ Signs of a problem', body:'Water dripping from an overflow pipe on the outside wall at loft level — the ball valve isn\'t shutting off. No cold water to bathroom taps while the kitchen still works — the ball valve may be stuck closed. A green or brown tinge to bathroom tap water — the tank may be contaminated.' },
+            { heading:'🛠 What to tell an engineer', body:'"I have a cold water storage tank in the loft — the overflow pipe outside is dripping and I think the ball valve might need replacing." A plumber can access the loft and fix this quickly.' }
+          ],
+          tip:{ type:'warning', text:'<strong>Worth knowing:</strong> Cold water tanks should be inspected and cleaned every few years. In older properties, ask a plumber to check the condition — contaminated stored water can be a health concern.' },
+          nextUp:{ label:'The Hot Water Cylinder', topicId:'hot-cylinder' }
+        }
+      },
+      { id:'hot-cylinder', icon:'🌡️', badge:'helpful', title:'The Hot Water Cylinder', desc:'Vented vs unvented — understanding stored hot water',
+        article:{ eyebrow:'Water Supply & Storage', title:'The Hot Water Cylinder',
+          intro:'If you have a system or conventional boiler, your hot water is stored in a cylinder — usually in an airing cupboard.',
+          blocks:[
+            { heading:'⚙️ Vented vs unvented', body:'<strong>Vented cylinder:</strong> Fed from the cold water storage tank in the loft. Lower (gravity) pressure. Has a copper expansion pipe running up over the loft tank. Common in older properties. Simpler, fewer safety concerns.<br><br><strong>Unvented cylinder:</strong> Fed directly from the mains. High pressure — same as your kitchen cold tap. Has multiple safety devices (PRV, temperature relief valve, expansion vessel). Must be installed and serviced by a qualified engineer.' },
+            { heading:'🌡️ The cylinder thermostat', body:'On the side of your cylinder is a dial — the cylinder thermostat. It should always be set to <strong>60°C</strong>. This is the temperature at which Legionella bacteria is killed. Setting it lower to save energy is not recommended for health reasons.' },
+            { heading:'🛠 What to tell an engineer', body:'"I have a vented hot water cylinder — it\'s not heating up and the thermostat is set to 60°C." vs "I have an unvented cylinder — the pressure seems low." The distinction matters enormously for how a job is approached and quoted.' }
+          ],
+          tip:{ type:'pro', text:'<strong>Annual tip:</strong> Once a year, run your cylinder at a higher temperature (65–70°C) for a couple of hours to kill any accumulated bacteria. This is called a thermal disinfection cycle. Your plumber can set this up.' },
+          nextUp:null
+        }
+      }
+    ]
+  },
+
+  emergencies: {
+    screen: 'screen-guide-emergencies',
+    listId: 'topic-list-emergencies',
+    backScreen: 'screen-homeowner',
+    topics: [
+      { id:'turn-water-off', icon:'🚨', badge:'essential', title:'How to Turn Your Water Off in an Emergency', desc:'The most important thing to know — before you need to know it',
+        article:{ eyebrow:'Emergency Preparedness', title:'Turning Your Water Off in an Emergency',
+          intro:'In a water emergency, every second counts. Knowing exactly where your stopcock is and how to operate it can be the difference between a manageable problem and thousands of pounds of water damage.',
+          blocks:[
+            { heading:'🚨 Do this right now', body:'Find your internal stopcock. Almost certainly under the kitchen sink — look at the back of the cupboard for a valve on a pipe coming up through the floor.<br><br><strong>Make sure it works.</strong> Turn it clockwise until closed, then back open. If it\'s stiff or won\'t move — get a plumber to replace it before you need it in an emergency.<br><br><strong>Tell everyone in your household where it is.</strong>' },
+            { heading:'🏠 What to turn off and in what order', body:'<strong>If water is flooding:</strong><br>1. Turn off the internal stopcock immediately.<br>2. Turn off the electricity at the consumer unit if water is near electrics.<br>3. Open all cold taps to drain the system faster.<br>4. Call a plumber.<br><br><strong>If it\'s a slow leak:</strong><br>1. Use the isolation valve for that fitting if accessible.<br>2. If not, use the main stopcock.<br>3. Take photos before calling anyone.' },
+            { heading:'📋 Your emergency reference', body:'Write this down and keep it near your stopcock:<br><br>Internal stopcock location: _______________<br>External stopcock location: _______________<br>Plumber\'s emergency number: _______________<br>Water supplier emergency line: (on your bill)<br>National Gas Emergency: <strong>0800 111 999</strong>' }
+          ],
+          tip:{ type:'warning', text:'<strong>⚠️ Gas smell?</strong> Do NOT turn anything electrical on or off. Do NOT use a naked flame. Open windows and doors. Leave the property immediately. Call <strong>0800 111 999</strong> from outside. Do not return until told it is safe.' },
+          nextUp:{ label:'Frozen Pipes — how to thaw them safely', topicId:'frozen-pipes' }
+        }
+      },
+      { id:'frozen-pipes', icon:'🥶', badge:'helpful', title:'Frozen Pipes', desc:'How to safely thaw a frozen pipe — and prevent it happening again',
+        article:{ eyebrow:'Emergency Preparedness', title:'Frozen Pipes — Thawing Safely',
+          intro:'When temperatures drop below freezing, exposed pipes can freeze. The real danger is when they thaw — the ice expands when freezing and can crack the pipe, and the leak only appears when it melts.',
+          blocks:[
+            { heading:'🔍 How to tell if a pipe is frozen', body:'No water from a specific tap or group of taps after a cold night. The boiler may show a fault code if the condensate pipe has frozen (common in modern boilers). The affected pipe or area around it may be visibly frosted.' },
+            { heading:'🌡️ How to thaw it safely', body:'<strong>Turn off the main stopcock first</strong> — so if the pipe has cracked, water doesn\'t flood when it thaws.<br><br>Apply warm (not boiling) water in a cloth around the frozen section. Work from the tap end toward the stopcock — this lets the thawing water escape.<br><br>A hairdryer on a low setting works well on accessible pipes. Never use a blowtorch or naked flame.<br><br><strong>For a frozen condensate pipe:</strong> Pour warm water over the external section and the boiler will usually restart after a reset.' },
+            { heading:'🛡️ Prevention', body:'Insulate all pipes in unheated spaces — loft, garage, pipes on outside walls. Keep heating on low during cold spells even when away. Open the loft hatch slightly on very cold nights to allow warm air to rise. Drain outdoor taps before winter and close their indoor isolation valves.' }
+          ],
+          tip:{ type:'pro', text:'<strong>After thawing:</strong> Always check carefully for any signs of cracking or weeping at joints. A pipe that has frozen may be weakened even if it didn\'t visibly crack.' },
+          nextUp:{ label:'Burst Pipe Emergency — what to do right now', topicId:'burst-pipe-emergency' }
+        }
+      },
+      { id:'burst-pipe-emergency', icon:'💥', badge:'essential', title:'Burst Pipe — What to Do Right Now', desc:'Step by step — the first 5 minutes after a pipe bursts',
+        article:{ eyebrow:'Emergency Preparedness', title:'Burst Pipe — The First 5 Minutes',
+          intro:'A burst pipe is one of the most stressful home emergencies. But acting quickly and in the right order limits damage dramatically.',
+          blocks:[
+            { heading:'⚡ The immediate steps', body:'<strong>1.</strong> Turn off the main stopcock immediately — under the kitchen sink, clockwise to close.<br><br><strong>2.</strong> Turn off the electricity at the consumer unit if water is near electrics.<br><br><strong>3.</strong> Open all cold taps to drain remaining water faster.<br><br><strong>4.</strong> If you have a loft tank — flush all toilets several times to empty it.<br><br><strong>5.</strong> Catch as much water as possible with buckets and towels.<br><br><strong>6.</strong> Call an emergency plumber.<br><br><strong>7.</strong> Photograph everything before cleanup for your insurance claim.' },
+            { heading:'🩹 Temporary fixes while waiting', body:'Self-amalgamating tape can slow a minor leak temporarily. Pipe repair clamps can hold a burst together for hours. These are emergency measures only — the pipe needs proper repair.' },
+            { heading:'📋 After the repair', body:'Contact your home insurer as soon as possible — most policies cover trace and access (finding the leak) and damage caused by the water. Keep all receipts. Get a written invoice from your plumber describing the fault and work done.' }
+          ],
+          tip:{ type:'warning', text:'<strong>Don\'t wait:</strong> Even a small burst pipe releases around 400 litres an hour. A 30-minute delay searching for the stopcock can mean thousands of pounds of additional damage.' },
+          nextUp:null
+        }
+      }
+    ]
+  }
+};
+
+// ── Homeowner Guide Rendering ─────────────────────────────────────────────────
+let currentGuideSection = null;
+
+function showGuideSection(sectionId) {
+  const section = HOMEOWNER_SECTIONS[sectionId];
+  if (!section) return;
+  currentGuideSection = sectionId;
+  const list = document.getElementById(section.listId);
+  if (list) {
+    list.innerHTML = section.topics.map((t, i) => {
+      const badgeClass = { essential:'essential', helpful:'helpful', advanced:'advanced' }[t.badge] || 'helpful';
+      const badgeLabel = { essential:'⭐ Essential', helpful:'✅ Helpful', advanced:'🔧 Advanced' }[t.badge] || '';
+      return `<div class="topic-item" onclick="showGuideArticle('${sectionId}',${i})">
+        <div class="topic-item-icon">${t.icon}</div>
+        <div class="topic-item-body">
+          <div class="topic-item-title">${t.title}</div>
+          <div class="topic-item-desc">${t.desc}</div>
+        </div>
+        <span class="topic-badge ${badgeClass}">${badgeLabel}</span>
+      </div>`;
+    }).join('');
+  }
+  showScreen(section.screen);
+}
+
+function showGuideArticle(sectionId, topicIndex) {
+  const section = HOMEOWNER_SECTIONS[sectionId];
+  if (!section) return;
+  const topic = section.topics[topicIndex];
+  if (!topic) return;
+  const a = topic.article;
+  const sectionNames = { valves:'Valves & Stopcocks', 'boiler-system':'Boiler & Heating', 'water-supply':'Water Supply', emergencies:'Emergency Guides' };
+  const backBtn = document.getElementById('guide-article-back');
+  if (backBtn) { backBtn.textContent = `← Back to ${sectionNames[sectionId] || 'Homeowner Guides'}`; backBtn.onclick = () => showGuideSection(sectionId); }
+  const tipClass = { pro:'pro-tip-box', know:'did-you-know-box', warning:'warning-note-box' }[a.tip?.type] || 'did-you-know-box';
+  const tipHtml = a.tip ? `<div class="${tipClass}">${a.tip.text}</div>` : '';
+  let nextHtml = '';
+  if (a.nextUp) {
+    const nextSection = HOMEOWNER_SECTIONS[sectionId];
+    const nextIdx = nextSection ? nextSection.topics.findIndex(t => t.id === a.nextUp.topicId) : -1;
+    if (nextIdx >= 0) nextHtml = `<div class="guide-next-up"><div><p>Up next in this guide</p><strong>${a.nextUp.label}</strong></div><button class="btn-primary" onclick="showGuideArticle('${sectionId}',${nextIdx})">Read next →</button></div>`;
+  }
+  document.getElementById('guide-article-content').innerHTML = `
+    <div class="guide-article">
+      <div class="guide-article-header">
+        <div class="guide-article-eyebrow">${a.eyebrow}</div>
+        <h2>${a.title}</h2>
+        <p>${a.intro}</p>
+      </div>
+      <div class="guide-article-body">
+        ${a.blocks.map(b => `<div class="info-block"><h3>${b.heading}</h3><p>${b.body}</p></div>`).join('')}
+        ${tipHtml}
+      </div>
+    </div>
+    ${nextHtml}
+  `;
+  showScreen('screen-guide-article');
+}
+
 loadUser();
 updateNavAuth();
 renderHome();
