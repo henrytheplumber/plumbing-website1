@@ -238,6 +238,403 @@ body {
   .nav-logo-text { font-size: 0.95rem; }
 }
 
+/* ── WAS THIS HELPFUL ── */
+.helpful-bar {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-top: 24px;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.helpful-bar.voted { background: var(--bg); }
+.helpful-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+.helpful-btns { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 0; }
+.helpful-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--bg);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  padding: 10px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.18s;
+}
+.helpful-btn:hover { border-color: var(--sky); color: var(--sky); background: #f0f8ff; }
+.helpful-btn.yes:hover, .helpful-btn.yes.active { border-color: var(--green); color: var(--green); background: #f0fdf4; }
+.helpful-btn.no:hover, .helpful-btn.no.active  { border-color: var(--red); color: var(--red); background: #fff5f5; }
+.helpful-thanks {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  display: none;
+}
+.helpful-thanks.show { display: block; }
+.helpful-contact-prompt {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: none;
+}
+.helpful-contact-prompt.show { display: block; }
+.helpful-contact-prompt a {
+  color: var(--sky);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+.helpful-contact-prompt a:hover { text-decoration: underline; }
+
+/* email contact mini form */
+.contact-quick-form {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-top: 12px;
+  display: none;
+  animation: fadeUp 0.25s ease;
+}
+.contact-quick-form.show { display: block; }
+.contact-quick-form h4 {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+.contact-quick-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.contact-quick-form input,
+.contact-quick-form textarea {
+  width: 100%;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  padding: 9px 12px;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+  margin-bottom: 8px;
+  resize: vertical;
+}
+.contact-quick-form input:focus,
+.contact-quick-form textarea:focus { border-color: var(--sky); background: #fff; }
+.contact-quick-form .btn-quick-send {
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.contact-quick-form .btn-quick-send:hover { background: var(--navy-mid); }
+.contact-quick-success {
+  color: var(--green);
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: none;
+  margin-top: 8px;
+}
+
+/* manufacturer helpline box */
+.manufacturer-helpline {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 1.5px solid #bae6fd;
+  border-radius: 12px;
+  padding: 18px 20px;
+  margin-top: 16px;
+}
+.manufacturer-helpline h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sky);
+  margin-bottom: 12px;
+}
+.helpline-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 8px;
+}
+.helpline-item {
+  background: #fff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.helpline-brand { font-size: 0.8rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.helpline-number { font-size: 0.82rem; color: var(--sky); font-weight: 600; }
+.helpline-link { font-size: 0.72rem; color: var(--text-muted); }
+.helpline-link a { color: var(--sky); text-decoration: none; }
+.helpline-link a:hover { text-decoration: underline; }
+.helpline-disclaimer {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 10px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* ── COST ESTIMATOR — COMING SOON ── */
+.coming-soon-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, #1a3a5c 100%);
+  border-radius: 20px;
+  padding: 56px 44px;
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.coming-soon-hero::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(59,158,218,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(245,158,11,0.15);
+  border: 1px solid rgba(245,158,11,0.35);
+  color: var(--amber-light);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+.coming-soon-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.4rem;
+  color: #fff;
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+.coming-soon-hero h1 em { font-style: italic; color: var(--sky-light); }
+.coming-soon-hero p { color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 480px; margin: 0 auto 28px; line-height: 1.65; }
+.cs-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.cs-preview-card {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 16px;
+  text-align: left;
+  box-shadow: var(--shadow);
+}
+.cs-preview-card .cs-icon { font-size: 1.5rem; margin-bottom: 8px; }
+.cs-preview-card .cs-job { font-size: 0.88rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.cs-preview-card .cs-range { font-size: 0.8rem; color: var(--text-muted); }
+.cs-preview-card .cs-range strong { color: var(--sky); }
+.cs-notify-box {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 480px;
+  margin: 0 auto;
+  box-shadow: var(--shadow);
+}
+.cs-notify-box h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+.cs-notify-box p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 16px; line-height: 1.5; }
+.cs-notify-row { display: flex; gap: 8px; }
+.cs-notify-row input {
+  flex: 1;
+  background: var(--bg);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  padding: 10px 14px;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.cs-notify-row input:focus { border-color: var(--sky); }
+.cs-notify-row button {
+  background: var(--sky);
+  color: #fff;
+  border: none;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+.cs-notify-row button:hover { background: #2a8bc7; }
+.cs-notify-success { color: var(--green); font-size: 0.85rem; font-weight: 600; display: none; margin-top: 8px; }
+
+/* ── FAQ PAGE ── */
+.faq-hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 20px;
+  padding: 44px 40px 36px;
+  margin-bottom: 36px;
+  position: relative;
+  overflow: hidden;
+}
+.faq-hero::before {
+  content:'';
+  position:absolute;
+  top:-60px;right:-60px;
+  width:280px;height:280px;
+  background:radial-gradient(circle,rgba(59,158,218,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.faq-hero h1 {
+  font-family: 'DM Serif Display', serif;
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.15;
+}
+.faq-hero h1 em { font-style: italic; color: var(--sky-light); }
+.faq-hero p { color: rgba(255,255,255,0.65); font-size: 0.95rem; max-width: 520px; line-height: 1.6; }
+
+.faq-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.faq-filter-btn {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  color: var(--text-mid);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.15s;
+  box-shadow: var(--shadow);
+}
+.faq-filter-btn:hover, .faq-filter-btn.active {
+  background: var(--sky);
+  border-color: var(--sky);
+  color: #fff;
+}
+.faq-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 32px; }
+.faq-item {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: border-color 0.15s;
+}
+.faq-item:hover { border-color: var(--sky); }
+.faq-item.open { border-color: var(--sky); }
+.faq-question {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  cursor: pointer;
+  user-select: none;
+}
+.faq-q-icon { font-size: 1.1rem; flex-shrink: 0; }
+.faq-q-text { flex: 1; font-size: 0.92rem; font-weight: 600; color: var(--text); line-height: 1.4; }
+.faq-q-cat {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--sky);
+  background: #dbeafe;
+  padding: 3px 8px;
+  border-radius: 20px;
+  flex-shrink: 0;
+  display: none;
+}
+.faq-q-arrow {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+.faq-item.open .faq-q-arrow { transform: rotate(90deg); color: var(--sky); }
+.faq-answer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.2s;
+}
+.faq-item.open .faq-answer { max-height: 800px; padding-bottom: 18px; }
+.faq-answer p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 8px; }
+.faq-answer p:last-child { margin-bottom: 0; }
+.faq-answer p strong { color: var(--text); }
+.faq-answer a { color: var(--sky); text-decoration: none; cursor: pointer; font-weight: 600; }
+.faq-answer a:hover { text-decoration: underline; }
+.faq-divider { height: 1px; background: var(--border); margin: 0 20px; }
+
+/* ── TERMS OF SERVICE ── */
+.tos-section {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1.5px solid var(--border);
+}
+.tos-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+.tos-section h2 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--sky);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.tos-section p, .tos-section li {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 8px;
+}
+.tos-section ul { padding-left: 20px; }
+.tos-section li { margin-bottom: 4px; }
+.tos-last-updated {
+  display: inline-block;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
 /* ── LAYOUT ── */
 .wrap {
   max-width: 1100px;
@@ -2461,6 +2858,12 @@ body {
   <button class="nav-mobile-link" onclick="showScreen('screen-homeowner');closeMobileNav()">
     <span class="mob-icon">📚</span> Homeowner Guides
   </button>
+  <button class="nav-mobile-link" onclick="renderFaq();showScreen('screen-faq');closeMobileNav()">
+    <span class="mob-icon">❓</span> FAQ
+  </button>
+  <button class="nav-mobile-link" onclick="showScreen('screen-cost-estimator');closeMobileNav()">
+    <span class="mob-icon">💷</span> Cost Estimator
+  </button>
   <button class="nav-mobile-link" onclick="showScreen('screen-contact');closeMobileNav()">
     <span class="mob-icon">✉️</span> Contact
   </button>
@@ -2995,6 +3398,140 @@ body {
     <div id="guide-article-content"></div>
   </div>
 
+  <!-- ═══ COST ESTIMATOR — COMING SOON ═══ -->
+  <div class="screen" id="screen-cost-estimator">
+    <button class="btn-back" onclick="goHome()">← Back to Home</button>
+    <div class="coming-soon-hero">
+      <div class="cs-badge">🚧 Coming Soon</div>
+      <h1>How much should<br><em>your repair cost?</em></h1>
+      <p>Our interactive cost estimator will give you a realistic price range for any plumbing or heating job — broken down by region, so you know exactly what to expect before an engineer arrives.</p>
+      <button class="btn-primary" onclick="document.getElementById('cs-notify-email').focus()">Notify me when it launches →</button>
+    </div>
+
+    <div class="section-label">What we're building</div>
+    <div class="cs-preview-grid">
+      <div class="cs-preview-card"><div class="cs-icon">🔥</div><div class="cs-job">Boiler service</div><div class="cs-range">From <strong>£80–£120</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">⚡</div><div class="cs-job">Boiler replacement</div><div class="cs-range">From <strong>£1,800–£3,500</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">🔆</div><div class="cs-job">Power flush</div><div class="cs-range">From <strong>£300–£600</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">🚽</div><div class="cs-job">Toilet replacement</div><div class="cs-range">From <strong>£150–£350</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">🔩</div><div class="cs-job">Tap replacement</div><div class="cs-range">From <strong>£80–£180</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">🛁</div><div class="cs-job">Drain unblock</div><div class="cs-range">From <strong>£60–£150</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">💧</div><div class="cs-job">Leak repair</div><div class="cs-range">From <strong>£80–£250</strong></div></div>
+      <div class="cs-preview-card"><div class="cs-icon">🚿</div><div class="cs-job">Shower installation</div><div class="cs-range">From <strong>£200–£500</strong></div></div>
+    </div>
+
+    <div class="cs-notify-box">
+      <h3>Get notified when it launches</h3>
+      <p>Leave your email and we'll let you know as soon as the cost estimator goes live — free to use, no account needed.</p>
+      <div class="cs-notify-row">
+        <input type="email" id="cs-notify-email" placeholder="your@email.com">
+        <button onclick="submitCsNotify()">Notify me</button>
+      </div>
+      <div class="cs-notify-success" id="cs-notify-success">✅ You're on the list — we'll let you know!</div>
+    </div>
+  </div>
+
+  <!-- ═══ FAQ PAGE ═══ -->
+  <div class="screen" id="screen-faq">
+    <button class="btn-back" onclick="goHome()">← Back to Home</button>
+    <div class="faq-hero">
+      <div class="ho-eyebrow" style="background:rgba(59,158,218,0.15);border-color:rgba(59,158,218,0.3);color:var(--sky-light)">❓ Frequently Asked Questions</div>
+      <h1>Common questions,<br><em>straight answers.</em></h1>
+      <p>Answers to the most common plumbing and heating questions — written by a qualified UK plumber. No jargon, no waffle.</p>
+    </div>
+    <div class="faq-filter-bar" id="faq-filter-bar"></div>
+    <div class="faq-list" id="faq-list"></div>
+    <div class="cant-find">
+      <div>
+        <strong>Your question isn't here?</strong>
+        <span>Use the Symptom Checker or send us your question directly.</span>
+      </div>
+      <button class="btn-primary" onclick="showScreen('screen-contact')">Ask a Question →</button>
+    </div>
+  </div>
+
+  <!-- ═══ TERMS OF SERVICE ═══ -->
+  <div class="screen" id="screen-tos">
+    <button class="btn-back" onclick="goHome()">← Back to Home</button>
+    <div style="max-width:720px">
+      <div class="page-header">
+        <h1>Terms of <em>Service</em></h1>
+        <p>Please read these terms carefully before using PlumbingFaultFinder.co.uk.</p>
+      </div>
+      <span class="tos-last-updated">Last updated: March 2026</span>
+
+      <div class="tos-section">
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing or using PlumbingFaultFinder.co.uk ("the Site"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the Site. We reserve the right to update these terms at any time, and continued use of the Site constitutes acceptance of any changes.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>2. Nature of the Service</h2>
+        <p>PlumbingFaultFinder.co.uk provides general plumbing and heating information, diagnostic guides, and educational content for informational purposes only. The Site is operated by a Gas Safe registered heating engineer and qualified plumber, however:</p>
+        <ul>
+          <li>The information provided on this Site does not constitute professional advice for your specific situation.</li>
+          <li>Every property and plumbing system is different. What works in one situation may not be appropriate in another.</li>
+          <li>The Site is not a substitute for a qualified engineer inspecting your property in person.</li>
+          <li>Costs, timeframes, and recommended actions are estimates and may vary significantly based on your location, system type, and the specific nature of the fault.</li>
+        </ul>
+      </div>
+
+      <div class="tos-section">
+        <h2>3. Gas Safety — Critical Notice</h2>
+        <p><strong>Working on gas appliances, boilers, and gas pipework without Gas Safe registration is illegal in the United Kingdom.</strong> This Site never provides instructions for DIY gas repairs. Any scenario involving gas components directs users to a Gas Safe registered engineer. You must always:</p>
+        <ul>
+          <li>Use a Gas Safe registered engineer for all gas work.</li>
+          <li>Verify an engineer's registration at <strong>gassaferegister.co.uk</strong> before allowing them to work.</li>
+          <li>If you smell gas: leave the property immediately, do not operate any electrical switches, and call the National Gas Emergency Service on <strong>0800 111 999</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="tos-section">
+        <h2>4. Limitation of Liability</h2>
+        <p>To the fullest extent permitted by UK law, PlumbingFaultFinder.co.uk and its operators shall not be liable for any loss, damage, injury, or expense arising from:</p>
+        <ul>
+          <li>Reliance on any information, guide, or diagnostic tool provided on this Site.</li>
+          <li>Any DIY repair or maintenance work carried out based on information from this Site.</li>
+          <li>Any inaccuracy, error, or omission in the content of this Site.</li>
+          <li>Any third-party products, services, or websites linked to from this Site.</li>
+        </ul>
+        <p>You use this Site and act on its content entirely at your own risk. Always consult a qualified professional for any work you are not confident in completing safely.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>5. Accuracy of Information</h2>
+        <p>We take accuracy seriously and all content is written or reviewed by a qualified UK plumber and heating engineer. However, plumbing systems, regulations, and product specifications change over time. We cannot guarantee that all information is current or accurate at the time of reading. If you notice an error, please use our <span style="color:var(--sky);cursor:pointer" onclick="showScreen('screen-contact')">contact form</span> to report it.</p>
+        <p>Boiler fault codes and their meanings are provided in good faith based on manufacturer documentation and engineering experience. Always refer to your boiler's manual or contact the manufacturer directly for definitive guidance on fault codes.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>6. Third-Party Links and Affiliate Relationships</h2>
+        <p>This Site contains links to third-party websites including the Gas Safe Register, boiler manufacturers, tool retailers, and tradespeople directories. Some links may be affiliate links — if you purchase a product or service through these links, we may receive a small commission at no extra cost to you.</p>
+        <p>Affiliate relationships do not influence the content of our guides or our recommendations. We only link to products and services we genuinely believe are useful. We are not responsible for the content, accuracy, or practices of any third-party website.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>7. User Accounts</h2>
+        <p>If you create an account on this Site, you are responsible for maintaining the confidentiality of your login credentials and for all activity that occurs under your account. You must provide accurate information when registering. We reserve the right to terminate accounts that violate these terms or are used for any unlawful purpose.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>8. Intellectual Property</h2>
+        <p>All content on this Site — including text, guides, tool descriptions, diagnostic flows, and the Symptom Checker — is the intellectual property of PlumbingFaultFinder.co.uk unless otherwise stated. You may not reproduce, distribute, or use any content from this Site for commercial purposes without prior written permission.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>9. Governing Law</h2>
+        <p>These Terms of Service are governed by the laws of England and Wales. Any disputes arising from your use of this Site shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+      </div>
+
+      <div class="tos-section">
+        <h2>10. Contact</h2>
+        <p>If you have any questions about these Terms of Service, please contact us using the <span style="color:var(--sky);cursor:pointer" onclick="showScreen('screen-contact')">contact form</span> on this Site.</p>
+      </div>
+    </div>
+  </div>
+
 </div><!-- /wrap -->
 
 <!-- AUTH MODAL -->
@@ -3080,8 +3617,11 @@ body {
     <div class="footer-links">
       <span onclick="goHome()">Home</span>
       <span onclick="showScreen('screen-about')">About</span>
+      <span onclick="showScreen('screen-faq')">FAQ</span>
       <span onclick="showScreen('screen-contact')">Contact</span>
+      <span onclick="showScreen('screen-cost-estimator')">Cost Estimator</span>
       <span onclick="showScreen('screen-privacy')">Privacy Policy</span>
+      <span onclick="showScreen('screen-tos')">Terms of Service</span>
       <span onclick="showScreen('screen-contact')">Pro Version</span>
     </div>
     <div class="footer-disclaimer">All content is provided for informational purposes only. Always use a Gas Safe registered engineer for gas work. PlumbingFaultFinder.co.uk accepts no liability for damage or injury resulting from DIY repairs. Check <strong>gassaferegister.co.uk</strong> before hiring any gas engineer.</div>
@@ -3326,6 +3866,8 @@ function showFaultDetail(brandId, modelId, codeIndex) {
       <p><strong>Always use a Gas Safe registered engineer</strong><br>for any boiler repairs. It is illegal to carry out gas work without Gas Safe registration.</p>
       <button class="btn-primary" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button>
     </div>
+    ${renderManufacturerHelplines(brandId)}
+    ${renderHelpfulBar('fault__' + brandId + '__' + modelId + '__' + codeIndex, 'Fault Code ' + fc.code + ': ' + fc.name, brand.name + ' ' + model.name)}
   `;
   showScreen('screen-fault-detail');
 }
@@ -3391,6 +3933,10 @@ function showFix(scenarioIndex) {
     ? `<div class="tools-box"><h4>🛠 Tools &amp; materials you may need</h4><div class="tools-list">${s.tools.map(t=>`<span class="tool-tag">${t}</span>`).join('')}</div></div>` : '';
   document.getElementById('fix-cta').innerHTML = s.cta
     ? `<div class="cta-box"><p><strong>Not comfortable doing this yourself?</strong><br>For gas work, always use a Gas Safe registered engineer.</p><button class="btn-primary" onclick="window.open('https://www.gassaferegister.co.uk/find-an-engineer','_blank')">Find a Gas Safe Engineer</button></div>` : '';
+
+  // Was this helpful bar
+  const guideTitle = encodeURIComponent(s.title);
+  document.getElementById('fix-cta').innerHTML += renderHelpfulBar(guideId, s.title, currentCat.title);
   showScreen('screen-fix');
 }
 
@@ -5400,11 +5946,226 @@ function showGuideArticle(sectionId, topicIndex) {
   showScreen('screen-guide-article');
 }
 
+// ── WAS THIS HELPFUL ─────────────────────────────────────────────────────────
+function renderHelpfulBar(guideId, guideTitle, guideContext) {
+  const safeId = guideId.replace(/[^a-zA-Z0-9_]/g, '_');
+  const safeTitle = guideTitle.replace(/'/g, "\\'");
+  const safeCtx = (guideContext || '').replace(/'/g, "\\'");
+  return `
+    <div class="helpful-bar" id="helpful-${safeId}">
+      <div class="helpful-title">Was this guide helpful?</div>
+      <div class="helpful-btns">
+        <button class="helpful-btn yes" onclick="voteHelpful('${safeId}', true, '${safeTitle}', '${safeCtx}')">👍 Yes, fixed it!</button>
+        <button class="helpful-btn no"  onclick="voteHelpful('${safeId}', false, '${safeTitle}', '${safeCtx}')">👎 Still having issues</button>
+      </div>
+      <div class="helpful-thanks" id="helpful-thanks-${safeId}"></div>
+      <div class="helpful-contact-prompt" id="helpful-prompt-${safeId}">
+        Still stuck? <a onclick="toggleQuickContact('${safeId}', '${safeTitle}', '${safeCtx}')">Send us a message</a> and we'll help you figure it out.
+        <div class="contact-quick-form" id="quick-form-${safeId}">
+          <h4>📩 Tell us what's happening</h4>
+          <input type="text" id="qf-name-${safeId}" placeholder="Your name">
+          <input type="email" id="qf-email-${safeId}" placeholder="Your email address">
+          <textarea id="qf-msg-${safeId}" rows="3" placeholder="Describe what's happening — e.g. I followed step 3 but the dripping hasn't stopped..."></textarea>
+          <div class="contact-quick-row">
+            <button class="btn-quick-send" onclick="submitQuickContact('${safeId}', '${safeTitle}')">Send message →</button>
+          </div>
+          <div class="contact-quick-success" id="qf-success-${safeId}">✅ Message sent — we'll get back to you as soon as possible.</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function voteHelpful(safeId, wasYes, guideTitle, guideContext) {
+  const bar = document.getElementById('helpful-' + safeId);
+  const thanks = document.getElementById('helpful-thanks-' + safeId);
+  const prompt = document.getElementById('helpful-prompt-' + safeId);
+  if (!bar) return;
+
+  // Mark voted
+  bar.classList.add('voted');
+  bar.querySelector('.helpful-btns').style.display = 'none';
+
+  // Store vote
+  try {
+    const votes = JSON.parse(localStorage.getItem('pff_votes') || '{}');
+    votes[safeId] = { helpful: wasYes, guide: guideTitle, ts: Date.now() };
+    localStorage.setItem('pff_votes', JSON.stringify(votes));
+  } catch(e) {}
+
+  if (wasYes) {
+    thanks.innerHTML = '<strong>✅ Great — glad we could help!</strong> Feel free to bookmark this guide for next time using the save button above.';
+    thanks.classList.add('show');
+  } else {
+    thanks.innerHTML = '<strong>Sorry to hear that.</strong> Every problem is slightly different — tell us what\'s happening and we\'ll do our best to help.';
+    thanks.classList.add('show');
+    prompt.classList.add('show');
+  }
+}
+
+function toggleQuickContact(safeId, guideTitle, guideContext) {
+  const form = document.getElementById('quick-form-' + safeId);
+  if (!form) return;
+  const isShown = form.classList.contains('show');
+  form.classList.toggle('show', !isShown);
+  if (!isShown) {
+    const msgEl = document.getElementById('qf-msg-' + safeId);
+    if (msgEl) msgEl.placeholder = `Describe what\'s happening with "${guideTitle}"...`;
+  }
+}
+
+function submitQuickContact(safeId, guideTitle) {
+  const name  = (document.getElementById('qf-name-'  + safeId)?.value || '').trim();
+  const email = (document.getElementById('qf-email-' + safeId)?.value || '').trim();
+  const msg   = (document.getElementById('qf-msg-'   + safeId)?.value || '').trim();
+  if (!email || !msg) { alert('Please enter your email and a description of your problem.'); return; }
+
+  // In production: POST to Formspree or your backend
+  // fetch('https://formspree.io/f/YOUR_ID', { method:'POST', headers:{'Content-Type':'application/json'},
+  //   body: JSON.stringify({ name, email, message: msg, guide: guideTitle }) });
+  console.log('Quick contact:', { name, email, msg, guideTitle });
+
+  const success = document.getElementById('qf-success-' + safeId);
+  const form = document.getElementById('quick-form-' + safeId);
+  if (form) { form.querySelector('input[type=text]').value = ''; form.querySelector('input[type=email]').value = ''; form.querySelector('textarea').value = ''; }
+  if (success) success.style.display = 'block';
+}
+
+// ── MANUFACTURER HELPLINES ────────────────────────────────────────────────────
+const MANUFACTURER_HELPLINES = {
+  'worcester-bosch': { name: 'Worcester Bosch', phone: '0330 123 9559', url: 'https://www.worcester-bosch.co.uk/support', label: 'Support page' },
+  'vaillant':        { name: 'Vaillant',         phone: '0330 100 3461', url: 'https://www.vaillant.co.uk/homeowners/support-and-contact/', label: 'Support page' },
+  'ideal':           { name: 'Ideal Heating',    phone: '01482 498 663', url: 'https://www.idealheating.com/support',  label: 'Support page' },
+  'baxi':            { name: 'Baxi',             phone: '0344 871 1525', url: 'https://www.baxi.co.uk/support/',       label: 'Support page' },
+  'glow-worm':       { name: 'Glow-worm',        phone: '0330 100 3461', url: 'https://www.glow-worm.co.uk/homeowners/contact/', label: 'Support page' },
+  'viessmann':       { name: 'Viessmann',        phone: '0345 604 7780', url: 'https://www.viessmann.co.uk/en/contact.html', label: 'Contact page' },
+  'potterton':       { name: 'Potterton',        phone: '0344 871 1525', url: 'https://www.potterton.co.uk/support/', label: 'Support page' }
+};
+
+function renderManufacturerHelplines(brandId) {
+  const h = MANUFACTURER_HELPLINES[brandId];
+  if (!h) return '';
+  return `
+    <div class="manufacturer-helpline">
+      <h4>📞 ${h.name} Direct Support</h4>
+      <div class="helpline-grid">
+        <div class="helpline-item">
+          <div class="helpline-brand">${h.name} Customer Support</div>
+          <div class="helpline-number">📞 ${h.phone}</div>
+          <div class="helpline-link"><a href="${h.url}" target="_blank" rel="noopener">${h.label} ↗</a></div>
+        </div>
+        <div class="helpline-item">
+          <div class="helpline-brand">Gas Safe Register</div>
+          <div class="helpline-number">🔧 Find a registered engineer</div>
+          <div class="helpline-link"><a href="https://www.gassaferegister.co.uk/find-an-engineer" target="_blank" rel="noopener">gassaferegister.co.uk ↗</a></div>
+        </div>
+        <div class="helpline-item">
+          <div class="helpline-brand">Gas Emergency</div>
+          <div class="helpline-number">🚨 0800 111 999</div>
+          <div class="helpline-link">Free, 24/7 — if you smell gas</div>
+        </div>
+      </div>
+      <div class="helpline-disclaimer">Phone numbers and links are provided in good faith. Always verify contact details on the manufacturer's official website. PlumbingFaultFinder.co.uk is not affiliated with any boiler manufacturer.</div>
+    </div>`;
+}
+
+// ── FAQ DATA & RENDERING ──────────────────────────────────────────────────────
+const FAQ_DATA = [
+  { cat:'Boiler', icon:'🔥', q:'My boiler pressure keeps dropping — what\'s causing it?',
+    a:'<p>Occasional pressure drops (once or twice a year) are normal — small amounts of water escape through the pressure relief valve over time. If you\'re repressurising monthly or more, there is a leak in the system. Check all radiator valves and pipe joints for damp patches or white mineral deposits. A failing expansion vessel is another common cause — it causes pressure to spike when hot and drop when cold. <a onclick="showCategory(\'low-pressure\');showFix(2)">Read our full guide →</a></p>' },
+  { cat:'Boiler', icon:'🔥', q:'How do I repressurise my boiler?',
+    a:'<p>Find the filling loop — usually a braided silver hose with two small valves, located under or near the boiler. Turn both valves to the open position (slot in line with the pipe). Watch the pressure gauge rise. When it reaches 1–1.5 bar, close both valves. Press the boiler reset button. <strong>Do this with the boiler cold for best accuracy.</strong> <a onclick="showGuideArticle(\'valves\',7)">Read our full filling loop guide →</a></p>' },
+  { cat:'Boiler', icon:'🔥', q:'What does a boiler fault code mean — should I reset it?',
+    a:'<p>Fault codes are your boiler\'s way of telling you why it has locked out. Some codes (typically low pressure codes like F22 on Vaillant, E10 on Baxi, E1 on Worcester) are safe to remedy yourself and reset once. Others — fan faults, gas valve faults, overheat lockouts — should not be repeatedly reset, as doing so can mask a serious underlying fault. <strong>Never reset a boiler more than twice for the same fault.</strong> <a onclick="showBrands()">Look up your fault code →</a></p>' },
+  { cat:'Boiler', icon:'🔥', q:'What is the difference between a combi boiler and a system boiler?',
+    a:'<p>A combi boiler heats hot water on demand directly from the mains — there is no storage tank. It is the most common type in UK homes. A system boiler works with a hot water cylinder (usually in an airing cupboard) to store hot water. System boilers are better for larger homes with multiple bathrooms as they can supply several outlets simultaneously. <a onclick="showGuideArticle(\'boiler-system\',0)">Read our full guide →</a></p>' },
+  { cat:'Radiators', icon:'🔆', q:'Why is my radiator cold at the top but warm at the bottom?',
+    a:'<p>Trapped air is the answer — almost every time. Air rises in the system and collects at the top of the radiator, preventing hot water filling it fully. The fix takes about 10 minutes: use a radiator bleed key to open the bleed valve at the top corner until water flows out (no more hissing). Afterwards, check your boiler pressure and repressurise if it has dropped. <a onclick="showCategory(\'radiators\');showFix(0)">Full bleeding guide →</a></p>' },
+  { cat:'Radiators', icon:'🔆', q:'My radiator is cold at the bottom but warm at the top — what is that?',
+    a:'<p>Cold at the bottom with warmth at the top indicates sludge — black iron oxide that settles at the base of the radiator. This is a sign the system water is dirty. A power flush (£300–£600) properly clears this, though you can try disconnecting and hosing the radiator outside as a short-term fix. After any flush, add a central heating inhibitor to prevent recurrence. <a onclick="showCategory(\'radiators\');showFix(1)">Full guide →</a></p>' },
+  { cat:'Taps', icon:'🔩', q:'My tap is dripping — what is causing it and can I fix it myself?',
+    a:'<p>A dripping tap is almost always a worn washer or cartridge. For traditional pillar taps (round heads, separate hot and cold): it\'s a rubber washer, which costs pennies and takes 20 minutes to replace. For quarter-turn ceramic taps: the ceramic cartridge has cracked. For single-lever mixer taps: the internal cartridge is worn. All are DIY-friendly repairs if you\'re comfortable turning off the water supply. <a onclick="showCategory(\'taps\');showFix(0)">Full dripping tap guide →</a></p>' },
+  { cat:'Taps', icon:'🔩', q:'How do I turn off the water to just one tap without turning off the whole house?',
+    a:'<p>Use the isolation valve — a small valve on the supply pipe under the sink. It has a flat slot in the centre: when the slot runs <strong>in line with the pipe</strong>, it\'s open; when it\'s <strong>across the pipe</strong> (90°), it\'s closed. Turn it with a flat-head screwdriver. If there\'s no isolation valve under your sink, you\'ll need to use the main stopcock under the kitchen sink. <a onclick="showGuideArticle(\'valves\',1)">Guide to isolation valves →</a></p>' },
+  { cat:'Toilets', icon:'🚽', q:'Why is my toilet constantly running and how do I stop it?',
+    a:'<p>Remove the cistern lid and watch what\'s happening. If water is trickling into the pan: press the rubber flap valve at the bottom of the cistern — if it stops, the flap valve is worn (a £3–£8 part). If water is running into the overflow pipe on the outside wall: the fill valve or ball valve is not shutting off properly — try bending the float arm downward slightly. <a onclick="showCategory(\'toilets\');showFix(0)">Full guide →</a></p>' },
+  { cat:'Toilets', icon:'🚽', q:'My toilet flush is very weak — what can I do?',
+    a:'<p>Remove the cistern lid. Check the water level — it should sit about 25mm below the overflow pipe. If it\'s low, adjust the fill valve. Check the flushing mechanism is still connected (the chain or lift arm sometimes detaches). For older siphon cisterns, the rubber diaphragm inside the siphon has likely perished — a replacement kit costs about £3. <a onclick="showCategory(\'toilets\');showFix(1)">Full guide →</a></p>' },
+  { cat:'Heating', icon:'🌡️', q:'Why are some of my radiators hot but others cold or lukewarm?',
+    a:'<p>This is almost always a system balancing issue. Hot water takes the path of least resistance and the radiators closest to the boiler get too much, leaving far radiators cold. Bleeding all radiators first rules out trapped air. Then balancing involves partially closing the lockshield valve (capped valve) on the hottest radiators, pushing more water to cooler ones. <a onclick="showCategory(\'radiators\');showFix(4)">Full balancing guide →</a></p>' },
+  { cat:'Heating', icon:'🌡️', q:'My heating comes on but turns off after a few minutes — what\'s wrong?',
+    a:'<p>This is called short-cycling. Common causes: low boiler pressure (check and repressurise), a frozen condensate pipe in cold weather (thaw with warm water), or the boiler overheating due to a circulation problem. Check for a fault code on the display first. If it persists after checking pressure and resetting once, call a Gas Safe engineer. <a onclick="showCategory(\'no-heating\');showFix(1)">Full guide →</a></p>' },
+  { cat:'Pressure', icon:'💧', q:'What should my boiler pressure gauge read?',
+    a:'<p>When the system is cold (before the heating has been on), pressure should read between <strong>1 and 1.5 bar</strong>. When the heating is running and the system is warm, pressure naturally rises to 1.5–2 bar — this is completely normal. Below 0.5 bar: the boiler may not fire. Above 3 bar: the pressure relief valve may operate. <a onclick="showGuideArticle(\'boiler-system\',1)">Full pressure guide →</a></p>' },
+  { cat:'Pressure', icon:'💧', q:'How do I know if I have a combi boiler or a system with a cylinder?',
+    a:'<p>If you have no hot water cylinder (no tank in an airing cupboard) and hot water comes instantly from the tap — you have a combi boiler. If you have a cylinder in an airing cupboard that stores hot water — you have a system boiler. If you also have a cold water tank in the loft — you have a conventional (regular) boiler. <a onclick="showGuideArticle(\'boiler-system\',0)">Full guide to boiler types →</a></p>' },
+  { cat:'Emergencies', icon:'🚨', q:'I can smell gas — what should I do right now?',
+    a:'<p><strong>Act immediately:</strong> Do NOT turn any electrical switches on or off. Do NOT use a naked flame or lighter. Do NOT use your mobile phone inside the property. Open windows and doors. Leave the property. Call the National Gas Emergency Service from outside: <strong>0800 111 999</strong> (free, 24/7). Do not return until told it is safe by the emergency service. <a onclick="showGuideArticle(\'emergencies\',0)">Emergency preparedness guide →</a></p>' },
+  { cat:'Emergencies', icon:'🚨', q:'A pipe has burst — what do I do first?',
+    a:'<p>1. Turn off the main stopcock immediately (under the kitchen sink — turn clockwise). 2. Turn off the electricity at the consumer unit if water is near electrics. 3. Open all cold taps to drain the system faster. 4. If you have a loft tank, flush toilets to empty it. 5. Catch water with buckets and towels. 6. Call an emergency plumber. 7. Photograph everything for your insurance claim. <a onclick="showGuideArticle(\'emergencies\',2)">Full burst pipe guide →</a></p>' },
+  { cat:'DIY', icon:'🔧', q:'Which plumbing jobs can I do myself and which need a professional?',
+    a:'<p><strong>Safe DIY:</strong> Replacing tap washers and cartridges, bleeding radiators, repressurising the boiler, fixing a running toilet, unblocking a sink, replacing a shower head, and other cold water or waste pipe work.</p><p><strong>Always use a professional:</strong> Any gas work (legally must be Gas Safe registered), unvented hot water cylinder work (requires special certification), anything involving the mains supply before the internal stopcock, and any electrical work associated with plumbing (shower circuits, immersion heaters).</p>' },
+  { cat:'DIY', icon:'🔧', q:'What tools should every homeowner have for basic plumbing?',
+    a:'<p>A good basic plumbing toolkit: adjustable spanner (10" and 12"), plumber\'s PTFE tape, a set of flathead and crosshead screwdrivers, radiator bleed key, plunger (both toilet and sink types), a basin wrench (for tight spaces under sinks), slip-joint pliers, a junior hacksaw, and a bucket and towels. For around £50–£80 you can handle the majority of basic DIY plumbing repairs.</p>' },
+];
+
+const FAQ_CATS = ['All', ...new Set(FAQ_DATA.map(f => f.cat))];
+let faqActiveCat = 'All';
+
+function renderFaq() {
+  // Filter bar
+  const bar = document.getElementById('faq-filter-bar');
+  if (bar && !bar.innerHTML) {
+    bar.innerHTML = FAQ_CATS.map(c =>
+      `<button class="faq-filter-btn${c === faqActiveCat ? ' active' : ''}" onclick="filterFaq('${c}')">${c}</button>`
+    ).join('');
+  }
+  // FAQ list
+  const list = document.getElementById('faq-list');
+  if (!list) return;
+  const items = faqActiveCat === 'All' ? FAQ_DATA : FAQ_DATA.filter(f => f.cat === faqActiveCat);
+  list.innerHTML = items.map((f, i) => `
+    <div class="faq-item" id="faq-item-${i}" onclick="toggleFaq(${i})">
+      <div class="faq-question">
+        <span class="faq-q-icon">${f.icon}</span>
+        <span class="faq-q-text">${f.q}</span>
+        <span class="faq-q-arrow">›</span>
+      </div>
+      <div class="faq-answer">${f.a}</div>
+    </div>
+  `).join('');
+}
+
+function filterFaq(cat) {
+  faqActiveCat = cat;
+  document.querySelectorAll('.faq-filter-btn').forEach(b => b.classList.toggle('active', b.textContent === cat));
+  renderFaq();
+}
+
+function toggleFaq(index) {
+  const item = document.getElementById('faq-item-' + index);
+  if (!item) return;
+  const isOpen = item.classList.contains('open');
+  // Close all others
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── COST ESTIMATOR NOTIFY ─────────────────────────────────────────────────────
+function submitCsNotify() {
+  const email = document.getElementById('cs-notify-email')?.value.trim();
+  if (!email || !email.includes('@')) { alert('Please enter a valid email address.'); return; }
+  // In production: POST to your email list / Formspree
+  console.log('Cost estimator notify:', email);
+  document.getElementById('cs-notify-success').style.display = 'block';
+  document.getElementById('cs-notify-email').value = '';
+}
+
 loadUser();
 updateNavAuth();
 renderHome();
 initSearch();
 initCookieNotice();
+renderFaq();
 </script>
 </body>
 </html>
